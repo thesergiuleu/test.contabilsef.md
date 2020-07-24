@@ -3,40 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\Services\ComponentService;
 use Illuminate\Http\Request;
 
 class SiteBaseController extends Controller
 {
-
-    protected $entity;
-    protected $model;
-    protected $relations = [];
-    protected $limit = '20';
-    protected $sortColumn = 'id';
-    protected $sortOrder = 'desc';
+    /**
+     * @var array
+     */
+    protected array $viewData;
+    /**
+     * @var ComponentService
+     */
+    protected ComponentService $componentService;
 
     /**
-     * Create a new controller instance.
-     *
+     * @var array
      */
-    public function __construct()
-    {
-        $this->sortColumn = request()->get('sortColumn') ?? $this->sortColumn;
-        $this->sortOrder = request()->get('sortOrder') ?? $this->sortOrder;
-    }
-    public function index()
-    {
-        $this->beforeIndexInitHook();
-        $items = $this->model->orderBy($this->sortColumn, $this->sortOrder)->paginate($this->limit);
-        return $this->returnCollection($this->entity . '.index', $items);
-    }
+    protected array $filters = [];
+    /**
+     * @var array|int[]
+     */
+    protected static array $status = [
+        '_0' => 0,
+        '_1' => 1,
+    ];
 
-    public function view($id)
+
+    public function __construct(ComponentService $componentService)
     {
-        $this->beforeViewInitHook();
-        $item = $this->model->findOrFail($id);
-        $this->afterViewInitHook($item);
-        return $this->returnObject($this->entity . '.view', $item);
+        $this->viewData['sections'] = [];
+        $this->viewData['breadCrumbs'] = true;
+        $this->componentService = $componentService;
+
+        $this->setFilters();
     }
 
     public function returnCollection(string $view, $items = [])
@@ -57,15 +57,25 @@ class SiteBaseController extends Controller
         return view($view, $item);
     }
 
-    protected function beforeIndexInitHook(): void
+    /**
+     * @return void
+     */
+    protected function setFilters(): void
     {
-    }
-
-    protected function beforeViewInitHook(): void
-    {
-    }
-
-    protected function afterViewInitHook(&$item): void
-    {
+        if (!is_null(request()->input('year_get', null))) {
+            $this->filters = [
+                'year' => request()->input('year_get')
+            ];
+        }
+        if (!is_null(request()->input('month_get', null))) {
+            $this->filters = array_merge($this->filters, [
+                'month' => request()->input('month_get')
+            ]);
+        }
+        if (!is_null(request()->input('status_get', null))) {
+            $this->filters = array_merge($this->filters, [
+                'status' => request()->input('status_get')
+            ]);
+        }
     }
 }

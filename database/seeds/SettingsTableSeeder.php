@@ -48,6 +48,196 @@ class SettingsTableSeeder extends Seeder
             ])->save();
         }
 
+        $setting = $this->findSetting('site.address_footer_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Adresa subsol'),
+                'value'        => 'Chişinău, str. Mitropolit Varlaam 65, of.313, MD-2001',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 4,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.email_footer_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Email subsol'),
+                'value'        => 'office@contabilsef.md',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
+                'group'        => 'Site',
+            ])->save();
+        }
+        $setting = $this->findSetting('site.phone_footer_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Telefon subsol'),
+                'value'        => '(+373 22) 22 49 37',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 6,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.fax_footer_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Fax subsol'),
+                'value'        => '(+373 22) 22 49 37',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 6,
+                'group'        => 'Site',
+            ])->save();
+        }
+        $setting = $this->findSetting('site.contabilsef');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Contabil sef'),
+                'value'        => 'contabil șef',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 7,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.noutati');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Noutăți'),
+                'value'        => 'noutăți',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 8,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.articole');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Articole'),
+                'value'        => 'articole',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 9,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.instruire');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Instruire'),
+                'value'        => 'instruire',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 10,
+                'group'        => 'Site',
+            ])->save();
+        }
+        $setting = $this->findSetting('site.top');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Top cele mai citite'),
+                'value'        => 'top cele mai citite',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 11,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.offers');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Oferte de serviciu'),
+                'value'        => 'oferte de serviciu',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 12,
+                'group'        => 'Site',
+            ])->save();
+        }
+        $setting = $this->findSetting('site.legislatia');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Legislatia'),
+                'value'        => 'legislatia',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 12,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.twitter_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Twitter'),
+                'value'        => config('app.url'),
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 13,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.facebook_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Facebook'),
+                'value'        => 'https://facebook.com/contabilsef/',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 14,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.linkedin_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Linkedin'),
+                'value'        => config('app.url'),
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 15,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.google_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Google'),
+                'value'        => config('app.url'),
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 16,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('site.rss_widget');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Rss'),
+                'value'        => config('app.url'),
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 17,
+                'group'        => 'Site',
+            ])->save();
+        }
+
+
+
         $setting = $this->findSetting('admin.bg_image');
         if (!$setting->exists) {
             $this->uploadImage('background.jpg');

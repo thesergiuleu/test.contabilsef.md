@@ -40,6 +40,9 @@ use TCG\Voyager\Traits\Translatable;
  * @method static Builder|Category withTranslation($locale = null, $fallback = true)
  * @method static Builder|Category withTranslations($locales = null, $fallback = true)
  * @mixin Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $children
+ * @property-read int|null $children_count
+ * @property-read mixed $parent_category
  */
 class Category extends Model
 {
@@ -60,6 +63,25 @@ class Category extends Model
 
     public function parentId()
     {
-        return $this->belongsTo(self::class);
+        return $this->belongsTo(self::class, 'parent_id', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function getParentCategoryAttribute()
+    {
+        return $this->getParentCategory($this->parentId);
+    }
+
+    protected function getParentCategory($parent)
+    {
+        if ($parent) {
+            $this->getParentCategory($parent->parentId);
+            return $parent;
+        }
+        return $this;
     }
 }
