@@ -1,1 +1,1 @@
-calendar
+{!! sidebarCalendar() !!}

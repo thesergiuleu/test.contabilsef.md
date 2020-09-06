@@ -10,55 +10,24 @@ class DataTypesTableSeeder extends Seeder
      */
     public function run()
     {
-        $dataType = $this->dataType('slug', 'users');
-        if (!$dataType->exists) {
-            $dataType->fill([
-                'name'                  => 'users',
-                'display_name_singular' => __('voyager::seeders.data_types.user.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.user.plural'),
-                'icon'                  => 'voyager-person',
-                'model_name'            => 'TCG\\Voyager\\Models\\User',
-                'policy_name'           => 'TCG\\Voyager\\Policies\\UserPolicy',
-                'controller'            => 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController',
-                'generate_permissions'  => 1,
-                'description'           => '',
-                'server_side'           => 1,
-                'details' => [
-                    "order_column" => null,
-                    "order_display_column" => null,
-                    "order_direction" => "desc",
-                    "default_search_key" => "id",
-                    "scope" => null
-                ]
-            ])->save();
-        }
-
-        $dataType = $this->dataType('slug', 'menus');
-        if (!$dataType->exists) {
-            $dataType->fill([
-                'name'                  => 'menus',
-                'display_name_singular' => __('voyager::seeders.data_types.menu.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.menu.plural'),
-                'icon'                  => 'voyager-list',
-                'model_name'            => 'TCG\\Voyager\\Models\\Menu',
-                'controller'            => '',
-                'generate_permissions'  => 1,
-                'description'           => '',
-            ])->save();
-        }
-
-        $dataType = $this->dataType('slug', 'roles');
-        if (!$dataType->exists) {
-            $dataType->fill([
-                'name'                  => 'roles',
-                'display_name_singular' => __('voyager::seeders.data_types.role.singular'),
-                'display_name_plural'   => __('voyager::seeders.data_types.role.plural'),
-                'icon'                  => 'voyager-lock',
-                'model_name'            => 'TCG\\Voyager\\Models\\Role',
-                'controller'            => 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController',
-                'generate_permissions'  => 1,
-                'description'           => '',
-            ])->save();
+        $file = file_get_contents(database_path('seeds') . '/dataTypes.json');
+        foreach (json_decode($file, true) as $item) {
+            $dataType = $this->dataType('slug', $item['slug']);
+            if (!$dataType->exists) {
+                $dataType->fill([
+                    'name'                  => $item['name'],
+                    'display_name_singular' => $item['display_name_singular'],
+                    'display_name_plural'   => $item['display_name_plural'],
+                    'icon'                  => $item['icon'],
+                    'model_name'            => $item['model_name'],
+                    'policy_name'           => $item['policy_name'],
+                    'controller'            => $item['controller'],
+                    'generate_permissions'  => $item['generate_permissions'],
+                    'description'           => $item['description'],
+                    'server_side'           => $item['server_side'],
+                    'details' => $item['details']
+                ])->save();
+            }
         }
     }
 

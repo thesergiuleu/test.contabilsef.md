@@ -19,14 +19,16 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('title');
             $table->string('seo_title')->nullable();
-            $table->text('excerpt');
             $table->text('body');
             $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->text('meta_description');
             $table->text('meta_keywords');
             $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
-            $table->boolean('featured')->default(0);
+            $table->tinyInteger('privacy')->default(0);
+            $table->tinyInteger('is_own')->default(0);
+            $table->bigInteger('views')->default(0);
+            $table->timestamp('event_date')->default(null)->nullable();
             $table->timestamps();
         });
     }

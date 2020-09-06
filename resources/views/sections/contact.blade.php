@@ -12,7 +12,7 @@
             <br>
             Vă atragem atenția că în legătură cu suprasolicitarea specialiştilor noştri, vor fi examinate şi publicate pe pagină doar cele mai interesante și complicate întrebări, răspunsurile cărora vor fi utile şi altor vizitatori ai paginii noastre.
             <br>
-            Totodată pentru a beneficia de toate răspunsurile la întrebările dvs. în termeni rezonabili vă propunem să vă abonați la serviciu  <a class="daria-goto-anchor" href="http://contabilsef.md/pageview.php?l=ro&amp;idc=547" target="_blank">Consultant SNC</a> oferit de pagina Contabilsef.md.
+            Totodată pentru a beneficia de toate răspunsurile la întrebările dvs. în termeni rezonabili vă propunem să vă abonați la serviciu  <a class="daria-goto-anchor" href="{{ route('page.view', \App\Page::CONSULTANT_SNC) }}" target="_blank">Consultant SNC</a> oferit de pagina Contabilsef.md.
             <br>
             Cu stimă, echipa Contabilsef.md
         </p>

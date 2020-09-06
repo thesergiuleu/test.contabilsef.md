@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "admin",
+        "created_at": "2020-08-24T18:05:19.000000Z",
+        "updated_at": "2020-08-24T18:05:19.000000Z"
+    },
+    {
+        "id": 2,
+        "name": "site",
+        "created_at": "2020-08-24T18:05:41.000000Z",
+        "updated_at": "2020-08-24T18:05:41.000000Z"
+    },
+    {
+        "id": 4,
+        "name": "footer-despre-noi",
+        "created_at": "2020-08-28T11:35:02.000000Z",
+        "updated_at": "2020-08-28T11:35:02.000000Z"
+    },
+    {
+        "id": 5,
+        "name": "footer-noutati",
+        "created_at": "2020-08-28T11:35:09.000000Z",
+        "updated_at": "2020-08-28T11:35:09.000000Z"
+    },
+    {
+        "id": 6,
+        "name": "footer-studiem",
+        "created_at": "2020-08-28T11:35:16.000000Z",
+        "updated_at": "2020-08-28T11:35:16.000000Z"
+    },
+    {
+        "id": 7,
+        "name": "footer-articole",
+        "created_at": "2020-08-28T11:35:22.000000Z",
+        "updated_at": "2020-08-28T11:35:22.000000Z"
+    },
+    {
+        "id": 8,
+        "name": "footer-legislatia",
+        "created_at": "2020-08-28T11:35:30.000000Z",
+        "updated_at": "2020-08-28T11:35:30.000000Z"
+    },
+    {
+        "id": 9,
+        "name": "footer-informatii-utile",
+        "created_at": "2020-08-28T11:35:37.000000Z",
+        "updated_at": "2020-08-28T11:35:37.000000Z"
+    }
+]

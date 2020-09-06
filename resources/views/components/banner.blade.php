@@ -1,27 +1,25 @@
-<div class="ram">
-    @foreach ($component['data'] as $item)
-        <div
-            data-ajax-url="#"
-            class="banner_wrapper"
-            style=""
-        >
-            <div
-                class="banner  banner-24327 bottom vert custom-banners-theme-default_style"
-                style=""
+<div class="baner">
+    <div class="ram" style="text-align: center">
+        @foreach ($component['data'] as $k => $item)
+            <a
+                class="custom_banners_big_link"
+                target="_blank"
+                data-id=""
+                href="{{ $item->redirect_url ?? '#' }}"
             >
-                <img
-                    width="620"
-                    height="80"
-                    src="https://www.contabilsef.md/wp-content/uploads/2018/01/y.png"
-                    class="attachment-full size-full"
-                    alt=""
-                    sizes="(max-width: 620px) 100vw, 620px"><a
-                    class="custom_banners_big_link"
-                    target="_blank"
-                    data-id=""
-                    href="#"
-                ></a>
-            </div>
-        </div>
-    @endforeach
+                <div class="banner_wrapper">
+                    <div class="banner">
+                        <img
+                            width="{{ $item->position == \App\Banner::POSITION_MAIN_CENTER ? '620' : '376' }}"
+                            height="80"
+                            src="{{ $item->image_url }}"
+                            class="attachment-full size-full"
+                            alt=""
+                            sizes="{{ $item->position == \App\Banner::POSITION_MAIN_CENTER ? '(max-width: 620px) 100vw, 620px' : '(max-width: 376px) 100vw, 376px' }}">
+                    </div>
+                </div>
+            </a>
+
+        @endforeach
+    </div>
 </div>

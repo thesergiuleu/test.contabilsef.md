@@ -19,7 +19,7 @@ return [
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',
-        'default_avatar'               => 'users/default.png',
+        'default_avatar'               => 'uploads/default.png',
         'redirect'                     => '/admin',
     ],
 
@@ -152,7 +152,6 @@ return [
         'widgets' => [
             UserDimmer::class,
             PostWidget::class,
-            PageWidget::class,
         ],
 
     ],
@@ -199,6 +198,7 @@ return [
     ],
 
     'additional_js' => [
+        'js/tinymce_config.js'
         //'js/custom.js',
     ],
 

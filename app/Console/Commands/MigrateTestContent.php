@@ -54,26 +54,26 @@ class MigrateTestContent extends Command
     private function categories()
     {
         return [
-          [
-              'parent_id' => null,
-              'order' => 1
-          ],
-          [
-              'parent_id' => 1,
-              'order' => 2
-          ],
-          [
-              'parent_id' => 1,
-              'order' => 3
-          ],
-          [
-              'parent_id' => null,
-              'order' => 4
-          ],
-          [
-              'parent_id' => 4,
-              'order' => 5
-          ]
+            [
+                'parent_id' => null,
+                'order' => 1
+            ],
+            [
+                'parent_id' => 1,
+                'order' => 2
+            ],
+            [
+                'parent_id' => 1,
+                'order' => 3
+            ],
+            [
+                'parent_id' => null,
+                'order' => 4
+            ],
+            [
+                'parent_id' => 4,
+                'order' => 5
+            ]
         ];
     }
 

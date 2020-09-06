@@ -4,10 +4,25 @@
 namespace App\Services;
 
 
+use App\Offer;
 use Carbon\Carbon;
 
 class ComponentService
 {
+    private static array $months = [
+        1 => 'Jan.',
+        2 => 'Feb.',
+        3 => 'Mar.',
+        4 => 'Apr.',
+        5 => 'Mai',
+        6 => 'Iun.',
+        7 => 'Iul.',
+        8 => 'Aug.',
+        9 => 'Sep.',
+        10 => 'Oct.',
+        11 => 'Noi.',
+        12 => 'Dec.',
+    ];
     private string $name;
     private $data;
     private ?string $title = null;
@@ -24,21 +39,9 @@ class ComponentService
         'type' => [
             '_0' => 'Public'
         ],
-    ];
-
-    private static array $months = [
-        1 => 'Jan.',
-        2 => 'Feb.',
-        3 => 'Mar.',
-        4 => 'Apr.',
-        5 => 'Mai',
-        6 => 'Iun.',
-        7 => 'Iul.',
-        8 => 'Aug.',
-        9 => 'Sep.',
-        10 => 'Oct.',
-        11 => 'Noi.',
-        12 => 'Dec.',
+        'categories' => [
+            '#' => '#'
+        ]
     ];
 
     /**
@@ -102,22 +105,6 @@ class ComponentService
         return $this;
     }
 
-    /**
-     * @return ComponentService
-     */
-    public function setFilters(): ComponentService
-    {
-        $filters['year'] = $this->years();
-        $filters['month'] = $this->months();
-        $filters['type'] = [
-            '_0' => 'Privat',
-            '_1' => 'Public'
-        ];
-        $this->filters = $filters;
-        return $this;
-    }
-
-
     public function build(array $options = [])
     {
         $this->setFilters();
@@ -131,6 +118,22 @@ class ComponentService
             'route' => $this->route ?? config('app.url'),
             'filters' => $this->filters
         ];
+    }
+
+    /**
+     * @return ComponentService
+     */
+    public function setFilters(): ComponentService
+    {
+        $filters['year'] = $this->years();
+        $filters['month'] = $this->months();
+        $filters['type'] = [
+            '_0' => 'Privat',
+            '_1' => 'Public'
+        ];
+        $filters['vacancies'] = $this->vacancies();
+        $this->filters = $filters;
+        return $this;
     }
 
     private function years()
@@ -149,5 +152,15 @@ class ComponentService
             $months[$i] = self::$months[$i];
         }
         return $months;
+    }
+
+    private function vacancies()
+    {
+        $vacancies = Offer::pluck('vacancy')->toArray();
+        $data = [];
+        foreach (array_unique($vacancies) as $vacancy) {
+            $data[$vacancy] = $vacancy;
+        }
+        return $data;
     }
 }

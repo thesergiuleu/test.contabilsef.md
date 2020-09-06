@@ -1,1 +1,1 @@
-<a href="{{ $item->post_url }}" class="title-articol"> {!! !isset($doesNotShowNew) ? $item->new_on_text : '' !!} {{ $item->title }}</a>
+<a href="{{ $item->post_url }}" class="title-articol"> {!! !isset($doNotShowNew) ? $item->new_on_text : '' !!} {{ $item->title }}</a>

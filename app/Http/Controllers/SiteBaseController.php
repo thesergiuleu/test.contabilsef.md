@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
 use App\Services\ComponentService;
-use Illuminate\Http\Request;
+use App\Services\PostsServiceInterface;
 
 class SiteBaseController extends Controller
 {
+    /**
+     * @var array|int[]
+     */
+    protected static array $status = [
+        '_0' => 0,
+        '_1' => 1,
+    ];
     /**
      * @var array
      */
@@ -16,45 +22,18 @@ class SiteBaseController extends Controller
      * @var ComponentService
      */
     protected ComponentService $componentService;
-
     /**
      * @var array
      */
     protected array $filters = [];
-    /**
-     * @var array|int[]
-     */
-    protected static array $status = [
-        '_0' => 0,
-        '_1' => 1,
-    ];
-
 
     public function __construct(ComponentService $componentService)
     {
         $this->viewData['sections'] = [];
-        $this->viewData['breadCrumbs'] = true;
+        $this->viewData['breadCrumbs'] = [];
         $this->componentService = $componentService;
 
         $this->setFilters();
-    }
-
-    public function returnCollection(string $view, $items = [])
-    {
-        if (request()->wantsJson()) {
-            return response()->json($items);
-        }
-
-        return view($view, $items);
-    }
-
-    public function returnObject(string $view, $item = null)
-    {
-        if (request()->wantsJson()) {
-            return response()->json($item);
-        }
-
-        return view($view, $item);
     }
 
     /**
@@ -77,5 +56,31 @@ class SiteBaseController extends Controller
                 'status' => request()->input('status_get')
             ]);
         }
+    }
+
+    public function returnCollection(string $view, $items = [])
+    {
+        if (request()->wantsJson()) {
+            return response()->json($items);
+        }
+
+        return view($view, $items);
+    }
+
+    public function returnObject(string $view, $item = null)
+    {
+        if (request()->wantsJson()) {
+            return response()->json($item);
+        }
+
+        return view($view, $item);
+    }
+
+    protected function getTopItems(PostsServiceInterface $postsService)
+    {
+        return [
+            'top_7' => $postsService->setCategory(null)->setLimit(7)->setSortColumn('views')->getPosts(),
+            'top_30' => $postsService->setCategory(null)->setLimit(30)->setSortColumn('views')->getPosts(),
+        ];
     }
 }

@@ -36,16 +36,31 @@ class MenuBuilder extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void
      */
     public function handle()
     {
         $categories = Category::query()->orderBy('parent_id')->get();
 
         foreach ($categories as $key => $category) {
-            if (MenuItem::where('title', $category->name)->exists()) continue;
+            if ($category->slug != 'instruire')
+                if (MenuItem::where('title', $category->name)->exists()) continue;
 
             $this->buildMenu($category, $key);
+        }
+
+        $lastKey = array_key_last($categories->toArray());
+
+        $menu = Menu::query()->where('name', 'site')->first();
+
+        if (!$menuItem = MenuItem::query()->where('menu_id', $menu->id)->where('title', 'contact')->first()) {
+            MenuItem::create([
+                'title' => 'contact',
+                'menu_id' => $menu->id,
+                'url' => '/contact',
+                'target' => '_self',
+                'order' => $lastKey + 1,
+            ]);
         }
     }
 

@@ -1,43 +1,55 @@
-$(window).on('load',function(){
-    try {
-        griwpcOnloadCallback();
-    }
-    catch(err) {
-        console.log('No Recaptcha');
-    }
-    console.log('onload 2')
-});
+window.redirect_url = 'https://contabilsef.md';
 
+var onloadCallback = function() {
+    const reCaptchaDiv = document.getElementById('g-recaptcha');
+    const data = $(reCaptchaDiv).data();
+    if (typeof data !== "undefined") {
+        grecaptcha.render(reCaptchaDiv, {
+            'sitekey' : data.sitekey
+        });
+    }
+};
+
+ymaps.ready(init);
+
+function init(){
+    const mapDiv = document.getElementById("map");
+    const data = $(mapDiv).data();
+
+    if (typeof data !== "undefined") {
+        // Creating the map.
+        var myMap = new ymaps.Map("map", {
+            // The map center coordinates.
+            // Default order: “latitude, longitude”.
+            // To not manually determine the map center coordinates,
+            // use the Coordinate detection tool.
+            center: [data.lat, data.long],
+            // Zoom level. Acceptable values:
+            // from 0 (the entire world) to 19.
+            zoom: 18,
+        });
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'ContabilSef',
+            balloonContent: 'ContabilSef'
+        }, {
+            /**
+             * Options.
+             * You must specify this type of layout.
+             */
+            iconLayout: 'default#image',
+            // Custom image for the placemark icon.
+            iconImageHref: data.marker,
+            // The size of the placemark.
+            /**
+             * The offset of the upper left corner of the icon relative
+             * to its "tail" (the anchor point).
+             */
+        });
+        myMap.geoObjects
+            .add(myPlacemark);
+    }
+}
 $(document).ready(function ($) {
-    $.ajax({
-        type:"POST",
-        url:'https://www.contabilsef.md/wp-admin/admin-ajax.php',
-        data:{
-            action: 'ip'
-        },
-        success: function(results){
-            $('[name="ip-address"]').val(results)
-        }
-    });
-    setInterval(function(){
-        if($('[name="ip-address"]').val() == '')
-        {
-            $.ajax({
-                type:"POST",
-                url:'https://www.contabilsef.md/wp-admin/admin-ajax.php',
-                data:{
-                    action: 'ip'
-                },
-                success: function(results){
-                    $('[name="ip-address"]').val(results)
-                }
-            });
-        }
-
-    },1500)
-
-
-
     $( document).on('submit','#primaryPostForm', function(e){
         $(this).find('.required input').each(function(){
             if($(this).val() == ''){
@@ -113,31 +125,29 @@ $(document).ready(function ($) {
             dataType: 'json',
             url: $(this).attr('action'),
             data: {
-                'action': 'ajaxlogin', //calls wp_ajax_nopriv_ajaxlogin
-                'username': $('form#login #username').val(),
+                '_token': $('form#login #csrf_token').val(),
+                'email': $('form#login #username').val(),
                 'password': $('form#login #password').val(),
                 'security': $('form#login #security').val(),
                 'remember': $('form#login input[name="remember"]').is(':checked')?1:0
             },
             success: function (data) {
-                if (data.loggedin == true) {
-                    $('form#login p.status').text(data.message).css({
-                        color:'green',
-                    });
+                if (data.status == 'success') {
+                    location.reload();
                 }
-                if (data.loggedin == false) {
-                    $('form#login p.status').text(data.message).css({
+            },
+            error: function (err) {
+                if (err.status == 422) { // when status code is 422, it's a validation issue
+                    // you can loop through the errors object and show it to the user
+                    // display errors on each form field
+                    $.each(err.responseJSON.errors, function (i, error) {
+                        var el = $(document).find('[name="'+i+'"]');
+                        $(el).addClass('has-error')
+                    });
+
+                    $('.error_message').text(err.responseJSON.errors['email'][0]).show().css({
                         color:'red',
                     });
-                }
-
-                if (data.loggedin == true) {
-                    if($('[name="redirectLogin"]').length > 0){
-                        document.location.href = $('[name="redirectLogin"]').val();
-                    }else{
-                        document.location.href = $('form#login #redirect').val();
-                    }
-
                 }
             }
         });
@@ -150,47 +160,20 @@ $(document).ready(function ($) {
 
     $('#registrationForm').on('submit',function(e){
         e.preventDefault();
-        var ms = '';
-        $(this).find('.required').each(function(){
-            if($(this).val() == ''){
-                $(this).addClass('has-error');
-                ms = 'Toate cîmpurile sunt obligatorii';
-            }else{
-                $(this).removeClass('has-error');
-            }
-            if($(this).hasClass('email') &&  !is_email( $(this).val() ) ){
-                $(this).addClass('has-error');
-                if(ms =='')ms = 'Email incorect';
-            }else if($(this).hasClass('email') && is_email( $(this).val() ) ){
-                $(this).removeClass('has-error');
-            }
-            if($(this).attr('type') == 'password' &&  $(this).val().length <= 5  ){
-                $(this).addClass('has-error');
-                if(ms =='')ms = 'Parola prea scurta';
-            }else if($(this).hasClass('email') && is_email( $(this).val() ) ){
-                $(this).removeClass('has-error');
-            }
-        });
-        if($(this).find('.has-error').length > 0){
-            $('.register-message').text(ms).show().css({
-                color:'red',
-            });
-            return false;
-        }else{
-            $('.register-message').text('').hide();
-        }
-
         $.ajax({
             type:"POST",
             url:$(this).attr('action'),
             data: $(this).serializeArray(),
+            beforeSend: function(request) {
+                request.setRequestHeader("Accept", 'application/json');
+            },
             success: function(results){
 
                 $('.pls-container').remove();
-                
 
-                console.log('asdfasdf');
-                results = JSON.parse(results);
+
+                console.log(results);
+                // results = JSON.parse(results);
                 if(results.status == 'success'){
                     $('.inregistrare .content').html('<span class="close"><i class="fa fa-times"></i></span><h1 style=" font-size: 30px; padding: 50px 50px">În scurt timp veți primi un mesaj la adresa electronică indicată. Vă rugăm să deschideți mesajul și să apăsați pe linkul de activare a contului Dvs.</h1>');
                     $('.inregistrare .content').css('max-width','550px');
@@ -208,11 +191,67 @@ $(document).ready(function ($) {
 				grecaptcha.reset('g-recaptcha-registration');
 
             },
-            error: function(results) {
+            error: function(err) {
+                if (err.status == 422) { // when status code is 422, it's a validation issue
+                    $('#success_message').fadeIn().html(err.responseJSON.message);
+
+                    // you can loop through the errors object and show it to the user
+                    // display errors on each form field
+                    $.each(err.responseJSON.errors, function (i, error) {
+                        var el = $(document).find('[name="'+i+'"]');
+                        $(el).addClass('has-error')
+                    });
+                    $('.register-message').text('Toate cîmpurile sunt obligatorii.').show().css({
+                        color:'red',
+                    });
+                }
             }
         });
     });
 
+    $('#contact-form').on('submit',function(e){
+        e.preventDefault();
+        submitForm(this)
+    });
+
+    $('#newsletter-form').on('submit', function (e) {
+        e.preventDefault();
+        submitForm(this)
+    });
+
+    $('#pool-vote-form').on('submit', function (e){
+       e.preventDefault();
+       console.log('hakuna matata')
+       submitForm(this);
+    });
+
+    $('#subscribe-form').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        $('#subscription-submit-i').addClass('fa fa-spin fa-cog')
+        submitForm(this);
+    });
+    $('#editProfileForm').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        submitForm(this);
+    });
+    $('#commentform').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        submitForm(this);
+    });
+    $('#offer-form').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        submitForm(this);
+    });
+
+    $('#instruire-register-form').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        submitForm(this);
+    });
 
     //$('#forgot_password').on('submit', function(e){
     $('.ajax-form').on('submit', function(e){
@@ -283,25 +322,17 @@ $(document).ready(function ($) {
             type: 'POST',
             url: $(this).attr('action'),
             data: {
-                'action': 'ajaxforgotpassword',
-                'user_login': $('#user_login').val(),
-                'security': $('#forgotsecurity').val(),
+                'email': $('#user_login').val(),
+                '_token': $('form#login #csrf_token').val(),
             },
             success: function(data){
-                data = JSON.parse(data);
-                if(data.loggedin == false){
-                    $('.status-send').show().text(data.message).css({color:'red'});
-                }else if(data.loggedin == true){
-                    $('#forgot_password')[0].reset();
-                    $('.status-send').show().text(data.message).css({color:'green'});
-                }
-
+                location.reload();
             }
         });
     });
-	
+
 	$(document).on('click','.banner_wrapper',function(){
-	
+
 		var url = $(this).attr('data-ajax-url');
 		$.ajax({
 			type: 'GET',
@@ -312,6 +343,48 @@ $(document).ready(function ($) {
 	})
 });
 function is_email( email ) {
-    var pattern = new RegExp( /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i );
+    var pattern = new RegExp( /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,9}$/i );
     return pattern.test( email );
+}
+function submitForm(form) {
+    $.ajax({
+        type:$(form).attr('method'),
+        url:$(form).attr('action'),
+        data: $(form).serializeArray(),
+        beforeSend: function(request) {
+            request.setRequestHeader("Accept", 'application/json');
+        },
+        success: function(results){
+            if(results.status == 'success'){
+
+                window.redirect_url = results.redirect_url
+                $('.popUp_contPersonal').removeClass('add-display-activee');
+                $('.popUp_contPersonal').removeAttr('style');
+
+                $('.myPopupRemove').addClass('add-display-activee');
+                $('.myPopupRemove .myTabContent').html(results.message);
+            }
+        },
+        error: function(err) {
+            if (err.status == 422) { // when status code is 422, it's a validation issue
+                $('#exampleModal').fadeIn().html(err.responseJSON.message);
+                // you can loop through the errors object and show it to the user
+                // display errors on each form field
+                $.each(err.responseJSON.errors, function (i, error) {
+                    console.log(error);
+                    var el = $(form).find('[name="'+i+'"]');
+                    $(el).addClass('has-error');
+                    $(el).addClass('wpcf7-not-valid');
+                });
+
+                var size = Object.keys(err.responseJSON.errors).length;
+
+                if ('terms' in err.responseJSON.errors && size === 1) {
+                    $('#error-id').addClass('error_response_terms').html('Trebuie să accepți termenii și condițiile înainte de a trimite mesajul.');
+                } else {
+                    $('#error-id').addClass('error_response').html('Unul sau mai multe câmpuri au o eroare. Te rog să verifici și să încerci din nou.');
+                }
+            }
+        }
+    });
 }

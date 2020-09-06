@@ -40,13 +40,91 @@ use TCG\Voyager\Traits\Translatable;
  * @method static Builder|Category withTranslation($locale = null, $fallback = true)
  * @method static Builder|Category withTranslations($locales = null, $fallback = true)
  * @mixin Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $children
+ * @property-read Collection|Category[] $children
  * @property-read int|null $children_count
  * @property-read mixed $parent_category
+ * @property-read Collection|Post[] $subPosts
+ * @property-read int|null $sub_posts_count
  */
 class Category extends Model
 {
     use Translatable;
+
+    const NEWS_CATEGORY = 'noutati';
+    const CONTABIL_SEF_NEWS_CATEGORY = 'noutati-contabil-sef';
+    const GENERAL_NEWS_CATEGORY = 'noutati-generale';
+    const ARTICLES_CATEGORY = 'articole';
+    const INSTRUIRE_CATEGORY = 'instruire';
+    const LEGISLATION_CATEGORY = 'legislatia';
+    const INFORMATII_UTILE_CATEGORY = 'informatii-utile';
+    const SNC_2020_CATEGORY = 'snc-2020';
+    const INDICATORI_FISCALI_CATEGORY = 'indicatori-fiscali';
+    const SINTEZA_MONITORULUI_OFICIAL_CATEGORY = 'sinteza-monitorului-oficial';
+    const GLOSARY_CATEGORY = 'dictionar-contabil';
+
+    const CATEGORIES_WITH_COMMENTS = [
+        self::ARTICLES_CATEGORY,
+        self::NEWS_CATEGORY
+    ];
+
+    const CATEGORIES = [
+        self::NEWS_CATEGORY => [
+            'slug' => self::NEWS_CATEGORY,
+            'order' => 1,
+            'name' => 'Noutăţi',
+        ],
+        self::CONTABIL_SEF_NEWS_CATEGORY => [
+            'slug' => self::CONTABIL_SEF_NEWS_CATEGORY,
+            'parent_id' => 1,
+            'order' => 2,
+            'name' => 'Noutăţi ContabilȘef'
+        ],
+        self::GENERAL_NEWS_CATEGORY => [
+            'slug' => self::GENERAL_NEWS_CATEGORY,
+            'parent_id' => 1,
+            'order' => 3,
+            'name' => 'Noutăţi generale',
+        ],
+        self::ARTICLES_CATEGORY => [
+            'slug' => self::ARTICLES_CATEGORY,
+            'order' => 4,
+            'name' => 'Articole',
+        ],
+        self::INSTRUIRE_CATEGORY => [
+            'slug' => self::INSTRUIRE_CATEGORY,
+            'order' => 5,
+            'name' => 'Instruire',
+        ],
+        self::LEGISLATION_CATEGORY => [
+            'slug' => self::LEGISLATION_CATEGORY,
+            'order' => 6,
+            'name' => 'Legislaţia',
+        ],
+        self::INFORMATII_UTILE_CATEGORY => [
+            'slug' => self::INFORMATII_UTILE_CATEGORY,
+            'order' => 7,
+            'name' => 'Informaţii utile'
+        ],
+        self::SNC_2020_CATEGORY => [
+            'slug' => self::SNC_2020_CATEGORY,
+            'parent_id' => 7,
+            'order' => 8,
+            'name' => 'SNC 2020',
+        ],
+        self::INDICATORI_FISCALI_CATEGORY => [
+            'slug' => self::INDICATORI_FISCALI_CATEGORY,
+            'parent_id' => 7,
+            'order' => 9,
+            'name' => 'Indicatori fiscali',
+        ],
+        self::SINTEZA_MONITORULUI_OFICIAL_CATEGORY => [
+            'slug' => self::SINTEZA_MONITORULUI_OFICIAL_CATEGORY,
+            'parent_id' => 6,
+            'order' => 10,
+            'name' => 'Sinteza Monitorului Oficial',
+        ]
+    ];
+
 
     protected $translatable = ['slug', 'name'];
 
@@ -83,5 +161,13 @@ class Category extends Model
             return $parent;
         }
         return $this;
+    }
+
+    public function subPosts()
+    {
+        return $this
+            ->hasManyThrough(Post::class, self::class, 'parent_id', 'category_id')
+            ->published()
+            ->orderBy('created_at', 'DESC');
     }
 }

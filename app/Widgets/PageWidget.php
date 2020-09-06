@@ -25,9 +25,9 @@ class PageWidget extends BaseDimmer
         $string = trans_choice('voyager::dimmer.page', $count);
 
         return view('widgets.page_widget', array_merge($this->config, [
-            'icon'   => 'voyager-news',
-            'title'  => "{$count} {$string}",
-            'text'   => __('voyager::dimmer.page_text', ['count' => $count, 'string' => Str::lower($string)]),
+            'icon' => 'voyager-news',
+            'title' => "{$count} {$string}",
+            'text' => __('voyager::dimmer.page_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
                 'text' => __('voyager::dimmer.page_link_text'),
                 'link' => route('voyager.pages.index'),
@@ -35,6 +35,7 @@ class PageWidget extends BaseDimmer
             'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
         ]));
     }
+
     /**
      * Determine if the widget should be displayed.
      *

@@ -3,14 +3,12 @@
 namespace App;
 
 use Eloquent;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use TCG\Voyager\Models\Translation;
 use TCG\Voyager\Traits\Resizable;
 use TCG\Voyager\Traits\Translatable;
@@ -68,6 +66,27 @@ use TCG\Voyager\Traits\Translatable;
  * @property-read string $short
  * @property-read string $thumbnail_url
  * @property-read string $views
+ * @property int $privacy
+ * @property-read mixed $comments_count
+ * @property-read string $new_on_pic
+ * @property-read mixed $new_on_text
+ * @method static Builder|Post wherePrivacy($value)
+ * @property string|null $event_date
+ * @property-read Collection|Comment[] $comments
+ * @method static Builder|Post whereEventDate($value)
+ * @method static Builder|Post whereViews($value)
+ * @property string|null $external_author
+ * @property-read Collection|PostRegister[] $postRegisters
+ * @property-read int|null $post_registers_count
+ * @method static Builder|Post whereExternalAuthor($value)
+ * @property string|null $emails
+ * @property int $is_own
+ * @method static Builder|Post whereEmails($value)
+ * @method static Builder|Post whereIsOwn($value)
+ * @property int $cant_copy
+ * @property string|null $price
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCantCopy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePrice($value)
  */
 class Post extends Model
 {
@@ -75,7 +94,14 @@ class Post extends Model
     use Resizable;
 
     const PUBLISHED = 'PUBLISHED';
-    protected $translatable = ['title', 'seo_title', 'excerpt', 'body', 'slug', 'meta_description', 'meta_keywords'];
+
+    const PAYMENT_METHODS = [
+        '' => 'Alege',
+        'cash' => 'Numerar',
+        'transfer' => 'Transfer'
+    ];
+
+    protected $translatable = ['title', 'seo_title', 'views', 'privacy', 'body', 'slug', 'meta_description', 'meta_keywords', 'emails'];
     protected $guarded = [];
 
     public function save(array $options = [])
@@ -118,31 +144,16 @@ class Post extends Model
      */
     public function getPostUrlAttribute()
     {
-        return route('post.view', $this->slug);
+        return route('post.view', [$this->category->slug, $this->slug]);
     }
 
-    /**
-     * @return string
-     */
-    public function getDateAttribute()
-    {
-        return Carbon::parse($this->created_at)->format('d.m.Y');
-    }
 
     /**
      * @return string
      */
     public function getThumbnailUrlAttribute()
     {
-        return asset('storage' . '/' . $this->image);
-    }
-
-    /**
-     * @return string
-     */
-    public function getViewsAttribute()
-    {
-        return '300';
+        return $this->image ? asset('storage' . '/' . $this->image) : null;
     }
 
     /**
@@ -153,7 +164,7 @@ class Post extends Model
         $diff = Carbon::now()->diffInDays(Carbon::parse($this->created_at));
 
         if ($diff <= 5)
-            return '<div class="nou">NOU</div>';
+            return $this->thumbnail_url ? '<div class="nou">NOU</div>' : '';
     }
 
     public function getNewOnTextAttribute()
@@ -169,7 +180,7 @@ class Post extends Model
      */
     public function getLinkAttribute()
     {
-        return "<a target='blank' href='#'> Something more than something</a>";
+        return $this->external_author;
     }
 
     /**
@@ -179,16 +190,25 @@ class Post extends Model
     public function getShort($length)
     {
         $body = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/is', "$1$3", $this->body);
-        $short = mb_substr( strip_tags( $body)  , 0 , $length);
-        if (strlen( strip_tags($body) )  > $length){
+        $short = mb_substr(strip_tags($body), 0, $length);
+        if (strlen(strip_tags($body)) > $length) {
             $short .= '...';
         }
         return $short;
     }
 
-    public function getCommentsCountAttribute()
+    public function comments()
     {
-        return 20;
+        return $this->hasMany(Comment::class)->where('is_approved', 1);
     }
 
+    public function postRegisters()
+    {
+        return $this->hasMany(PostRegister::class);
+    }
+
+    public function hasCommentsComponent()
+    {
+        return in_array($this->category->slug, Category::CATEGORIES_WITH_COMMENTS) || in_array($this->category->parent_category->slug, Category::CATEGORIES_WITH_COMMENTS);
+    }
 }

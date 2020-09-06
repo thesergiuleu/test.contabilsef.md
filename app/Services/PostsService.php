@@ -5,8 +5,6 @@ namespace App\Services;
 
 
 use App\Category;
-use App\Http\Resources\PostCollection;
-use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -66,6 +64,33 @@ class PostsService implements PostsServiceInterface
         return $this->posts;
     }
 
+    private function retrievePosts(): void
+    {
+        $this->category
+            ? $this->posts = $this->getCategoryPosts()
+            : $this->posts = Post::query()->orderBy($this->sortColumn, $this->sortOrder)->limit($this->limit)->get();
+    }
+
+    /**
+     * @return Category|Builder|Model|object|null
+     */
+    private function getCategoryPosts()
+    {
+        $category = Category::with(['posts', 'subPosts'])->where('slug', $this->category)->first();
+
+        return $category ? $category
+            ->posts()
+            ->orderBy($this->sortColumn, $this->sortOrder)
+            ->limit($this->limit)
+            ->get()
+            ->merge($category
+                ->subPosts()
+                ->orderBy($this->sortColumn, $this->sortOrder)
+                ->limit($this->limit)
+                ->get()
+            ) : new Collection([]);
+    }
+
     /**
      * @return Collection
      */
@@ -82,25 +107,5 @@ class PostsService implements PostsServiceInterface
     {
         $this->retrievePosts();
         return $this->posts;
-    }
-
-    private function retrievePosts(): void
-    {
-        $this->category
-            ? $query = Post::whereCategoryId($this->getCategoryId())
-            : $query = Post::query();
-
-        $this->posts = $query
-            ->orderBy($this->sortColumn, $this->sortOrder)
-            ->limit($this->limit)
-            ->get();
-    }
-
-    /**
-     * @return Category|Builder|Model|object|null
-     */
-    private function getCategoryId()
-    {
-        return Category::whereSlug($this->category)->first()->id ?? null;
     }
 }

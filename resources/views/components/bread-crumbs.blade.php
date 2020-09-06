@@ -1,6 +1,14 @@
 <div class="bradgrubs">
-    <a href="https://www.contabilsef.md" rel="nofollow">Home</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a
-        href="https://www.contabilsef.md/ro-nout-i-ru-en/" rel="nofollow">Noutăţi</a>&nbsp;&nbsp;»&nbsp;&nbsp;<a
-        href="https://www.contabilsef.md/category/nouta-i-contabilsef/" rel="nofollow">Noutăţi ContabilȘef</a> &nbsp;&nbsp;»&nbsp;&nbsp;
-    Ce indicatori fiscali vom aplica la plățile salariale în anul 2020?
+    @if(count($breadCrumbs) == 0)
+        <a href="{{ route('home') }}" rel="nofollow"> {{ __('Acasa') }} </a>&nbsp;&nbsp;»&nbsp;&nbsp;
+    @else
+        <a href="{{ route('home') }}" rel="nofollow"> {{ __('Acasa') }} </a>&nbsp;&nbsp;»&nbsp;&nbsp;
+    @foreach ($breadCrumbs as $key => $breadCrumb)
+            @if ($loop->last)
+                {{ ucfirst($breadCrumb) }}
+            @else
+                <a href="{{ $key }}" rel="nofollow">{{ ucfirst($breadCrumb) }}</a>&nbsp;&nbsp;»&nbsp;&nbsp;
+            @endif
+        @endforeach
+    @endif
 </div>

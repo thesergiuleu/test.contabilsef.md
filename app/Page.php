@@ -5,11 +5,8 @@ namespace App;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use TCG\Voyager\Models\Translation;
-use TCG\Voyager\Traits\Translatable;
 
 /**
  * App\Page
@@ -29,7 +26,7 @@ use TCG\Voyager\Traits\Translatable;
  * @property-read null $translated
  * @property-read Collection|Translation[] $translations
  * @property-read int|null $translations_count
- * @method static Builder|Page active()
+ * @method static Builder|\TCG\Voyager\Models\Page active()
  * @method static Builder|Page newModelQuery()
  * @method static Builder|Page newQuery()
  * @method static Builder|Page query()
@@ -44,49 +41,21 @@ use TCG\Voyager\Traits\Translatable;
  * @method static Builder|Page whereSlug($value)
  * @method static Builder|Page whereStatus($value)
  * @method static Builder|Page whereTitle($value)
- * @method static Builder|Page whereTranslation($field, $operator, $value = null, $locales = null, $default = true)
+ * @method static Builder|\TCG\Voyager\Models\Page whereTranslation($field, $operator, $value = null, $locales = null, $default = true)
  * @method static Builder|Page whereUpdatedAt($value)
- * @method static Builder|Page withTranslation($locale = null, $fallback = true)
- * @method static Builder|Page withTranslations($locales = null, $fallback = true)
+ * @method static Builder|\TCG\Voyager\Models\Page withTranslation($locale = null, $fallback = true)
+ * @method static Builder|\TCG\Voyager\Models\Page withTranslations($locales = null, $fallback = true)
  * @mixin Eloquent
+ * @property int $has_sidebar
+ * @property string|null $seo_title
+ * @method static Builder|Page whereHasSidebar($value)
+ * @method static Builder|Page whereSeoTitle($value)
  */
-class Page extends Model
+class Page extends \TCG\Voyager\Models\Page
 {
-    use Translatable;
+    const SUBSCRIBE = "revista-electronica-contabilsef-md";
+    const CONSULTANT_SNC = "consultant-snc";
 
-    /**
-     * Statuses.
-     */
-    const STATUS_ACTIVE = 'ACTIVE';
-    const STATUS_INACTIVE = 'INACTIVE';
-    /**
-     * List of statuses.
-     *
-     * @var array
-     */
-    public static $statuses = [self::STATUS_ACTIVE, self::STATUS_INACTIVE];
-    protected $translatable = ['title', 'slug', 'body'];
-    protected $guarded = [];
-
-    public function save(array $options = [])
-    {
-        // If no author has been assigned, assign the current user's id as the author of the post
-        if (!$this->author_id && Auth::user()) {
-            $this->author_id = Auth::user()->getKey();
-        }
-
-        return parent::save();
-    }
-
-    /**
-     * Scope a query to only include active pages.
-     *
-     * @param  $query  Builder
-     *
-     * @return Builder
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('status', static::STATUS_ACTIVE);
-    }
+    const TERMS_AND_CONDITIONS_SNC = "termeni-si-conditii-consultant-snc";
+    const TERMS_AND_CONDITIONS_REVISTA = "termeni-si-conditii-revista-electronica-contabilsef-md";
 }

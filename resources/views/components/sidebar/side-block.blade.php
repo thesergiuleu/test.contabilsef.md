@@ -6,18 +6,19 @@
                 <div class="force-overflow myOverflowContainer">
                     @foreach ($component['data'] as $key => $item)
                         <div class="post-info">
-                            <a href="{{$item->post_url}}">{{ $item->title }}</a>
-
+                            @include('layouts.common.title', ['options' => $component['options'], 'item' => $item])
                             <div class="icons">
-                                <img class="margin-left" src="{{ asset('assets/imgs/r.png') }}"
-                                     alt="">
-                                <span> {{ $item->date }} </span>
+                                <img class="margin-left" src="{{ asset('assets/imgs/r.png') }}" alt="">
                                 <span>
-                                <img
-                                    src="{{ asset('assets/imgs/cl.png') }}"
-                                    alt=""
-                                ><a href="#">Club afaceri</a>
-                            </span>
+                                    {{ format_date($item->created_at) }}
+                                </span>
+                                @if( $item->link )
+                                    <span>
+                                        <img
+                                            src="{{ asset('assets/imgs/cl.png') }}" alt="">
+                                        {!! $item->link !!}
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -1,8 +1,8 @@
 <?php
 
+use App\Category;
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Database\Seeder;
-use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Menu;
@@ -186,6 +186,14 @@ class CategoriesTableSeeder extends Seeder
 
         //Permissions
         Permission::generateFor('categories');
+
+        foreach (Category::CATEGORIES as $slug => $data) {
+            $category = Category::whereSlug($slug)->first();
+            if (!$category) {
+                Category::query()->create($data);
+            }
+        }
+
     }
 
     /**

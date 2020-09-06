@@ -12,8 +12,12 @@ class MenusTableSeeder extends Seeder
      */
     public function run()
     {
-        Menu::firstOrCreate([
-            'name' => 'admin',
-        ]);
+        $file = file_get_contents(database_path('seeds') . '/menus.json');
+
+        foreach (json_decode($file, true) as $item) {
+            Menu::query()->create([
+                'name' => $item['name']
+            ]);
+        }
     }
 }

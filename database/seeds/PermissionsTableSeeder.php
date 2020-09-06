@@ -26,11 +26,21 @@ class PermissionsTableSeeder extends Seeder
         }
 
         Permission::generateFor('menus');
-
         Permission::generateFor('roles');
-
         Permission::generateFor('users');
-
         Permission::generateFor('settings');
+        Permission::generateFor('offers');
+        Permission::generateFor('pages');
+        Permission::generateFor('post_registers');
+        Permission::generateFor('pools');
+        Permission::generateFor('pool_options');
+        Permission::generateFor('pool_answers');
+        Permission::generateFor('newsletters');
+        Permission::generateFor('contacts');
+        Permission::generateFor('banners');
+        Permission::generateFor('subscriptions');
+        Permission::generateFor('comments');
+        Permission::generateFor('subscription_services');
+        Permission::generateFor('glosaries');
     }
 }

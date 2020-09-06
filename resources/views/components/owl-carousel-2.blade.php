@@ -6,21 +6,27 @@
 <div class="slider-2">
     <div class="slider-multiple">
         <div class="owl-carousel">
-            @foreach ($component['data'] as $items)
-                <div class="owl-principal">
-                    @foreach ($items as $item)
-                        <div class="post-slider">
-                            <div class="sub_men padding-null">
-                                @include('layouts.common.title', ['options' => $component['options'], 'item' => $item])
-                                @include('layouts.common.under-title', ['options' => $component['options'], 'item' => $item])
-                                @include('layouts.common.short', ['options' => $component['options'], 'item' => $item])
+            @if($component['data']->isNotEmpty())
+                @foreach ($component['data'] as $items)
+                    <div class="owl-principal">
+                        @foreach ($items as $item)
+                            <div class="post-slider">
+                                <div class="sub_men padding-null">
+                                    @include('layouts.common.title', ['options' => $component['options'], 'item' => $item])
+                                    @include('layouts.common.under-title', ['options' => $component['options'], 'item' => $item])
+                                    @include('layouts.common.short', ['options' => $component['options'], 'item' => $item])
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endforeach
+                        @endforeach
+                    </div>
+                @endforeach
+            @else
+                <h2>Nu sunt articole</h2>
+            @endif
         </div>
 
     </div>
-    <a href="#" class="more border-bottom">vezi mai mult</a>
+    @if ($component['view_more'])
+        <a href="{{ $component['route'] }}" class="more border-bottom">vezi mai mult</a>
+    @endif
 </div>

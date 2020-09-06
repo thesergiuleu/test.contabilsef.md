@@ -22,7 +22,17 @@ class SettingsTableSeeder extends Seeder
                 'group'        => 'Site',
             ])->save();
         }
-
+        $setting = $this->findSetting('site.google_analytics_client_id');
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('voyager::seeders.settings.site.google_analytics_client_id'),
+                'value'        => '',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 4,
+                'group'        => 'Admin',
+            ])->save();
+        }
         $setting = $this->findSetting('site.description');
         if (!$setting->exists) {
             $setting->fill([
@@ -298,6 +308,159 @@ class SettingsTableSeeder extends Seeder
                 'type'         => 'image',
                 'order'        => 4,
                 'group'        => 'Admin',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.contact_store');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Cerere de contactare'),
+                'value'        => 'Ve-ti fi contactat in curand.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 1,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.newsletter_store');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Abonare la newsletter'),
+                'value'        => 'Va-ti abonat la newsletter cu success.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 2,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.newsletter_exist');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Abonare la newsletter utilizator existent'),
+                'value'        => 'Dumneavoastra sunteti deja abonat.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 3,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.user_update');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Update al unui utilizator'),
+                'value'        => 'Datele dumneavoastra personale au fost salvate cu success.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 4,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.comment_store');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Adaugare comentariu'),
+                'value'        => 'Comentariul dumneavoastra se proceseaza.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('raspunsuri.subscription_store');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Abonare jurnal'),
+                'value'        => 'Vă mulțumim pentru abonare, solicitarea Dvs. a fost recepționată. În scurt timp veți primi nota de plată. Vă rugăm să verificati email-ul.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 6,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+        $setting = $this->findSetting('raspunsuri.instruire_register');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Inregistrare la seminare'),
+                'value'        => 'Va-ti inregistrat cu success. Verificati email-ul pentru mai multe detalii.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 7,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+      $setting = $this->findSetting('raspunsuri.offer_store');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Adaugare job'),
+                'value'        => 'Jobul a fost salvat si va fi publicat indata ce e revizuit de un admin.',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 8,
+                'group'        => 'Raspunsuri',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('prices.revista');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Pretul pentru abonare la revista electronica'),
+                'value'        => '700',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 1,
+                'group'        => 'Preturi',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('prices.consultant');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Pretul pentru abonare la consultant SNC'),
+                'value'        => '6000',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 2,
+                'group'        => 'Preturi',
+            ])->save();
+        }
+
+        $setting = $this->findSetting('prices.discount');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Valoare procentuala a unei potentiale reduceri a tuturor preturilor de pe platforma'),
+                'value'        => '0',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 3,
+                'group'        => 'Preturi',
+            ])->save();
+        }
+        $setting = $this->findSetting('site.days_until_subscription_reminder');
+
+        if (!$setting->exists) {
+            $setting->fill([
+                'display_name' => __('Zile pana utilizatorul va fi notificat ca nu a achitat factura pentru abonare'),
+                'value'        => '7',
+                'details'      => '',
+                'type'         => 'text',
+                'order'        => 5,
+                'group'        => 'Site',
             ])->save();
         }
     }

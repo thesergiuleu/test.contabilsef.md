@@ -16,14 +16,17 @@
                     <div id="top-contaier-1" class="top-container force-overflow active2">
                         @foreach($component['data']['top_7'] as $item)
                             <div class="post-img">
-                                {!! $item->new_on_pic !!}
-                                <img src="{{ $item->thumbnail_url }}" alt="">
+                                @if($item->thumbnail_url)
+                                    {!! $item->new_on_pic !!}
+                                    <img src="{{ $item->thumbnail_url }}" alt="">
+                                @endif
                                 <div class="texts">
-                                    <a href="{{ $item->post_url }}">{{ $item->title }}</a>
-                                    <div class="categor">
-                                        <p class="cl"><img src="{{ asset('assets/imgs/r.png') }}" alt="">{{ $item->date }}</p>
-                                        <span><img src="{{ asset('assets/imgs/ays.png') }}" alt="">{{ $item->views }}</span>
-                                    </div>
+                                    @if($item->thumbnail_url)
+                                        @include('layouts.common.title', ['options' => $component['options'], 'item' => $item, 'doNotShowNew' => true])
+                                    @else
+                                        @include('layouts.common.title', ['options' => $component['options'], 'item' => $item])
+                                    @endif
+                                    @include('layouts.common.under-title', ['options' => $component['options'], 'item' => $item])
                                 </div>
                             </div>
 
@@ -37,7 +40,7 @@
                                 <div class="texts">
                                     <a href="{{ $item->post_url }}">{{ $item->title }}</a>
                                     <div class="categor">
-                                        <p class="cl"><img src="{{ asset('assets/imgs/r.png') }}" alt="">{{ $item->date }}</p>
+                                        <p class="cl"><img src="{{ asset('assets/imgs/r.png') }}" alt="">{{ format_date($item->created_at) }}</p>
                                         <span><img src="{{ asset('assets/imgs/ays.png') }}" alt="">{{ $item->views }}</span>
                                     </div>
                                 </div>
