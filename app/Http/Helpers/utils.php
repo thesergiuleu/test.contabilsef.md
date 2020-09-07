@@ -54,13 +54,11 @@ function format_date($date, $format = 'd.m.Y')
     return Carbon::parse($date)->format($format);
 }
 
-function apply_discount($amount)
+function apply_discount($amount, $discount = 0)
 {
-    $discount = setting('prices.discount', 0);
-
     if ($discount == 0) return $amount;
 
-    return ($amount * $discount) / 100;
+    return $amount - ($amount * $discount) / 100;
 }
 
 function replace_price($string, $model)
@@ -71,13 +69,24 @@ function replace_price($string, $model)
     if (!empty($res)) {
         foreach ($res as $re) {
             if ($re == 'price') {
-                return preg_replace("/({{{$re}}})/", apply_discount($model->$re), $string);
+                return preg_replace("/({{{$re}}})/", discountStrFormat($model, $re), $string);
             }
             return preg_replace("/({{{$re}}})/", $model->$re, $string);
         }
     }
 
     return $string;
+}
+
+function discountStrFormat($model, $field)
+{
+    $discountedValue = apply_discount($model->{$field}, $model->discount());
+
+    if ($model->{$field} > $discountedValue) {
+        return "<span style='text-decoration: line-through; color: red'>" . $model->{$field} . "</span> <span>$discountedValue</span><p style='color: red'>Pret cu reducere valabil pana la data de " . format_date($model->discount_end_date) . ". Va rugam insistent sa achitati factura.</p>";
+    } else {
+        return $model->{$field};
+    }
 }
 
 function find_glossary_terms($string)

@@ -52,6 +52,8 @@ use Illuminate\Support\Facades\Storage;
  * @property-read mixed $thumbnail_url
  * @property int $is_approved
  * @method static Builder|Offer whereIsApproved($value)
+ * @property string|null $end_date
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Offer whereEndDate($value)
  */
 class Offer extends Model
 {

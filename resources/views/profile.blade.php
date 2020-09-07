@@ -247,7 +247,7 @@
                                             @endif
                                             <div style="padding-top: 0; padding-bottom: 30px" class="take-decizion">
                                                 <div class="div-button">
-                                                    <a href="#" onclick="openSubscribeModal('{{ route("page.view", $service->pageId->slug) }}', '{{ $service->name }}', '{{ $service->id }}', '{{  apply_discount($service->price) }}')" class="red-btn">{{ $subscription && \Carbon\Carbon::parse($subscription->end_date)->format('Y-m-d') < \Carbon\Carbon::now()->format('Y-m-d') ? 'Prelungiți Abonamentul' : 'Abonează-te'}}</a>
+                                                    <a href="#" onclick="openSubscribeModal('{{ route("page.view", $service->pageId->slug) }}', '{{ $service->name }}', '{{ $service->id }}', '{{  apply_discount($service->price, $service->discount()) }}')" class="red-btn">{{ $subscription && \Carbon\Carbon::parse($subscription->end_date)->format('Y-m-d') < \Carbon\Carbon::now()->format('Y-m-d') ? 'Prelungiți Abonamentul' : 'Abonează-te'}}</a>
                                                 </div>
                                             </div>
                                             <p>La efectuarea plății, vă rugăm să indicați ID-ul personal din

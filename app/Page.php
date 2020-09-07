@@ -58,4 +58,5 @@ class Page extends \TCG\Voyager\Models\Page
 
     const TERMS_AND_CONDITIONS_SNC = "termeni-si-conditii-consultant-snc";
     const TERMS_AND_CONDITIONS_REVISTA = "termeni-si-conditii-revista-electronica-contabilsef-md";
+    const TERMS_AND_CONDITIONS_INSTRUIRE = "termeni-si-conditii-seminar";
 }

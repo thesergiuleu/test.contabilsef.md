@@ -39,6 +39,7 @@ use Illuminate\Validation\Rule;
  * @mixin \Eloquent
  * @property-read \App\Post $posts
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PostRegister instruire()
+ * @property-read \App\Post $post
  */
 class PostRegister extends Model
 {
@@ -53,7 +54,7 @@ class PostRegister extends Model
         'message'
     ];
 
-    public function posts()
+    public function post()
     {
         return $this->belongsTo(Post::class);
     }
