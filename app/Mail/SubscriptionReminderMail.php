@@ -5,7 +5,6 @@ namespace App\Mail;
 use App\Subscription;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,7 +15,7 @@ class SubscriptionReminderMail extends Mailable
     /**
      * @var Subscription
      */
-    public Subscription $subscription;
+    public $subscription;
 
     /**
      * Create a new message instance.

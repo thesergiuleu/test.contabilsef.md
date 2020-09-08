@@ -11,7 +11,7 @@ class CategoryController extends SiteBaseController
     public function view($slug)
     {
         if ($slug == Category::GLOSARY_CATEGORY) {
-            return  redirect()->route('glossary.index');
+            return redirect()->route('glossary.index');
         }
 
         $item = Category::whereSlug($slug)->firstOrFail();

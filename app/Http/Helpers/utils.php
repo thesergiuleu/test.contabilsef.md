@@ -1,5 +1,6 @@
 <?php
 
+use App\Glosary;
 use App\Post;
 use Carbon\Carbon;
 
@@ -91,30 +92,30 @@ function discountStrFormat($model, $field)
 
 function find_glossary_terms($string)
 {
-    $keywords = \App\Glosary::query()->get();
+    $keywords = Glosary::query()->get();
 
     $allDefinition = [];
 
     if ($keywords->isNotEmpty()) {
         foreach ($keywords as $item) {
-            $allDefinition[$item->keyword.'.'] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".$item->keyword."</span>.";
+            $allDefinition[$item->keyword . '.'] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>.";
 
-            $allDefinition[' '.$item->keyword.' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".$item->keyword."</span> ";
+            $allDefinition[' ' . $item->keyword . ' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span> ";
 
-            $allDefinition['. '.$item->keyword] = ". <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".$item->keyword."</span>";
+            $allDefinition['. ' . $item->keyword] = ". <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>";
 
-            $allDefinition[mb_strtolower($item->keyword).'. '] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".mb_strtolower($item->keyword)."</span>.";
+            $allDefinition[mb_strtolower($item->keyword) . '. '] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
 
-            $allDefinition[' '.mb_strtolower($item->keyword).' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".mb_strtolower($item->keyword)."</span> ";
+            $allDefinition[' ' . mb_strtolower($item->keyword) . ' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span> ";
 
-            $allDefinition['. '.mb_strtolower($item->keyword)] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='".strip_tags($item->description)."'>".mb_strtolower($item->keyword)."</span>.";
+            $allDefinition['. ' . mb_strtolower($item->keyword)] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
         }
     }
-    $content = (strtr($string,$allDefinition));
-    $content = str_replace('FONT-FAMILY', 'FONT-FAMILY-2131' ,$content);
-    $content = str_replace('<a ','<a target="_blank" ',$content);
-    $content = str_replace('<table ','<div class="container-table"><table ',$content);
-    $content = str_replace('</table>','</table></div>',$content);
+    $content = (strtr($string, $allDefinition));
+    $content = str_replace('FONT-FAMILY', 'FONT-FAMILY-2131', $content);
+    $content = str_replace('<a ', '<a target="_blank" ', $content);
+    $content = str_replace('<table ', '<div class="container-table"><table ', $content);
+    $content = str_replace('</table>', '</table></div>', $content);
 
     return $content;
 }

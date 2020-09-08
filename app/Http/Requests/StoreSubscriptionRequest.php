@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Subscription;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreSubscriptionRequest extends FormRequest
 {

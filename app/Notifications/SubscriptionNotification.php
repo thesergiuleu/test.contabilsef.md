@@ -13,11 +13,11 @@ class SubscriptionNotification extends Notification
 {
     use Queueable;
 
-    private string $type;
+    private  $type;
     /**
      * @var Subscription
      */
-    private Subscription $subscription;
+    private  $subscription;
 
     /**
      * Create a new notification instance.

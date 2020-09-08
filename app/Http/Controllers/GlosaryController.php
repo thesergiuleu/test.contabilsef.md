@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Glosary;
-use Illuminate\Http\Request;
 
 class GlosaryController extends SiteBaseController
 {

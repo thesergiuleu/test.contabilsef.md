@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class ComponentService
 {
-    private static array $months = [
+    private static $months = [
         1 => 'Jan.',
         2 => 'Feb.',
         3 => 'Mar.',
@@ -23,13 +23,13 @@ class ComponentService
         11 => 'Noi.',
         12 => 'Dec.',
     ];
-    private string $name;
+    private $name;
     private $data;
-    private ?string $title = null;
-    private bool $viewMore = true;
-    private bool $addNew = false;
-    private string $route;
-    private array $filters = [
+    private $title = null;
+    private $viewMore = true;
+    private $addNew = false;
+    private $route;
+    private $filters = [
         'year' => [
             2009 => 2009
         ],

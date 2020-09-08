@@ -13,7 +13,7 @@ use stdClass;
 
 class HomeController extends SiteBaseController
 {
-    private PostsServiceInterface $postService;
+    private $postService;
 
     public function __construct(PostsServiceInterface $postService, ComponentService $componentService)
     {

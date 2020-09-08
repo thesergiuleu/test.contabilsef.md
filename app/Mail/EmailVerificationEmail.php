@@ -5,7 +5,6 @@ namespace App\Mail;
 use App\EmailValidation;
 use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -16,11 +15,11 @@ class EmailVerificationEmail extends Mailable
     /**
      * @var User
      */
-    public User $user;
+    public $user;
     /**
      * @var EmailValidation
      */
-    public EmailValidation $validation;
+    public $validation;
 
     /**
      * Create a new message instance.

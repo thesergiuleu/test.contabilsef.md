@@ -10,7 +10,6 @@ use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Hash;
 use TCG\Voyager\Models\Role;
 
 /**
@@ -56,7 +55,7 @@ use TCG\Voyager\Models\Role;
  * @method static Builder|User wherePosition($value)
  * @property-read Collection|Subscription[] $subscriptions
  * @property-read int|null $subscriptions_count
- * @property-read \App\EmailValidation $emailValidation
+ * @property-read EmailValidation $emailValidation
  * @property-read mixed $email_hash
  */
 class User extends \TCG\Voyager\Models\User

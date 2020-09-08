@@ -37,7 +37,7 @@ class UsersController extends Controller
     public function confirm($hash)
     {
         /** @var EmailValidation $validation */
-        if ( $validation = EmailValidation::query()->where('token', $hash)->first() ) {
+        if ($validation = EmailValidation::query()->where('token', $hash)->first()) {
             Auth::login($validation->user);
             $validation->user->email_verified_at = Carbon::now();
             $validation->user->save();

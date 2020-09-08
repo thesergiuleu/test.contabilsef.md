@@ -17,11 +17,11 @@ class InstruireRegister extends Notification
     /**
      * @var PostRegister
      */
-    private PostRegister $postRegister;
+    private $postRegister;
     /**
      * @var Subscription|null
      */
-    private ?Subscription $subscription;
+    private $subscription;
 
     /**
      * Create a new notification instance.

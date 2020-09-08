@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Subscription;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -15,7 +14,7 @@ class NotifyUserAboutSubscriptionStartedMail extends Mailable
     /**
      * @var Subscription
      */
-    public Subscription $subscription;
+    public  $subscription;
 
     /**
      * Create a new message instance.

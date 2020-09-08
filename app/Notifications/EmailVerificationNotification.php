@@ -16,7 +16,7 @@ class EmailVerificationNotification extends Notification
     /**
      * @var EmailValidation
      */
-    private EmailValidation $validation;
+    private $validation;
 
 
     /**

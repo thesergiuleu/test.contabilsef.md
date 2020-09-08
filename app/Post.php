@@ -85,10 +85,10 @@ use TCG\Voyager\Traits\Translatable;
  * @method static Builder|Post whereIsOwn($value)
  * @property int $cant_copy
  * @property string|null $price
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCantCopy($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePrice($value)
+ * @method static Builder|Post whereCantCopy($value)
+ * @method static Builder|Post wherePrice($value)
  * @property string|null $scheduled_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereScheduledAt($value)
+ * @method static Builder|Post whereScheduledAt($value)
  */
 class Post extends Model
 {

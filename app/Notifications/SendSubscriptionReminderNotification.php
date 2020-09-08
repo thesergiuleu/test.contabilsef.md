@@ -16,7 +16,7 @@ class SendSubscriptionReminderNotification extends Notification
     /**
      * @var Subscription
      */
-    private Subscription $subscription;
+    private  $subscription;
 
     /**
      * Create a new notification instance.

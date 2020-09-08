@@ -16,12 +16,12 @@ class SubscribeMail extends Mailable
     /**
      * @var User
      */
-    public User $user;
+    public  $user;
     public $pdf;
     /**
      * @var Subscription
      */
-    private Subscription $subscription;
+    private  $subscription;
 
     /**
      * Create a new message instance.

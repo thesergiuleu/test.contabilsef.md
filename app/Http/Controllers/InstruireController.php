@@ -7,6 +7,7 @@ use App\Notifications\InstruireRegister;
 use App\Post;
 use App\PostRegister;
 use App\Subscription;
+use App\SubscriptionService;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -16,7 +17,7 @@ class InstruireController extends Controller
     public function register(StoreInstruireRegisterRequest $request, Post $post)
     {
         $data = $request->validated();
-        $subscriptionService = \App\SubscriptionService::query()->where('name', 'like', "%Revista electronică „Contabilsef.md”%")->first();
+        $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista electronică „Contabilsef.md”%")->first();
         /** @var User $user */
         $user = Auth::user();
 

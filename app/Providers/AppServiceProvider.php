@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Services\PostsService;
 use App\Services\PostsServiceInterface;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
@@ -19,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PostsServiceInterface::class, PostsService::class);
-        Carbon::setLocale('ro');
+//        Carbon::setLocale('ro');
+        Schema::defaultStringLength(191);
     }
 
     /**

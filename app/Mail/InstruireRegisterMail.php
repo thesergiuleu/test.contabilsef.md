@@ -6,7 +6,6 @@ use App\PostRegister;
 use App\Subscription;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -17,11 +16,11 @@ class InstruireRegisterMail extends Mailable
     /**
      * @var PostRegister
      */
-    public PostRegister $postRegister;
+    public $postRegister;
     /**
      * @var Subscription|null
      */
-    public ?Subscription $subscription;
+    public $subscription;
     public $pdf;
 
     /**

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Notifications\NotifyUserAboutSubscriptionStartedNotification;
 use App\Notifications\SubscriptionNotification;
 use App\Subscription;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use TCG\Voyager\Events\BreadDataAdded;
@@ -23,10 +25,10 @@ class SubscriptionsController extends VoyagerBaseController
         $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
 
         // Compatibility with Model binding.
-        $id = $id instanceof \Illuminate\Database\Eloquent\Model ? $id->{$id->getKeyName()} : $id;
+        $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
 
         $model = app($dataType->model_name);
-        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope'.ucfirst($dataType->scope))) {
+        if ($dataType->scope && $dataType->scope != '' && method_exists($model, 'scope' . ucfirst($dataType->scope))) {
             $model = $model->{$dataType->scope}();
         }
         if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
@@ -39,7 +41,7 @@ class SubscriptionsController extends VoyagerBaseController
         $this->authorize('edit', $data);
 
         // Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->after(function ($validator) use ($request){
+        $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->after(function ($validator) use ($request) {
             if ($request->has('notify') && $request->get('notify') == 1) {
                 if (!$request->input('start_date', null)) {
                     $validator->errors()->add('start_date', 'Setati inceputul abonarii.');
@@ -65,7 +67,7 @@ class SubscriptionsController extends VoyagerBaseController
         }
 
         return $redirect->with([
-            'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'message' => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
         ]);
     }
@@ -73,9 +75,9 @@ class SubscriptionsController extends VoyagerBaseController
     /**
      * POST BRE(A)D - Store data.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -102,7 +104,7 @@ class SubscriptionsController extends VoyagerBaseController
             }
 
             return $redirect->with([
-                'message'    => __('voyager::generic.successfully_added_new')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+                'message' => __('voyager::generic.successfully_added_new') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
                 'alert-type' => 'success',
             ]);
         } else {
