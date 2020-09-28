@@ -413,44 +413,6 @@ class SettingsTableSeeder extends Seeder
             ])->save();
         }
 
-        $setting = $this->findSetting('prices.revista');
-
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => __('Pretul pentru abonare la revista electronica'),
-                'value'        => '700',
-                'details'      => '',
-                'type'         => 'text',
-                'order'        => 1,
-                'group'        => 'Preturi',
-            ])->save();
-        }
-
-        $setting = $this->findSetting('prices.consultant');
-
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => __('Pretul pentru abonare la consultant SNC'),
-                'value'        => '6000',
-                'details'      => '',
-                'type'         => 'text',
-                'order'        => 2,
-                'group'        => 'Preturi',
-            ])->save();
-        }
-
-        $setting = $this->findSetting('prices.discount');
-
-        if (!$setting->exists) {
-            $setting->fill([
-                'display_name' => __('Valoare procentuala a unei potentiale reduceri a tuturor preturilor de pe platforma'),
-                'value'        => '0',
-                'details'      => '',
-                'type'         => 'text',
-                'order'        => 3,
-                'group'        => 'Preturi',
-            ])->save();
-        }
         $setting = $this->findSetting('site.days_until_subscription_reminder');
 
         if (!$setting->exists) {
