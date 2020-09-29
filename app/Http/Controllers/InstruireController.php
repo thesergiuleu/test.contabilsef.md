@@ -33,7 +33,7 @@ class InstruireController extends Controller
                         'email' => $user->email,
                         'phone' => $user->phone,
                         'company' => $user->company,
-                        'price' => apply_discount($subscriptionService->price, $subscriptionService->discount()),
+                        'price' => apply_discount($subscriptionService->price, $subscriptionService->getDiscount()),
                     ]);
                 }
             }

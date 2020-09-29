@@ -42,7 +42,7 @@ class SubscriptionService extends Model
         return $this->belongsTo(Page::class, 'page_id','id');
     }
 
-    public function discount()
+    public function getDiscount()
     {
 
         $date = Carbon::now()->format('Y-m-d');
