@@ -3087,7 +3087,11 @@
         "edit": 1,
         "add": 1,
         "delete": 1,
-        "details": {},
+        "details": {
+            "validation": {
+                "rule": "required"
+            }
+        },
         "order": 3
     },
     {
@@ -3106,6 +3110,9 @@
             "relationship": {
                 "key": "id",
                 "label": "title"
+            },
+            "validation": {
+                "rule": "required"
             }
         },
         "order": 4
@@ -3399,5 +3406,50 @@
         "delete": 1,
         "details": {},
         "order": 15
+    },
+    {
+        "id": 199,
+        "data_type_id": 18,
+        "field": "discount_end_date",
+        "type": "timestamp",
+        "display_name": "Discount End Date",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 6
+    },
+    {
+        "id": 200,
+        "data_type_id": 18,
+        "field": "discount_start_date",
+        "type": "timestamp",
+        "display_name": "Discount Start Date",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 7
+    },
+    {
+        "id": 201,
+        "data_type_id": 18,
+        "field": "discount",
+        "type": "number",
+        "display_name": "Discount",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 8
     }
 ]
