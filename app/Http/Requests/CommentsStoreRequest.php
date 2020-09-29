@@ -23,12 +23,13 @@ class CommentsStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $required = auth()->user() ? 'nullable' : 'required';
         return [
             'name' => 'required',
             'email' => 'required|email',
             'body' => 'required',
             'parent_id' => 'nullable',
-            'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => $required . '|recaptcha'
         ];
     }
 }
