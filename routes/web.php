@@ -26,15 +26,6 @@ use TCG\Voyager\Models\Permission;
 |
 */
 Route::get('magic/{type?}', function ($type = 'dataType') {
-    $postRegister = \App\PostRegister::first();
-    $subscription = \App\Subscription::first();
-    $price = 100;
-    $view = view('invoices.register_pdf', compact('postRegister', 'price'))->render();
-
-    $pdf = resolve('dompdf.wrapper');
-    $pdf->loadHTML($view);
-
-    return $pdf->stream('PDF');
     if ($type == 'dataRow') {
         print_r(json_encode(\TCG\Voyager\Models\DataRow::all()));
     } elseif ($type == 'dataType') {

@@ -48,7 +48,7 @@ class SubscriptionService extends Model
         $date = Carbon::now()->format('Y-m-d');
 
         if ($date <= Carbon::parse($this->discount_end_date)->format('Y-m-d') && $date >= Carbon::parse($this->discount_start_date)->format('Y-m-d')) {
-            return (int)$this->discount;
+            return (int)$this->discount ?? $this->discount;
         }
 
         return 0;
