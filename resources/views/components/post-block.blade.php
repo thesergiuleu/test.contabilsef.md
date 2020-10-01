@@ -22,7 +22,7 @@
             @include('layouts.box-abonat', ['check' => false])
         @endguest
         @auth
-            @if(!auth()->user()->activeSubscription(\App\Subscription::TYPE_REVISTA))
+            @if(!auth()->user()->activeSubscription())
                 @include('layouts.box-abonat', ['check' => true])
             @endif
         @endauth

@@ -93,8 +93,12 @@ class User extends \TCG\Voyager\Models\User
      * @param $id
      * @return mixed
      */
-    public function activeSubscription($id)
+    public function activeSubscription($id = null)
     {
+        if (!$id) {
+            $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
+            $id = $subscriptionService->id ?? 'not found';
+        }
         return $this->subscriptions()
             ->active()
             ->where('service_id', $id)

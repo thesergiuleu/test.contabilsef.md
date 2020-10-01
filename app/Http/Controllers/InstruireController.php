@@ -17,7 +17,7 @@ class InstruireController extends Controller
     public function register(StoreInstruireRegisterRequest $request, Post $post)
     {
         $data = $request->validated();
-        $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista electronică „Contabilsef.md”%")->first();
+        $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
         /** @var User $user */
         $user = Auth::user();
 
