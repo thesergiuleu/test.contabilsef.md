@@ -204,8 +204,8 @@
                                     $category = \App\Category::whereSlug(\App\Category::INSTRUIRE_CATEGORY)->first();
                                 @endphp
                                 @if($category)
-                                    <input class="form-control" type="hidden" name="category_id" value="{{ $category->id }}">
-                                    <input readonly type="text" value="{{$category->name}}">
+                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                    <input class="form-control" readonly type="text" value="{{$category->name}}">
                                 @else
                                     <select readonly="readonly" class="form-control" name="category_id">
                                         @foreach(Voyager::model('Category')::all() as $category)
