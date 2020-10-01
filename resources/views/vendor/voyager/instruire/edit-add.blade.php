@@ -204,7 +204,7 @@
                                     $category = \App\Category::whereSlug(\App\Category::INSTRUIRE_CATEGORY)->first();
                                 @endphp
                                 @if($category)
-                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                    <input class="form-control" type="hidden" name="category_id" value="{{ $category->id }}">
                                     <input readonly type="text" value="{{$category->name}}">
                                 @else
                                     <select readonly="readonly" class="form-control" name="category_id">
