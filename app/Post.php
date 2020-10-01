@@ -146,7 +146,7 @@ class Post extends Model
      */
     public function getPostUrlAttribute()
     {
-        return route('post.view', [$this->category->slug, $this->slug]);
+        return route('post.view', [$this->category->slug ?? '', $this->slug ?? '']);
     }
 
 
