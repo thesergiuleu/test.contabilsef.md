@@ -13,6 +13,7 @@ class SubscriptionsController extends SiteBaseController
 {
     public function view()
     {
+        if (\auth()->user() && \auth()->user()->role_id == 1) return redirect(config('app.admin_url'));
         $this->viewData['breadCrumbs'] = [
             route('profile') => "Profil"
         ];
