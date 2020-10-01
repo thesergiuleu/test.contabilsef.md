@@ -200,18 +200,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="category_id">{{ __('voyager::post.category') }}</label>
-                                <select readonly="readonly" class="form-control" name="category_id">
-                                    @php
-                                        $category = \App\Category::whereSlug(\App\Category::INSTRUIRE_CATEGORY)->first();
-                                    @endphp
-                                    @if($category)
-                                        <option value="{{ $category->id }}" @if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->name }}</option>
-                                    @else
+                                @php
+                                    $category = \App\Category::whereSlug(\App\Category::INSTRUIRE_CATEGORY)->first();
+                                @endphp
+                                @if($category)
+                                    <input type="hidden" name="category_id" value="{{ $category->id }}">
+                                    <input readonly type="text" value="{{$category->name}}">
+                                @else
+                                    <select readonly="readonly" class="form-control" name="category_id">
                                         @foreach(Voyager::model('Category')::all() as $category)
                                             <option value="{{ $category->id }} "@if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->name }}</option>
                                         @endforeach
-                                    @endif
-                                </select>
+                                    </select>
+                                @endif
                             </div>
                         </div>
                     </div>
