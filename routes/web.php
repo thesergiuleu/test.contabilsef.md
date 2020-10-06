@@ -60,6 +60,12 @@ Route::prefix('profile')->middleware('auth')->group(function () {
         Route::get('delete', [UsersController::class, 'destroy'])->name('delete');
         Route::post('update', [UsersController::class, 'update'])->name('update');
     });
+
+    Route::get('comments/change-status/{comment}', function (\App\Comment $comment) {
+        $comment->is_approved = !$comment->is_approved;
+        $comment->save();
+        return redirect()->back();
+    })->name('comment.change_status');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

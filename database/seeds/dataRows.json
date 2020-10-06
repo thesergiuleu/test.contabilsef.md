@@ -2665,13 +2665,13 @@
         "id": 156,
         "data_type_id": 17,
         "field": "post_id",
-        "type": "number",
+        "type": "hidden",
         "display_name": "Post Id",
         "required": 1,
         "browse": 0,
         "read": 0,
-        "edit": 0,
-        "add": 0,
+        "edit": 1,
+        "add": 1,
         "delete": 0,
         "details": {},
         "order": 3
@@ -2680,13 +2680,13 @@
         "id": 157,
         "data_type_id": 17,
         "field": "parent_id",
-        "type": "text",
+        "type": "hidden",
         "display_name": "Parent Id",
         "required": 0,
         "browse": 0,
         "read": 0,
-        "edit": 0,
-        "add": 0,
+        "edit": 1,
+        "add": 1,
         "delete": 0,
         "details": {},
         "order": 4
@@ -2698,16 +2698,12 @@
         "type": "text",
         "display_name": "Name",
         "required": 0,
-        "browse": 1,
+        "browse": 0,
         "read": 1,
         "edit": 1,
         "add": 1,
         "delete": 1,
-        "details": {
-            "validation": {
-                "rule": "required"
-            }
-        },
+        "details": {},
         "order": 5
     },
     {
@@ -2717,16 +2713,12 @@
         "type": "text",
         "display_name": "Email",
         "required": 0,
-        "browse": 1,
+        "browse": 0,
         "read": 1,
         "edit": 1,
         "add": 1,
         "delete": 1,
-        "details": {
-            "validation": {
-                "rule": "required"
-            }
-        },
+        "details": {},
         "order": 6
     },
     {
@@ -2736,7 +2728,7 @@
         "type": "text_area",
         "display_name": "Body",
         "required": 0,
-        "browse": 0,
+        "browse": 1,
         "read": 1,
         "edit": 1,
         "add": 1,

@@ -25,8 +25,8 @@ class CommentsStoreRequest extends FormRequest
     {
         $required = auth()->user() ? 'nullable' : 'required';
         return [
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'nullable',
+            'email' => 'nullable|email',
             'body' => 'required',
             'parent_id' => 'nullable',
             'g-recaptcha-response' => $required . '|recaptcha'

@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PostsServiceInterface::class, PostsService::class);
-//        Carbon::setLocale('ro');
+        Carbon::setLocale('ro');
         Schema::defaultStringLength(191);
     }
 
@@ -36,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
             'App\\Validators\\ReCaptcha@validate'
         );
         Voyager::addAction(\App\Actions\SendSubscriptionInvoice::class);
+        Voyager::addAction(\App\Actions\AproveAComment::class);
     }
 }
