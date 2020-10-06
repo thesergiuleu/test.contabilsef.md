@@ -28,7 +28,7 @@ class AproveAComment extends AbstractAction
     public function getAttributes()
     {
         return [
-            'class' => $this->data->is_approved == 1 ? 'btn btn-sm btn-warning pull-right danger' : 'btn btn-sm btn-info pull-right edit',
+            'class' => $this->data->is_approved == 1 ? 'btn btn-sm btn-danger pull-right danger' : 'btn btn-sm btn-info pull-right edit',
         ];
     }
 
