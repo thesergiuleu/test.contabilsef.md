@@ -28,7 +28,7 @@ class StoreContactsRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => $this->request->get('page') == Contact::PAGE_CONTACT ? 'required' : 'nullable',
+            'phone' => 'nullable',
             'message' => 'nullable',
             'ip_address' => 'nullable',
             'g-recaptcha-response' => auth()->user() ? 'nullable' : 'required|recaptcha',
