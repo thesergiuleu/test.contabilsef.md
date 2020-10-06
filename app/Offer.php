@@ -153,7 +153,7 @@ class Offer extends Model
 
     public function scopeActive(Builder $builder)
     {
-        return $builder->where('is_approved', 1)->where(DB::raw('DATE(end_date)'), '<', Carbon::now()->format('Y-m-d'));
+        return $builder->where('is_approved', 1)->where(DB::raw('DATE(end_date)'), '>', Carbon::now()->format('Y-m-d'));
     }
 
     public function getUrlAttribute()
