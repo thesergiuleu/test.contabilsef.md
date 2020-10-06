@@ -55,6 +55,9 @@ class CategoryController extends SiteBaseController
                     }
                 }
             })
+            ->when($item->slug === Category::INSTRUIRE_CATEGORY, function ($query) {
+                $query->orderBy('event_date', 'asc');
+            })
             ->paginate(5);
 
         $this->viewData['sections'] = [
