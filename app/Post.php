@@ -216,4 +216,13 @@ class Post extends Model
     {
         return in_array($this->category->slug, Category::CATEGORIES_WITH_COMMENTS) || in_array($this->category->parent_category->slug, Category::CATEGORIES_WITH_COMMENTS);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeInstruire($query)
+    {
+        return $query->whereCategoryId(Category::whereSlug(Category::INSTRUIRE_CATEGORY)->first()->id);
+    }
 }

@@ -58,10 +58,4 @@ class PostRegister extends Model
     {
         return $this->belongsTo(Post::class);
     }
-
-    public function scopeInstruire($query)
-    {
-        $postIds = Post::whereCategoryId(Category::whereSlug(Category::INSTRUIRE_CATEGORY)->first()->id)->pluck('id')->toArray();
-        return $query->whereIn('post_id', $postIds);
-    }
 }
