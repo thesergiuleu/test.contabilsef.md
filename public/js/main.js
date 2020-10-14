@@ -209,8 +209,26 @@ $(document).ready(function ($) {
         });
     });
 
+    function handleErrors(form, field)
+    {
+        var el = $(form).find('[name="'+field+'"]');
+        $(el).addClass('has-error');
+        $(el).addClass('wpcf7-not-valid');
+    }
+
     $('#contact-form').on('submit',function(e){
         e.preventDefault();
+        const data = $(this).serializeArray();
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].name === 'name' && data[i].value == '') {
+                handleErrors(this, data[i].name)
+                return;
+            }
+            if (data[i].name === 'email' && ( data[i].value == '' || !is_email(data[i].value))) {
+                handleErrors(this, data[i].name)
+                return;
+            }
+        }
         submitForm(this)
     });
 
@@ -371,7 +389,7 @@ function submitForm(form) {
                 // you can loop through the errors object and show it to the user
                 // display errors on each form field
                 $.each(err.responseJSON.errors, function (i, error) {
-                    console.log(error);
+                    console.log(i);
                     var el = $(form).find('[name="'+i+'"]');
                     $(el).addClass('has-error');
                     $(el).addClass('wpcf7-not-valid');
@@ -381,6 +399,10 @@ function submitForm(form) {
 
                 if ('terms' in err.responseJSON.errors && size === 1) {
                     $('#error-id').addClass('error_response_terms').html('Trebuie să accepți termenii și condițiile înainte de a trimite mesajul.');
+                } else if ('g-recaptcha-response' in err.responseJSON.errors && size > 0) {
+                    $('.recaptcha-error').css({
+                        "color": "red"
+                    }).html('reCaptcha a esuat.')
                 } else {
                     $('#error-id').addClass('error_response').html('Unul sau mai multe câmpuri au o eroare. Te rog să verifici și să încerci din nou.');
                 }

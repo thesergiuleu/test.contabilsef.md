@@ -2,4 +2,7 @@
     <div id="g-recaptcha" class="g-recaptcha"
          data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
     </div>
+    <div class="recaptcha-error">
+
+    </div>
 </div>
