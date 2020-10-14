@@ -146,6 +146,9 @@ class Post extends Model
      */
     public function getPostUrlAttribute()
     {
+        if ($this->external_link && trim($this->external_link) !== '') {
+            return $this->external_link;
+        }
         return route('post.view', [$this->category->slug ?? '', $this->slug ?? '']);
     }
 
@@ -191,7 +194,7 @@ class Post extends Model
      */
     public function getShort($length)
     {
-        $body = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/is', "$1$3", $this->body);
+        $body = preg_replace('/(<(script|style)\b[^>]*>).*?(<\/\2>)/is', "$1$3", $this->excerpt ?: $this->body);
         $short = mb_substr(strip_tags($body), 0, $length);
         if (strlen(strip_tags($body)) > $length) {
             $short .= '...';
