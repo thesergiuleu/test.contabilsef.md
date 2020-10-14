@@ -104,7 +104,22 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('voyager::generic.title') }}" value="{{ $dataTypeContent->title ?? '' }}">
                         </div>
                     </div>
-
+                    <!-- ### EXCERPT ### -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
+                            <div class="panel-actions">
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            @include('voyager::multilingual.input-hidden', [
+                                '_field_name'  => 'excerpt',
+                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
+                            ])
+                            <textarea class="form-control" name="excerpt">{{ $dataTypeContent->excerpt ?? '' }}</textarea>
+                        </div>
+                    </div>
                     <!-- ### CONTENT ### -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -138,7 +153,7 @@
                         <div class="panel-body">
                             @php
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                                $exclude = ['title', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', 'featured', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
+                                $exclude = ['excerpt', 'scheduled_at', 'title', 'body', 'excerpt', 'slug', 'status', 'category_id', 'author_id', 'featured', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
                             @endphp
                             @foreach($dataTypeRows as $row)
                                 @if(!in_array($row->field, $exclude))
@@ -180,6 +195,18 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
+                                <label for="slug">{{ __('Publica in data de') }}</label>
+                                {!! app('voyager')->formField($dataType->editRows->where('field', 'scheduled_at')->first(), $dataType, $dataTypeContent) !!}
+                            </div>
+                            <div class="form-group">
+                                <label for="status">{{ __('voyager::post.status') }}</label>
+                                <select class="form-control" name="status">
+                                    <option value="PUBLISHED"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
+                                    <option value="DRAFT"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
+                                    <option value="PENDING"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PENDING') selected="selected"@endif>{{ __('voyager::post.status_pending') }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="slug">{{ __('voyager::post.slug') }}</label>
                                 @include('voyager::multilingual.input-hidden', [
                                     '_field_name'  => 'slug',
@@ -189,14 +216,6 @@
                                        placeholder="slug"
                                        {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}
                                        value="{{ $dataTypeContent->slug ?? '' }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="status">{{ __('voyager::post.status') }}</label>
-                                <select class="form-control" name="status">
-                                    <option value="PUBLISHED"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED') selected="selected"@endif>{{ __('voyager::post.status_published') }}</option>
-                                    <option value="DRAFT"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT') selected="selected"@endif>{{ __('voyager::post.status_draft') }}</option>
-                                    <option value="PENDING"@if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PENDING') selected="selected"@endif>{{ __('voyager::post.status_pending') }}</option>
-                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="category_id">{{ __('voyager::post.category') }}</label>
@@ -213,6 +232,10 @@
                                         @endforeach
                                     </select>
                                 @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="views">{{ __('Vizualizari') }}</label>
+                                <input class="form-control" type="number" name="views" value="{{ $dataTypeContent->views ?? '' }}" disabled>
                             </div>
                         </div>
                     </div>
