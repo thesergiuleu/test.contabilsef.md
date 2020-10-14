@@ -9,6 +9,8 @@ use App\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class PostsService implements PostsServiceInterface
 {
@@ -80,6 +82,9 @@ class PostsService implements PostsServiceInterface
 
         return $category ? $category
             ->posts()
+            ->when($category->slug === Category::INSTRUIRE_CATEGORY, function (Builder $query) {
+                $query->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'));
+            })
             ->orderBy($this->sortColumn, $this->sortOrder)
             ->limit($this->limit)
             ->get()
