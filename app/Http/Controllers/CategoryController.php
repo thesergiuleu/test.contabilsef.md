@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Category;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends SiteBaseController
 {
@@ -55,8 +57,10 @@ class CategoryController extends SiteBaseController
                     }
                 }
             })
-            ->when($item->slug === Category::INSTRUIRE_CATEGORY, function ($query) {
-                $query->orderBy('event_date', 'asc');
+            ->when($item->slug === Category::INSTRUIRE_CATEGORY, function (Builder $query) {
+                $query
+                    ->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'))
+                    ->orderBy('event_date', 'asc');
             })
             ->paginate(5);
 
