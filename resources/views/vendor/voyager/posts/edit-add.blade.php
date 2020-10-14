@@ -104,6 +104,22 @@
                             <input type="text" class="form-control" id="title" name="title" placeholder="{{ __('voyager::generic.title') }}" value="{{ $dataTypeContent->title ?? '' }}">
                         </div>
                     </div>
+                    <!-- ### EXCERPT ### -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
+                            <div class="panel-actions">
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            @include('voyager::multilingual.input-hidden', [
+                                '_field_name'  => 'excerpt',
+                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
+                            ])
+                            <textarea class="form-control" name="excerpt">{{ $dataTypeContent->excerpt ?? '' }}</textarea>
+                        </div>
+                    </div>
 
                     <!-- ### CONTENT ### -->
                     <div class="panel">
@@ -137,7 +153,7 @@
                         <div class="panel-body">
                             @php
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                                $exclude = ['scheduled_at', 'title', 'body', 'slug', 'status', 'category_id', 'author_id', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
+                                $exclude = ['excerpt', 'scheduled_at', 'title', 'body', 'slug', 'status', 'category_id', 'author_id', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
                             @endphp
                             @foreach($dataTypeRows as $row)
                                 @if(!in_array($row->field, $exclude))
