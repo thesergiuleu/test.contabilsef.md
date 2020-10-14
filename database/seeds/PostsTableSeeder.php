@@ -19,7 +19,7 @@ class PostsTableSeeder extends Seeder
         //Permissions
         Permission::generateFor('posts');
 
-        if (env('APP_ENV') == 'local') {
+        if (env('APP_ENV') != 'production') {
             foreach (\App\Category::all() as $item) {
                 if (!$item->children()->exists()) {
                     $data = [

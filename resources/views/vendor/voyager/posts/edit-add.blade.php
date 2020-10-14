@@ -137,9 +137,8 @@
                         <div class="panel-body">
                             @php
                                 $dataTypeRows = $dataType->{($edit ? 'editRows' : 'addRows' )};
-                                $exclude = ['title', 'body', 'slug', 'status', 'category_id', 'author_id', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
+                                $exclude = ['scheduled_at', 'title', 'body', 'slug', 'status', 'category_id', 'author_id', 'image', 'meta_description', 'meta_keywords', 'seo_title'];
                             @endphp
-
                             @foreach($dataTypeRows as $row)
                                 @if(!in_array($row->field, $exclude))
                                     @php
@@ -180,15 +179,8 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                <label for="slug">{{ __('voyager::post.slug') }}</label>
-                                @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'slug',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'slug')
-                                ])
-                                <input type="text" class="form-control" id="slug" name="slug"
-                                    placeholder="slug"
-                                    {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}
-                                    value="{{ $dataTypeContent->slug ?? '' }}">
+                                <label for="slug">{{ __('Publica in data de') }}</label>
+                                {!! app('voyager')->formField($dataType->editRows->where('field', 'scheduled_at')->first(), $dataType, $dataTypeContent) !!}
                             </div>
                             <div class="form-group">
                                 <label for="status">{{ __('voyager::post.status') }}</label>
@@ -199,12 +191,27 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label for="slug">{{ __('voyager::post.slug') }}</label>
+                                @include('voyager::multilingual.input-hidden', [
+                                    '_field_name'  => 'slug',
+                                    '_field_trans' => get_field_translations($dataTypeContent, 'slug')
+                                ])
+                                <input type="text" class="form-control" id="slug" name="slug"
+                                       placeholder="slug"
+                                       {!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}
+                                       value="{{ $dataTypeContent->slug ?? '' }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="category_id">{{ __('voyager::post.category') }}</label>
                                 <select class="form-control" name="category_id">
                                     @foreach(\App\Category::where('slug', '!=', \App\Category::INSTRUIRE_CATEGORY)->doesntHave('children')->get() as $category)
                                         <option value="{{ $category->id }}"@if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="views">{{ __('Vizualizari') }}</label>
+                                <input class="form-control" type="number" name="views" value="{{ $dataTypeContent->views ?? '' }}" disabled>
                             </div>
                         </div>
                     </div>
