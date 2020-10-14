@@ -1229,7 +1229,7 @@
                 "rule": "required"
             }
         },
-        "order": 4
+        "order": 5
     },
     {
         "id": 74,
@@ -1238,13 +1238,13 @@
         "type": "text_area",
         "display_name": "Message",
         "required": 0,
-        "browse": 0,
+        "browse": 1,
         "read": 1,
         "edit": 1,
         "add": 1,
         "delete": 1,
         "details": {},
-        "order": 5
+        "order": 4
     },
     {
         "id": 75,
@@ -1259,7 +1259,7 @@
         "add": 0,
         "delete": 1,
         "details": {},
-        "order": 6
+        "order": 7
     },
     {
         "id": 76,
@@ -1274,7 +1274,7 @@
         "add": 0,
         "delete": 0,
         "details": {},
-        "order": 7
+        "order": 9
     },
     {
         "id": 77,
@@ -2882,28 +2882,34 @@
         "type": "text",
         "display_name": "Ip Address",
         "required": 0,
-        "browse": 1,
+        "browse": 0,
         "read": 1,
         "edit": 1,
         "add": 1,
         "delete": 1,
         "details": {},
-        "order": 6
+        "order": 8
     },
     {
         "id": 169,
         "data_type_id": 8,
         "field": "page",
-        "type": "text",
+        "type": "select_dropdown",
         "display_name": "Page",
         "required": 1,
         "browse": 1,
         "read": 1,
-        "edit": 0,
-        "add": 0,
+        "edit": 1,
+        "add": 1,
         "delete": 1,
-        "details": {},
-        "order": 7
+        "details": {
+            "options": {
+                "profile": "profile",
+                "contact_form": "contact_form",
+                "contact_page": "contact_page"
+            }
+        },
+        "order": 6
     },
     {
         "id": 170,
@@ -3475,7 +3481,7 @@
         "order": 24
     },
     {
-        "id": 202,
+        "id": 204,
         "data_type_id": 6,
         "field": "excerpt",
         "type": "text",
@@ -3490,7 +3496,7 @@
         "order": 23
     },
     {
-        "id": 203,
+        "id": 205,
         "data_type_id": 6,
         "field": "external_link",
         "type": "text",
