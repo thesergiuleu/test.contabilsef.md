@@ -32,6 +32,7 @@ class PostsTableSeeder extends Seeder
                             'category_id' => $item->id,
                             'author_id' => 1,
                             'status' => Post::PUBLISHED,
+                            'event_date' => \Carbon\Carbon::now()->addDays(10),
                             'privacy' => 1
                         ];
                     }

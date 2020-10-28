@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user()->id)],
-            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10'],
+            'phone' => ['required', 'numeric', 'min:9'],
             'company' => ['required', 'string'],
             'position' => ['required', 'string'],
             'old_password' => ['required', function ($attribute, $value, $fail) {

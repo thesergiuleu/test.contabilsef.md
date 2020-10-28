@@ -50,17 +50,37 @@ class Category extends Model
 {
     use Translatable;
 
-    const NEWS_CATEGORY = 'noutati';
-    const CONTABIL_SEF_NEWS_CATEGORY = 'noutati-contabil-sef';
-    const GENERAL_NEWS_CATEGORY = 'noutati-generale';
+    const DESPRE_NOI = 'ro-despre-noi-ru-en';
+    const NOUTATI = 'ro-nout-i-ru-en';
+    const ARTICOLE = 'ro-articole-ru-en-articole';
+    const LEGISLATIA = 'ro-legisla-ia-ru-en-legisla-ia';
+    const INFORMATII_UTILE = 'ro-informa-ii-utile-ru-en-informa-ii-utile';
+    const FORMULARE = 'ro-formulare-ru-en';
+    const CONTABILITATE = 'ro-contabile-ru-en';
+    const FISCALE = 'ro-fiscale-ru-en';
+
+    const PARENT_CATEGORIES = [
+        self::DESPRE_NOI => 'despre-noi',
+        self::NOUTATI => 'nouta-i',
+        self::ARTICOLE => 'articole',
+        self::LEGISLATIA => 'legisla-ia',
+        self::INFORMATII_UTILE => 'informa-ii-utile',
+        self::FORMULARE => 'formulare',
+        self::CONTABILITATE => 'contabile',
+        self::FISCALE => 'fiscale',
+    ];
+
+    const NEWS_CATEGORY = 'nouta-i';
+    const CONTABIL_SEF_NEWS_CATEGORY = 'nouta-i-contabil-sef';
+    const GENERAL_NEWS_CATEGORY = 'nouta-i-generale';
     const ARTICLES_CATEGORY = 'articole';
     const INSTRUIRE_CATEGORY = 'instruire';
-    const LEGISLATION_CATEGORY = 'legislatia';
-    const INFORMATII_UTILE_CATEGORY = 'informatii-utile';
+    const LEGISLATION_CATEGORY = 'legisla-ia';
+    const INFORMATII_UTILE_CATEGORY = 'informa-ii-utile';
     const SNC_2020_CATEGORY = 'snc-2020';
     const INDICATORI_FISCALI_CATEGORY = 'indicatori-fiscali';
     const SINTEZA_MONITORULUI_OFICIAL_CATEGORY = 'sinteza-monitorului-oficial';
-    const GLOSARY_CATEGORY = 'dictionar-contabil';
+    const GLOSARY_CATEGORY = 'dic-ionar-contabil';
 
     const CATEGORIES_WITH_COMMENTS = [
         self::ARTICLES_CATEGORY,

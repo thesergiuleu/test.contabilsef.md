@@ -39,7 +39,7 @@
         <td>Furnizor:</td>
         <td><b>'Totul Pentru Contabil' SRL</b></td>
         <td align="center" rowspan="6" style="border-left: 1px solid;">
-            FACTURA nr. - TODO
+            FACTURA nr. - {{$postRegister->post->id}}
 
             <p>din {{ format_date($postRegister->created_at) }}</p>
         </td>
@@ -99,7 +99,7 @@
     @endif
     <tr>
         <td>Inregistrare seminar {{ $postRegister->post->title }}</td>
-        <td align="center">TODO</td>
+        <td align="center"></td>
         <td align="center"><b>{{ $price }} lei</b></td>
     </tr>
     <tr>

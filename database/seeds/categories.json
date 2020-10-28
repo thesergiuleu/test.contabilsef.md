@@ -1,0 +1,458 @@
+[
+   {
+      "slug":"ro-despre-noi-ru-en",
+      "name":"Despre noi"
+   },
+   {
+      "slug":"ro-despre-proiect-ru-en-43614",
+      "name":"Despre proiect"
+   },
+   {
+      "slug":"revista-electronic-contabilsef-md-48209",
+      "name":"Revista electronică „Contabilsef.md”"
+   },
+   {
+      "slug":"ro-consultant-snc-ru-en",
+      "name":"Consultant SNC"
+   },
+   {
+      "slug":"categoryparteneri",
+      "name":"Parteneri"
+   },
+   {
+      "slug":"categoryautori",
+      "name":"Autori"
+   },
+   {
+      "slug":"ro-publicitate-pe-site-ru-en-46277",
+      "name":"Publicitate"
+   },
+   {
+      "slug":"ro-vrei-s-devii-autor-ru-en-50356",
+      "name":"Vrei să devii autor?"
+   },
+   {
+      "slug":"ro-despre-noi-ru-enro-termene-si-condi-ii-ru-en",
+      "name":"Termene si condiții"
+   },
+   {
+      "slug":"ro-nout-i-ru-en",
+      "name":"Noutăţi"
+   },
+   {
+      "slug":"categorynouta-i-contabilsef",
+      "name":"Noutăţi ContabilȘef"
+   },
+   {
+      "slug":"categorynouta-i-generale",
+      "name":"Noutăţi generale"
+   },
+   {
+      "slug":"ro-articole-ru-en-articole",
+      "name":"Articole"
+   },
+   {
+      "slug":"categorycontabilitate",
+      "name":"Contabilitate"
+   },
+   {
+      "slug":"categoryfiscalitate",
+      "name":"Fiscalitate"
+   },
+   {
+      "slug":"categoryintrebari-raspunsuri",
+      "name":"Întrebări-Răspunsuri"
+   },
+   {
+      "slug":"categoryaudit-i-control-intern",
+      "name":"Audit şi control intern"
+   },
+   {
+      "slug":"categorymanagement",
+      "name":"Management"
+   },
+   {
+      "slug":"categoryalte-hr-ae",
+      "name":"Alte (HR, AE)"
+   },
+   {
+      "slug":"categoryifrs",
+      "name":"IFRS"
+   },
+   {
+      "slug":"categoryseminare",
+      "name":"Instruire"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-ia",
+      "name":"Legislaţia"
+   },
+   {
+      "slug":"contabilitate",
+      "name":"Contabilitate"
+   },
+   {
+      "slug":"categorylegi-5",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryhotariri-7",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categoryscrisori-explica-ii-1",
+      "name":"Scrisori, explicaţii"
+   },
+   {
+      "slug":"categoryordine-instruc-iuni-regulamente",
+      "name":"Ordine, instrucţiuni, regulamente"
+   },
+   {
+      "slug":"categorystandardele-na-ionale-de-contabilitate-vechi",
+      "name":"Standardele Naţionale de Contabilitate vechi"
+   },
+   {
+      "slug":"categorycomentarii-la-snc-vechi",
+      "name":"Comentarii la SNC vechi"
+   },
+   {
+      "slug":"categorystandardele-internationale-de-raportare-financiara-ifrs",
+      "name":"Standardele Internaționale de Raportare Financiară (IFRS)"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-audit-ru-en",
+      "name":"Audit"
+   },
+   {
+      "slug":"categorystandardele-internationale-de-audit",
+      "name":"Standardele Internaționale de Audit"
+   },
+   {
+      "slug":"categoryacte-normative",
+      "name":"Acte normative"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-legisla-ia-fiscal-ru-en",
+      "name":"Legislaţia fiscală"
+   },
+   {
+      "slug":"categoryhotariri-5",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categorylegi-6",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryregulamente-1",
+      "name":"Regulamente"
+   },
+   {
+      "slug":"categoryordine-1",
+      "name":"Ordine"
+   },
+   {
+      "slug":"categorycodul-fiscal-1",
+      "name":"Codul Fiscal"
+   },
+   {
+      "slug":"categoryinstruc-iuni",
+      "name":"Instrucţiuni"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-legisla-ia-fiscal-ru-enro-scrisori-ru-en",
+      "name":"Scrisori"
+   },
+   {
+      "slug":"categoryscrisorile-principale-cu-privire-la-impozitul-pe-venit",
+      "name":"Scrisorile principale cu privire la Impozitul pe venit"
+   },
+   {
+      "slug":"categoryscrisorile-principale-cu-privire-la-tva-i-accize",
+      "name":"Scrisorile principale cu privire la TVA şi accize"
+   },
+   {
+      "slug":"categoryalte-scrisori",
+      "name":"Alte scrisori"
+   },
+   {
+      "slug":"categoryconven-ii-interna-ionale",
+      "name":"Convenţii internaţionale"
+   },
+   {
+      "slug":"http:www.fisc.mdDeciziiCoteImpozitView.aspx",
+      "name":"Decizii ale autorităţilor publice locale"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-legisla-ia-muncii-ru-en",
+      "name":"Legislaţia muncii"
+   },
+   {
+      "slug":"categorycodul-muncii",
+      "name":"Codul muncii"
+   },
+   {
+      "slug":"categorylegi-4",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryhotariri-6",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categoryscrisori-informa-ii",
+      "name":"Scrisori, informaţii"
+   },
+   {
+      "slug":"categoryconven-ii-na-ionale",
+      "name":"Convenţii naţionale"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-asigurarea-social-i-medical-ru-en",
+      "name":"Asigurarea socială şi medicală"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-asigurarea-social-i-medical-ru-enro-asigurarea-obligatorie-social-ru-en",
+      "name":"Asigurarea obligatorie socială"
+   },
+   {
+      "slug":"categorylegi-2",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryordine-3",
+      "name":"Ordine"
+   },
+   {
+      "slug":"categoryhotariri-3",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categoryregulamente-4",
+      "name":"Regulamente"
+   },
+   {
+      "slug":"categoryscrisori-explica-ii-3",
+      "name":"Scrisori, explicaţii"
+   },
+   {
+      "slug":"categorytratate-interna-ionale",
+      "name":"Tratate internaţionale"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-asigurarea-social-i-medical-ru-enro-asigurarea-obligatorie-medical-ru-en",
+      "name":"Asigurarea obligatorie medicală"
+   },
+   {
+      "slug":"categorylegi-3",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryhotariri-4",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categoryscrisori-explica-ii-2",
+      "name":"Scrisori, explicaţii"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-drept-antreprenorial-ru-en",
+      "name":"Drept antreprenorial"
+   },
+   {
+      "slug":"http:lex.justice.mdmd325085",
+      "name":"Codul civil al RM"
+   },
+   {
+      "slug":"categorylegi-7",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryhotariri-1",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"categoryregulamente-2",
+      "name":"Regulamente"
+   },
+   {
+      "slug":"categoryordine-4",
+      "name":"Ordine"
+   },
+   {
+      "slug":"ro-legisla-ia-ru-en-legisla-iaro-drept-vamal-ru-en",
+      "name":"Drept vamal"
+   },
+   {
+      "slug":"categorylegi-1",
+      "name":"Legi"
+   },
+   {
+      "slug":"categoryordine-2",
+      "name":"Ordine"
+   },
+   {
+      "slug":"categoryregulamente-3",
+      "name":"Regulamente"
+   },
+   {
+      "slug":"categoryhotariri-2",
+      "name":"Hotărîri"
+   },
+   {
+      "slug":"http:lex.justice.mdindex.php?action=view&view=doc&id=319745",
+      "name":"Codul vamal al RM"
+   },
+   {
+      "slug":"categorysinteza-monitorului-oficial",
+      "name":"Sinteza Monitorului Oficial"
+   },
+   {
+      "slug":"categorydeciziile-cur-ii-supreme-de-justi-ie-1",
+      "name":"Deciziile Curţii Supreme de Justiţie"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utile",
+      "name":"Informaţii utile"
+   },
+   {
+      "slug":"categoryindicatori-fiscali",
+      "name":"Indicatori fiscali"
+   },
+   {
+      "slug":"categorysnc-2020",
+      "name":"SNC 2020"
+   },
+   {
+      "slug":"categorysnc-2015",
+      "name":"SNC 2015"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utilero-exemple-din-snc-ru-en",
+      "name":"Exemple din SNC"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utilero-dic-ionar-contabil-ru-en-dic-ionar-contabil",
+      "name":"Dicţionar contabil"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utilero-formulare-ru-en",
+      "name":"Formulare"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utilero-formulare-ru-enro-contabile-ru-en",
+      "name":"Contabile"
+   },
+   {
+      "slug":"ro-documente-primare-cu-regim-special-formulare-ru-en-45519",
+      "name":"Documente primare cu regim special"
+   },
+   {
+      "slug":"categorydocumente-primare",
+      "name":"Documente primare"
+   },
+   {
+      "slug":"ro-informa-ii-utile-ru-en-informa-ii-utilero-formulare-ru-enro-fiscale-ru-en",
+      "name":"Fiscale"
+   },
+   {
+      "slug":"ro-impozitul-pe-venit-formulare-ru-impozitul-pe-venit-formulare-en-45545",
+      "name":"Impozitul pe venit"
+   },
+   {
+      "slug":"ro-taxa-pe-valoarea-ad-ugat-formulare-ru-taxa-pe-valoarea-ad-ugat-formulare-en-45546",
+      "name":"Taxa pe valoarea adăugată"
+   },
+   {
+      "slug":"ro-accize-formulare-ru-en-45547",
+      "name":"Accize"
+   },
+   {
+      "slug":"ro-taxele-rutiere-formulare-ru-taxele-rutiere-formulare-en-45548",
+      "name":"Taxele rutiere"
+   },
+   {
+      "slug":"ro-dividende-formulare-ru-dividende-formulare-en-45549",
+      "name":"Dividende"
+   },
+   {
+      "slug":"ro-impozitul-pe-bunurile-imobiliare-formulare-ru-en-45550",
+      "name":"Impozitul pe bunurile imobiliare"
+   },
+   {
+      "slug":"ro-taxe-locale-formulare-ru-taxe-locale-anul-2013-formulare-en-46288",
+      "name":"Taxe locale"
+   },
+   {
+      "slug":"ro-taxele-pentru-resursele-naturale-formulare-ru-taxele-pentru-resursele-naturale-formulare-en-45551",
+      "name":"Taxele pentru resursele naturale"
+   },
+   {
+      "slug":"ro-impozit-pe-venit-re-inut-de-la-nereziden-i-formulare-ru-en-45552",
+      "name":"Impozit pe venit reţinut de la nerezidenţi"
+   },
+   {
+      "slug":"ro-plata-suplimentar-obligatorie-la-v-zarea-valutei-str-ine-formulare-ru-en-45553",
+      "name":"Plata suplimentară obligatorie la vânzarea valutei străine"
+   },
+   {
+      "slug":"ro-taxa-pentru-serviciile-de-telefonie-mobil-formulare-ru-en-45554",
+      "name":"Taxa pentru serviciile de telefonie mobilă"
+   },
+   {
+      "slug":"ro-contribu-ii-obligatorii-fondul-viei-i-vinului-ru-en-46316",
+      "name":"Contribuţii obligatorii în fondul viei şi vinului"
+   },
+   {
+      "slug":"http:lex.justice.mdUserFilesFile2013mo119-121mdan.1_534.doc",
+      "name":"Alte formulare"
+   },
+   {
+      "slug":"categoryrapoarte-statistice",
+      "name":"Rapoarte Statistice"
+   },
+   {
+      "slug":"categorycasa-na-ionala-de-asigurari-sociale",
+      "name":"Casa Naţională de Asigurări Sociale"
+   },
+   {
+      "slug":"categorycompania-na-ionala-de-asigurari-in-medicina",
+      "name":"Compania Naţională de Asigurări în Medicină"
+   },
+   {
+      "slug":"categorymodele-de-contracte",
+      "name":"Modele de contracte"
+   },
+   {
+      "slug":"categoryadrese-utile",
+      "name":"Adrese utile"
+   },
+   {
+      "slug":"categoryauditori-certifica-i",
+      "name":"Auditori certificaţi"
+   },
+   {
+      "slug":"planul-de-conturi-2020",
+      "name":"Planul de conturi 2020"
+   },
+   {
+      "slug":"ro-planul-de-conturi-2015-ru-en-47624",
+      "name":"Planul de Conturi 2015"
+   },
+   {
+      "slug":"ro-nomenclatorul-conturilor-contabile-ru-en-43620",
+      "name":"Planul de conturi vechi"
+   },
+   {
+      "slug":"lincuri-utile",
+      "name":"Linkuri utile"
+   },
+   {
+      "slug":"ro-oferte-ru-en",
+      "name":"Oferte"
+   },
+   {
+      "slug":"ro-contacte-ru-en",
+      "name":"Contacte"
+   }
+]

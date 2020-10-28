@@ -64,6 +64,6 @@ class InstruireRegisterMail extends Mailable
         return $this
             ->subject('Inregistrare seminar')
             ->attachData($this->pdf->output(), 'invoice_' . $this->postRegister->created_at . '.pdf')
-            ->markdown('emails.seminar_register');
+            ->markdown('emails.seminar_register_to_own');
     }
 }

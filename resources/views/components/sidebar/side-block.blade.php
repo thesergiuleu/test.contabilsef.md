@@ -10,7 +10,7 @@
                             <div class="icons">
                                 <img class="margin-left" src="{{ asset('assets/imgs/r.png') }}" alt="">
                                 <span>
-                                    {{ format_date($item->created_at) }}
+                                    {{ $item instanceof \App\Post && $item->category->slug == \App\Category::INSTRUIRE_CATEGORY ? format_date($item->event_date) : format_date($item->created_at) }}
                                 </span>
                                 @if( $item->link )
                                     <span>

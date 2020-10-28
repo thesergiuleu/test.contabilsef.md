@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInstruireRegisterRequest;
 use App\Notifications\InstruireRegister;
+use App\Notifications\NotifyExternalUsersAboutNewSeminarRegister;
 use App\Post;
 use App\PostRegister;
 use App\Subscription;
@@ -18,6 +19,21 @@ class InstruireController extends Controller
     {
         $data = $request->validated();
         $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
+
+        if (!$post->is_own) {
+            //notify emails
+            foreach (explode(',', $post->emails) as $email) {
+                $receiver = new User();
+                $receiver->email = trim($email);
+                Notification::send($receiver, new NotifyExternalUsersAboutNewSeminarRegister($data, $post));
+            }
+
+            return response()->json([
+                'message' => setting('raspunsuri.instruire_register', 'Va-ti inregistrat cu success. Verificati email-ul pentru mai multe detalii.'),
+                'status' => 'success',
+                'redirect_url' => session()->get('_previous')['url']
+            ]);
+        }
         /** @var User $user */
         $user = Auth::user();
 

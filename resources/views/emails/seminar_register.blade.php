@@ -1,17 +1,16 @@
 @component('mail::message')
 Bună ziua. <br>
 
-Atașat găsiți contul de plată pentru serviciul solicitat. <br>
+Prin intermediu paginii contabilsef.md sa efectuat o înregistrare la seminarul organizat de dvs. <br>
 
-Vă mulțumim pentru alegere! <br>
-
-IMPORTANT! Vă rugăm în destinația plății să indicați ID personal TODO. <br>
-
-După efectuarea plății abonamentului va fi activat serviciul ales și veți primi o scrisoare de înștiințare pe e-mail.
-<br>
-
-Pentru orice întrebări sau detalii suplimentare, ne puteți contacta prin intermediul e-mailului {{ env('OFFICE_EMAIL') }} sau la numărul de telefon (022) 22-49-37.
-<br>
+Nume: {{$data['name']}}<br>
+Email: {{$data['email']}}<br>
+Telefon: {{$data['phone']}}<br>
+Idno: {{$data['cod_fiscal']}}<br>
+Denumirea companiei: {{$data['company_name']}}<br>
+Metoda de plată: {{$data['payment_method']}}<br>
+Mesaj:{{$data['message']}}<br>
+Seminar: {{$post->name}}<br>
 
 Cu respect,<br>
 Echipa {{ config('app.name') }},<br>

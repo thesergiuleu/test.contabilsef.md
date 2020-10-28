@@ -28,6 +28,7 @@ use TCG\Voyager\Traits\Translatable;
  * @property string|null $meta_description
  * @property string|null $meta_keywords
  * @property string $status
+ * @property string $views
  * @property int $featured
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -65,7 +66,6 @@ use TCG\Voyager\Traits\Translatable;
  * @property-read string $post_url
  * @property-read string $short
  * @property-read string $thumbnail_url
- * @property-read string $views
  * @property int $privacy
  * @property-read mixed $comments_count
  * @property-read string $new_on_pic
@@ -96,6 +96,8 @@ class Post extends Model
     use Resizable;
 
     const PUBLISHED = 'PUBLISHED';
+    const PENDING = 'PENDING';
+    const DRAFT = 'DRAFT';
 
     const PAYMENT_METHODS = [
         '' => 'Alege',

@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# @lang('Hello!')
+# @lang('Salut!')
 @endif
 @endif
 
@@ -51,8 +51,8 @@
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser:',
+    "Dacă întâmpinați probleme făcând clic pe butonul \":actionText\", copiați și lipiți adresa URL de mai jos\n".
+    'în browserul dvs. web:',
     [
         'actionText' => $actionText,
     ]
