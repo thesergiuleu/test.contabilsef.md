@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Post;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -47,9 +48,11 @@ class PostImportController extends Controller
     private function savePostsToLaravel(Collection $wpPosts)
     {
         foreach ($wpPosts as $wpPost) {
-            if (!Post::whereSlug($wpPost->post_name)->first() && $category = Category::whereSlug($wpPost->category->first()->wp_term_slug)->first()) {
+            $wpCategorySlug = $wpPost->category->first()->wp_term_slug;
+            if (!Post::whereSlug($wpPost->post_name)->first() && $category = Category::whereSlug($wpCategorySlug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $wpCategorySlug)->first()) {
                 $post = new Post();
                 $post->category_id = $category->id;
+                $post->author_id = User::first()->id;
                 $post->title = $wpPost->post_title;
                 $post->seo_title = $wpPost->post_title;
                 $post->body = $wpPost->post_content;
@@ -63,6 +66,8 @@ class PostImportController extends Controller
                 $post->created_at = Carbon::make($wpPost->post_date);
                 $post->updated_at = Carbon::make($wpPost->post_modified);
                 $post->external_link = $this->getWpExternalLink($wpPost);
+
+                $post->save();
             }
         }
     }
@@ -129,8 +134,9 @@ class PostImportController extends Controller
         if ($metaValue == '2') {
             preg_match('/\].*?\[/', $wpPost->post_content, $matches);
             $content = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_content;
-            dd($content, $wpPost);
+            return trim(strip_tags($content));
         }
+        return null;
     }
 
     public function categories()
@@ -201,7 +207,7 @@ class PostImportController extends Controller
             if (!Category::whereSlug($wpCategory->slug)->first()) {
                 $category = new Category();
                 $category->name = $wpCategory->name;
-                $category->slug = $wpCategory->slug;
+                $category->slug = $wpCategory->slug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $wpCategory->slug;
 
                 $category->save();
             }

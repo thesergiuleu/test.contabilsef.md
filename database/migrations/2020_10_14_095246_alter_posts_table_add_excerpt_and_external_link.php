@@ -15,7 +15,7 @@ class AlterPostsTableAddExcerptAndExternalLink extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->text('excerpt')->nullable();
-            $table->string('external_link')->nullable();
+            $table->text('external_link')->nullable();
         });
     }
 

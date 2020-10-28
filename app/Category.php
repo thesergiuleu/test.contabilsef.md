@@ -71,7 +71,7 @@ class Category extends Model
     ];
 
     const NEWS_CATEGORY = 'nouta-i';
-    const CONTABIL_SEF_NEWS_CATEGORY = 'nouta-i-contabil-sef';
+    const CONTABIL_SEF_NEWS_CATEGORY = 'nouta-i-contabilsef';
     const GENERAL_NEWS_CATEGORY = 'nouta-i-generale';
     const ARTICLES_CATEGORY = 'articole';
     const INSTRUIRE_CATEGORY = 'instruire';

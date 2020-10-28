@@ -187,12 +187,12 @@ class CategoriesTableSeeder extends Seeder
         //Permissions
         Permission::generateFor('categories');
 
-        foreach (Category::CATEGORIES as $slug => $data) {
-            $category = Category::whereSlug($slug)->first();
-            if (!$category) {
-                Category::query()->create($data);
-            }
-        }
+//        foreach (Category::CATEGORIES as $slug => $data) {
+//            $category = Category::whereSlug($slug)->first();
+//            if (!$category) {
+//                Category::query()->create($data);
+//            }
+//        }
 
     }
 

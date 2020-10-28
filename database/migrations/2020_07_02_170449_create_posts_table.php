@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('seo_title')->nullable();
             $table->text('body');
             $table->string('image')->nullable();
-            $table->string('slug')->unique();
+            $table->text('slug');
             $table->text('meta_description');
             $table->text('meta_keywords');
             $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
