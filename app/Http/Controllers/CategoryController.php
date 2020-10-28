@@ -60,7 +60,7 @@ class CategoryController extends SiteBaseController
             ->when($item->slug === Category::INSTRUIRE_CATEGORY, function (Builder $query) {
                 $query
                     ->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'))
-                    ->orderBy('event_date');
+                    ->orderBy(DB::raw('DATE(event_date)'));
             })
             ->paginate(5);
 
