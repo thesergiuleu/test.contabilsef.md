@@ -14,7 +14,7 @@ class NotifyUserAboutSubscriptionStartedMail extends Mailable
     /**
      * @var Subscription
      */
-    public  $subscription;
+    public $subscription;
 
     /**
      * Create a new message instance.

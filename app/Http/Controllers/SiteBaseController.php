@@ -10,22 +10,22 @@ class SiteBaseController extends Controller
     /**
      * @var array|int[]
      */
-    protected static  $status = [
+    protected static $status = [
         '_0' => 0,
         '_1' => 1,
     ];
     /**
      * @var array
      */
-    protected  $viewData;
+    protected $viewData;
     /**
      * @var ComponentService
      */
-    protected  $componentService;
+    protected $componentService;
     /**
      * @var array
      */
-    protected  $filters = [];
+    protected $filters = [];
 
     public function __construct(ComponentService $componentService)
     {

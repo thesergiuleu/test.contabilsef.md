@@ -35,7 +35,7 @@ use Illuminate\Support\Carbon;
  * @property-read int|null $children_count
  * @property-read Post $post
  * @property int $is_approved
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Comment whereIsApproved($value)
+ * @method static Builder|Comment whereIsApproved($value)
  */
 class Comment extends Model
 {

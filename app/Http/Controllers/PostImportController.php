@@ -44,88 +44,6 @@ class PostImportController extends Controller
         return response()->json($wpPosts->values());
     }
 
-    public function categories()
-    {
-        $wpParentCategories = $this->database->table('wp_posts')
-            ->whereIn('post_name', array_keys(Category::PARENT_CATEGORIES))
-            ->orderBy('post_parent')
-            ->get()
-            ->each(function (&$wpPost) {
-//                $wpPost->children = $this->getChildren($wpPost);
-                $wpPost->parent = $this->getParentPost($wpPost);
-            });
-
-        $wpCategories = $this->database->table('wp_terms')
-            ->leftJoin('wp_term_taxonomy', 'wp_term_taxonomy.term_id', 'wp_terms.term_id')
-            ->where('wp_term_taxonomy.taxonomy', 'category')
-            ->get()->keyBy('term_id')->except(['662', '663', '664', '666']);
-
-
-        $this->saveParentCategoriesToLaravel($wpParentCategories->values());
-
-        $this->saveCategoriesToLaravel($wpCategories->values());
-
-
-
-        return response()->json([
-            'parent_categories' => $wpParentCategories->values(),
-            'categories' => $wpCategories->values()
-        ]);
-    }
-
-
-    private function getParentPost($post)
-    {
-        $wpParentPost = $this->database->table('wp_posts')->where('ID', $post->post_parent)->first();
-
-        if ($wpParentPost && $wpParentPost->post_parent > 0) {
-            $wpParentPost->parent = $this->getParentPost($wpParentPost);
-        }
-        return $wpParentPost;
-    }
-
-    private function getChildren($wpPost)
-    {
-        return $this->database->table('wp_posts')->where('post_parent', $wpPost->ID)->get();
-    }
-
-    private function saveParentCategoriesToLaravel($wpParentCategories)
-    {
-        foreach ($wpParentCategories as $key => $wpParentCategory) {
-            preg_match('/\].*?\[/', $wpParentCategory->post_title, $matches);
-            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpParentCategory->post_title;
-
-            if ($wpParentCategory->post_parent > 0) {
-
-                $parent = $wpParentCategories->where('ID', $wpParentCategory->post_parent)->first();
-
-                $parentCategory = Category::whereSlug(Category::PARENT_CATEGORIES[$parent->post_name])->first();
-            }
-
-            if (!Category::whereSlug(Category::PARENT_CATEGORIES[$wpParentCategory->post_name])->first()) {
-                $category = new Category();
-                $category->parent_id = $parentCategory->id ?? null;
-                $category->name = $title;
-                $category->slug = Category::PARENT_CATEGORIES[$wpParentCategory->post_name];
-
-                $category->save();
-            }
-        }
-    }
-
-    private function saveCategoriesToLaravel(Collection $wpCategories)
-    {
-        foreach ($wpCategories as $wpCategory) {
-            if (!Category::whereSlug($wpCategory->slug)->first()) {
-                $category = new Category();
-                $category->name = $wpCategory->name;
-                $category->slug = $wpCategory->slug;
-
-                $category->save();
-            }
-        }
-    }
-
     private function savePostsToLaravel(Collection $wpPosts)
     {
         foreach ($wpPosts as $wpPost) {
@@ -213,5 +131,85 @@ class PostImportController extends Controller
             $content = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_content;
             dd($content, $wpPost);
         }
+    }
+
+    public function categories()
+    {
+        $wpParentCategories = $this->database->table('wp_posts')
+            ->whereIn('post_name', array_keys(Category::PARENT_CATEGORIES))
+            ->orderBy('post_parent')
+            ->get()
+            ->each(function (&$wpPost) {
+//                $wpPost->children = $this->getChildren($wpPost);
+                $wpPost->parent = $this->getParentPost($wpPost);
+            });
+
+        $wpCategories = $this->database->table('wp_terms')
+            ->leftJoin('wp_term_taxonomy', 'wp_term_taxonomy.term_id', 'wp_terms.term_id')
+            ->where('wp_term_taxonomy.taxonomy', 'category')
+            ->get()->keyBy('term_id')->except(['662', '663', '664', '666']);
+
+
+        $this->saveParentCategoriesToLaravel($wpParentCategories->values());
+
+        $this->saveCategoriesToLaravel($wpCategories->values());
+
+
+        return response()->json([
+            'parent_categories' => $wpParentCategories->values(),
+            'categories' => $wpCategories->values()
+        ]);
+    }
+
+    private function getParentPost($post)
+    {
+        $wpParentPost = $this->database->table('wp_posts')->where('ID', $post->post_parent)->first();
+
+        if ($wpParentPost && $wpParentPost->post_parent > 0) {
+            $wpParentPost->parent = $this->getParentPost($wpParentPost);
+        }
+        return $wpParentPost;
+    }
+
+    private function saveParentCategoriesToLaravel($wpParentCategories)
+    {
+        foreach ($wpParentCategories as $key => $wpParentCategory) {
+            preg_match('/\].*?\[/', $wpParentCategory->post_title, $matches);
+            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpParentCategory->post_title;
+
+            if ($wpParentCategory->post_parent > 0) {
+
+                $parent = $wpParentCategories->where('ID', $wpParentCategory->post_parent)->first();
+
+                $parentCategory = Category::whereSlug(Category::PARENT_CATEGORIES[$parent->post_name])->first();
+            }
+
+            if (!Category::whereSlug(Category::PARENT_CATEGORIES[$wpParentCategory->post_name])->first()) {
+                $category = new Category();
+                $category->parent_id = $parentCategory->id ?? null;
+                $category->name = $title;
+                $category->slug = Category::PARENT_CATEGORIES[$wpParentCategory->post_name];
+
+                $category->save();
+            }
+        }
+    }
+
+    private function saveCategoriesToLaravel(Collection $wpCategories)
+    {
+        foreach ($wpCategories as $wpCategory) {
+            if (!Category::whereSlug($wpCategory->slug)->first()) {
+                $category = new Category();
+                $category->name = $wpCategory->name;
+                $category->slug = $wpCategory->slug;
+
+                $category->save();
+            }
+        }
+    }
+
+    private function getChildren($wpPost)
+    {
+        return $this->database->table('wp_posts')->where('post_parent', $wpPost->ID)->get();
     }
 }

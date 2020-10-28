@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Actions\AproveAComment;
+use App\Actions\SendSubscriptionInvoice;
 use App\Services\PostsService;
 use App\Services\PostsServiceInterface;
 use Carbon\Carbon;
@@ -35,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             'recaptcha',
             'App\\Validators\\ReCaptcha@validate'
         );
-        Voyager::addAction(\App\Actions\SendSubscriptionInvoice::class);
-        Voyager::addAction(\App\Actions\AproveAComment::class);
+        Voyager::addAction(SendSubscriptionInvoice::class);
+        Voyager::addAction(AproveAComment::class);
     }
 }
