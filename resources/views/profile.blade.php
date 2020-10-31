@@ -243,8 +243,7 @@
                                                 $subscription = auth()->user()->activeSubscription($service->id);
                                             @endphp
                                             @if($subscription)
-                                                <p class="for_info">Data de inceput a abonamentului : {{ format_date($subscription->start_date) }}.<br>
-                                                    Data de sfirsit a abonamentului : {{ format_date($subscription->end_date) }}.</p>
+                                                <p class="for_info">Data de sfirsit a abonamentului : {{ format_date($subscription->end_date) }}.</p>
                                             @endif
                                             <div style="padding-top: 0; padding-bottom: 30px" class="take-decizion">
                                                 <div class="div-button">
