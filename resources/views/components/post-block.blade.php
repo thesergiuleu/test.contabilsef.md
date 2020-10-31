@@ -21,7 +21,7 @@
 
         @guest
             {!! find_glossary_terms($component['data']->getShort(200)) !!}
-            @include('layouts.box-abonat', ['check' => false])
+            @include('layouts.box-abonat', ['check' => false, 'item' => $component['data']])
         @endguest
 
         @auth
@@ -29,7 +29,7 @@
                 {!! find_glossary_terms($component['data']->body) !!}
             @else
                 {!! find_glossary_terms($component['data']->getShort(200)) !!}
-                @include('layouts.box-abonat', ['check' => true])
+                @include('layouts.box-abonat', ['check' => true, 'item' => $component['data']])
             @endif
         @endauth
     </div>

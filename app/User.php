@@ -135,8 +135,6 @@ class User extends \TCG\Voyager\Models\User
 
     public function canSeePostBody(Post $post)
     {
-        return $this->isAdmin()
-            || (bool)$post->privacy
-            || $post->privateUnderSubscription($this);
+        return $this->isAdmin() || $post->privateUnderSubscription($this);
     }
 }

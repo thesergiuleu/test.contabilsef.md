@@ -18,9 +18,7 @@ class PostController extends SiteBaseController
 
         $item = $category->posts()->where('slug', $slug)->firstOrFail();
 
-        if (!(bool)$item->privacy) {
-            $this->viewData['classes'] .= ' Informatie-cu-plata';
-        }
+        $this->viewData['classes'] .= ' Informatie-cu-plata';
         $item->views += 1;
         $item->save();
 

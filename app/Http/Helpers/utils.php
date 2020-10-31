@@ -81,7 +81,7 @@ function replace_price($string, $model)
 
 function discountStrFormat($model, $field)
 {
-    $discountedValue = apply_discount($model->{$field}, $model->discount());
+    $discountedValue = apply_discount($model->{$field}, $model->getDiscount());
 
     if ($model->{$field} > $discountedValue) {
         return "<span style='text-decoration: line-through; color: red'>" . $model->{$field} . "</span> <span>$discountedValue</span><p style='color: red'>Pret cu reducere valabil pana la data de " . format_date($model->discount_end_date) . ". Va rugam insistent sa achitati factura.</p>";
