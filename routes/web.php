@@ -42,6 +42,7 @@ Route::get('confirm/{hash}', [UsersController::class, 'confirm'])->name('confirm
 /* ******************************************** ADMIN *************************************************************** */
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('login-as/{user}', [UsersController::class, 'loginAs'])->name('log-in-as');
     Route::prefix('instruire')->name('voyager.instruire.')->group(function () {
         Route::resource('','Admin\InstruireController');
     });

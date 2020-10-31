@@ -6,6 +6,9 @@ use App\EmailValidation;
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -45,5 +48,16 @@ class UsersController extends Controller
         }
 
         return redirect()->to(config('app.url'));
+    }
+
+    /**
+     * @param User $user
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function loginAs(User $user)
+    {
+        auth()->logout();
+        auth()->login($user);
+        return redirect(url('/'));
     }
 }
