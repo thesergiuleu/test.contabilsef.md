@@ -102,7 +102,6 @@ class HomeController extends SiteBaseController
                 ->setViewMore(false)
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                 ]),
             $this->componentService
@@ -115,7 +114,6 @@ class HomeController extends SiteBaseController
                 ->setTitle(setting('site.contabilsef') ?? 'contabil șef')
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                     'short' => 120
                 ]),
@@ -126,7 +124,6 @@ class HomeController extends SiteBaseController
                 ->setRoute(route('category.view', Category::CONTABIL_SEF_NEWS_CATEGORY))
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                 ]),
             $this->componentService
@@ -139,7 +136,6 @@ class HomeController extends SiteBaseController
                 ->setTitle(setting('site.noutati') ?? 'noutăți')
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                     'comments_count' => true,
                     'short' => 120
@@ -151,7 +147,6 @@ class HomeController extends SiteBaseController
                 ->setRoute(route('category.view', Category::GENERAL_NEWS_CATEGORY))
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                 ]),
             $this->componentService
@@ -162,7 +157,6 @@ class HomeController extends SiteBaseController
                 ->setTitle(setting('site.articole') ?? 'Articole')
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'comments_count' => true,
                     'lock' => true,
                     'category' => true,
@@ -203,7 +197,6 @@ class HomeController extends SiteBaseController
                 ->setTitle(setting('site.top') ?? 'top cele mai citite')
                 ->build([
                     'date' => true,
-                    'views' => true
                 ]),
             $this->componentService
                 ->setName('components.sidebar.offers')
@@ -229,7 +222,6 @@ class HomeController extends SiteBaseController
                 ->setTitle(setting('site.legislatia') ?? 'legislatia')
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'link' => true,
                 ]),
             $this->componentService

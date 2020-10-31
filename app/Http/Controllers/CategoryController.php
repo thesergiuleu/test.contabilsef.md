@@ -88,7 +88,6 @@ class CategoryController extends SiteBaseController
                 ->setRoute(route('category.view', $item->slug))
                 ->build([
                     'date' => true,
-                    'views' => true,
                     'comments_count' => true,
                     'lock' => true,
                     'link' => true,
