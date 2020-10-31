@@ -96,7 +96,7 @@
         @endif
 
         <div style="text-align: center">
-            <button class="input-btn" type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite
+            <button class="input-btn" type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite <i id="subscription-submit-i"></i>
             </button>
         </div>
         @include('layouts.response-message')

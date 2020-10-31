@@ -93,7 +93,7 @@
                 @include('components.reCaptcha')
                 <input type="hidden" name="ip_address" value="{{ $_SERVER['REMOTE_ADDR'] }}">
                 <p>
-                    <button type="submit">Trimite</button>
+                    <button type="submit">Trimite <i id="subscription-submit-i"></i></button>
                     @if(!auth()->user())
                         <a title="Autentifică-te pentru a primi reducere la inregistrare la seminar" href="#" class="autentific">Autentifică-te</a>
                     @endif

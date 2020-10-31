@@ -179,7 +179,7 @@
         </div>
     </div>
     <div>
-        <button type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite
+        <button type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite <i id="subscription-submit-i"></i>
         </button>
     </div>
     <div class="div" style="width: 100%">

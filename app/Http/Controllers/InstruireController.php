@@ -21,18 +21,20 @@ class InstruireController extends Controller
         $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
 
         if (!$post->is_own) {
-            //notify emails
-            foreach (explode(',', $post->emails) as $email) {
-                $receiver = new User();
-                $receiver->email = trim($email);
-                Notification::send($receiver, new NotifyExternalUsersAboutNewSeminarRegister($data, $post));
-            }
+            if ($post->emails) {
+                //notify emails
+                foreach (explode(',', $post->emails) as $email) {
+                    $receiver = new User();
+                    $receiver->email = trim($email);
+                    Notification::send($receiver, new NotifyExternalUsersAboutNewSeminarRegister($data, $post));
+                }
 
-            return response()->json([
-                'message' => setting('raspunsuri.instruire_register', 'Va-ti inregistrat cu success. Verificati email-ul pentru mai multe detalii.'),
-                'status' => 'success',
-                'redirect_url' => session()->get('_previous')['url']
-            ]);
+                return response()->json([
+                    'message' => setting('raspunsuri.instruire_register', 'Va-ti inregistrat cu success. Verificati email-ul pentru mai multe detalii.'),
+                    'status' => 'success',
+                    'redirect_url' => session()->get('_previous')['url']
+                ]);
+            }
         }
         /** @var User $user */
         $user = Auth::user();

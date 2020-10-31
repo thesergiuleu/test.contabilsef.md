@@ -246,7 +246,6 @@ $(document).ready(function ($) {
     $('#subscribe-form').on('submit', function (e){
         e.preventDefault();
         console.log('hakuna matata')
-        $('#subscription-submit-i').addClass('fa fa-spin fa-cog')
         submitForm(this);
     });
     $('#editProfileForm').on('submit', function (e){
@@ -365,7 +364,8 @@ function is_email( email ) {
     return pattern.test( email );
 }
 function submitForm(form) {
-    return $.ajax({
+    $('#subscription-submit-i').addClass('fa fa-spin fa-cog')
+    $.ajax({
         type:$(form).attr('method'),
         url:$(form).attr('action'),
         data: $(form).serializeArray(),
@@ -383,6 +383,7 @@ function submitForm(form) {
                 $(form).find('div#response').css({
                     'display': 'block'
                 }).html(results.message);
+                $('#subscription-submit-i').removeClass('fa fa-spin fa-cog')
             }
         },
         error: function(err) {
@@ -409,6 +410,7 @@ function submitForm(form) {
                     $('#error-id').addClass('error_response').html('Unul sau mai multe câmpuri au o eroare. Te rog să verifici și să încerci din nou.');
                 }
             }
+            $('#subscription-submit-i').removeClass('fa fa-spin fa-cog')
         }
     });
 }
