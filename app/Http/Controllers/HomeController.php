@@ -172,7 +172,8 @@ class HomeController extends SiteBaseController
      */
     protected function getTopSidebarComponents(array $side): array
     {
-        $instuirePosts = $this->postService->setLimit(7)->setCategory(Category::INSTRUIRE_CATEGORY)->getPosts();
+        $instuirePosts = $this->postService->setLimit(7)->setCategory(Category::INSTRUIRE_CATEGORY)->setSortColumn('event_date')->setSortOrder('asc')->getPosts();
+        $this->postService->setSortOrder('desc')->setSortColumn('created_at');
         $topItems = $this->getTopItems($this->postService);
         $offers = Offer::active()->get();
 
