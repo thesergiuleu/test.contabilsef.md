@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Actions\AproveAComment;
+use App\Actions\LogInAs;
 use App\Actions\SendSubscriptionInvoice;
 use App\Services\PostsService;
 use App\Services\PostsServiceInterface;
@@ -39,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
         );
         Voyager::addAction(SendSubscriptionInvoice::class);
         Voyager::addAction(AproveAComment::class);
+        Voyager::addAction(LogInAs::class);
     }
 }
