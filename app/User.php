@@ -91,27 +91,18 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
-     * @param null $post
-     * @param null $id
+     * @param array|int $id
      * @return mixed
      */
-    public function activeSubscription($id = null, $post = null)
+    public function activeSubscription($id)
     {
-        if ($post) {
-            /** @var Post $post */
-            $subscriptionServiceIds = $post->subscriptionServices()->pluck('id')->toArray();
+        $query = $this->subscriptions()->active()->orderByDesc('end_date');
 
-            return $this->subscriptions()->active()->whereIn('service_id', $subscriptionServiceIds)->orderByDesc('id')->first();
+        if (is_array($id)) {
+            return $query->whereIn('service_id', $id)->first();
         }
-        if (!$id) {
-            $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
-            $id = $subscriptionService->id ?? 'not found';
-        }
-        return $this->subscriptions()
-            ->active()
-            ->where('service_id', $id)
-            ->orderByDesc('id')
-            ->first();
+
+        return $query->where('service_id', $id)->first();
     }
 
     /**

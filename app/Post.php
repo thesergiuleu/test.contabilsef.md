@@ -235,6 +235,7 @@ class Post extends Model
 
     public function privateUnderSubscription(User $user)
     {
-        return !(bool)$this->privacy && $user->activeSubscription(null, $this);
+        $ids = $this->subscriptionServices()->pluck('id')->toArray();
+        return !(bool)$this->privacy && $user->activeSubscription($ids);
     }
 }
