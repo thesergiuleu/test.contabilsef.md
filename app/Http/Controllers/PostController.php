@@ -133,7 +133,7 @@ class PostController extends SiteBaseController
                 ->build(),
             $this->componentService
                 ->setName('components.sidebar.side-block')
-                ->setData($item->category->posts)
+                ->setData($item->category->getPosts()->get())
                 ->setTitle($item->category->name)
                 ->build(),
             $this->componentService

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Translation;
 use TCG\Voyager\Traits\Translatable;
 
@@ -188,5 +189,15 @@ class Category extends Model
             ->hasManyThrough(Post::class, self::class, 'parent_id', 'category_id')
             ->published()
             ->orderBy('created_at', 'DESC');
+    }
+
+    public function getPosts()
+    {
+        return $this->posts()
+            ->when($this->slug === Category::INSTRUIRE_CATEGORY, function (Builder $query) {
+                $query
+                    ->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'))
+                    ->orderBy(DB::raw('DATE(event_date)'));
+            });
     }
 }

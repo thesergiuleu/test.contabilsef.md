@@ -43,26 +43,19 @@ class CategoryController extends SiteBaseController
      */
     private function getCategoryData(Category $item)
     {
-        $posts = $item->posts()
-            ->where(function (Builder $query) {
-                foreach ($this->filters as $key => $filter) {
-                    if ($key == 'year') {
-                        $query = $query->whereYear('created_at', $filter);
-                    }
-                    if ($key == 'month') {
-                        $query = $query->whereMonth('created_at', $filter);
-                    }
-                    if ($key == 'status') {
-                        $query = $query->where('privacy', self::$status[$filter]);
-                    }
+        $posts = $item->getPosts()->where(function (Builder $query) {
+            foreach ($this->filters as $key => $filter) {
+                if ($key == 'year') {
+                    $query = $query->whereYear('created_at', $filter);
                 }
-            })
-            ->when($item->slug === Category::INSTRUIRE_CATEGORY, function (Builder $query) {
-                $query
-                    ->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'))
-                    ->orderBy(DB::raw('DATE(event_date)'));
-            })
-            ->paginate(5);
+                if ($key == 'month') {
+                    $query = $query->whereMonth('created_at', $filter);
+                }
+                if ($key == 'status') {
+                    $query = $query->where('privacy', self::$status[$filter]);
+                }
+            }
+        })->paginate(5);
 
         $this->viewData['sections'] = [
             $this->addSection('sections.central', $this->getComponents($posts, $item)),
