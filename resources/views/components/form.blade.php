@@ -1,8 +1,8 @@
-<form id="contact-form" action="{{ $formData['route'] }}" method="post" class="wpcf7-form" novalidate="novalidate">
+<form id="contact-form" action="{{ $formData['route'] }}" method="post">
     @csrf
-    <div  class="inputs">
+    <div class="inputs">
         <p style="width: 48%">
-            <input type="text" name="name"  placeholder="Nume Prenume">
+            <input type="text" name="name" placeholder="Nume Prenume">
         </p>
         <p style="width: 48%">
             <input type="text" name="email" placeholder="Introduceti posta">
@@ -21,4 +21,5 @@
             <button type="submit"><img src="{{ asset('assets/imgs/air.png') }}" alt=""></button>
         </p>
     </div>
+    @include('layouts.response-message')
 </form>

@@ -43,6 +43,7 @@
                                     </ul>
                                     <input type="hidden" name="ip_address" value="{{ $_SERVER['REMOTE_ADDR'] }}">
                                     <button type="submit" class="button wpp_submit">Votează</button>
+                                    @include('layouts.response-message')
                                 </form>
                             </div>
                         </div>

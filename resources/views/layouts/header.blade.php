@@ -16,4 +16,13 @@
 {{--    <script type="text/javascript" src='https://www.google.com/recaptcha/api.js' async defer ></script>--}}
 
     <title>{{ setting('site.title') }}</title>
+
+    <style>
+        .response-message {
+            background: #398f14;
+            margin-top: 0px;
+            color: #fff;
+            border: 2px solid #398f14;
+        }
+    </style>
 </head>

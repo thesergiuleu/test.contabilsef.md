@@ -3,7 +3,6 @@
         <div class="context">
             <h1> Abonează-te la newsletter</h1>
             <div role="form"  lang="ro-RO">
-                <div class="screen-reader-response"></div>
                 <form id="newsletter-form" action="{{ $component['route'] }}" method="post">
                     @csrf
                     <p><span class=""><input type="text" name="name" value="" size="40" class="" aria-invalid="false"
@@ -14,6 +13,9 @@
                     <p>
                         <button type="submit">Abonează-te</button>
                     </p>
+
+                    @include('layouts.response-message')
+
                 </form>
             </div>
         </div>

@@ -365,7 +365,7 @@ function is_email( email ) {
     return pattern.test( email );
 }
 function submitForm(form) {
-    $.ajax({
+    return $.ajax({
         type:$(form).attr('method'),
         url:$(form).attr('action'),
         data: $(form).serializeArray(),
@@ -379,8 +379,10 @@ function submitForm(form) {
                 $('.popUp_contPersonal').removeClass('add-display-activee');
                 $('.popUp_contPersonal').removeAttr('style');
 
-                $('.myPopupRemove').addClass('add-display-activee');
-                $('.myPopupRemove .myTabContent').html(results.message);
+                console.warn(results.message);
+                $(form).find('div#response').css({
+                    'display': 'block'
+                }).html(results.message);
             }
         },
         error: function(err) {

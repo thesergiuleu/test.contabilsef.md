@@ -150,7 +150,7 @@
                                                 <a onclick="$('#editProfileForm').submit()">Salvare <i
                                                         class="loader-icon" aria-hidden="true"></i></a>
                                             </div>
-                                            <p class="message"></p>
+                                            @include('layouts.response-message')
                                         </form>
                                     </div>
                                 </div>
@@ -191,6 +191,7 @@
                                                         <button type="submit" class="last-button-style">Trimite</button>
                                                     </p>
                                                 </div>
+                                                @include('layouts.response-message')
                                             </form>
                                         </div>
                                     </div>

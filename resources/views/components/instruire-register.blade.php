@@ -99,6 +99,7 @@
                     @endif
                 </p>
                 <div class="wpcf7-response-output wpcf7-display-none"></div>
+                @include('layouts.response-message')
             </form>
         </div>
     </div>

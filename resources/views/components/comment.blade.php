@@ -37,6 +37,7 @@
 
                         <button type="submit" class="submit">Publică comentariul</button>
                     </form>
+                    @include('layouts.response-message')
                     <p class="labelMessage"></p>
                 </div>
             </div>

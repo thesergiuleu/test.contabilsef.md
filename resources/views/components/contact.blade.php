@@ -99,6 +99,8 @@
             <button class="input-btn" type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite
             </button>
         </div>
+        @include('layouts.response-message')
+
     </form>
 </div>
 <div class="contactele">

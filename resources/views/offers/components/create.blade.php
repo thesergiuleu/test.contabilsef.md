@@ -70,7 +70,9 @@
         margin-top: 10px;
     }
 </style>
+
 <h1 class="title">Adăugare ofertă</h1>
+
 <p class="description">* ofertele vor fi disponibile în termen de 6 luni</p>
 
 <form id="offer-form" action="{{ route('offer.store') }}" method="POST" enctype="multipart/form-data">
@@ -180,5 +182,9 @@
         <button type="submit" style="margin-left: 15px;margin-top: 25px;padding: 8px;height: auto;left: 0;">Trimite
         </button>
     </div>
+    <div class="div" style="width: 100%">
+        @include('layouts.response-message')
+    </div>
 </form>
+
 
