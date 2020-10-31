@@ -227,4 +227,14 @@ class Post extends Model
     {
         return $query->whereCategoryId(Category::whereSlug(Category::INSTRUIRE_CATEGORY)->first()->id);
     }
+
+    public function subscriptionServices()
+    {
+        return $this->belongsToMany(SubscriptionService::class, 'post_subscription_services', 'post_id', 'subscription_service_id');
+    }
+
+    public function privateUnderSubscription(User $user)
+    {
+        return !(bool)$this->privacy && $user->activeSubscription(null, $this);
+    }
 }

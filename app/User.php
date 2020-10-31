@@ -91,11 +91,18 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     /**
-     * @param $id
+     * @param null $post
+     * @param null $id
      * @return mixed
      */
-    public function activeSubscription($id = null)
+    public function activeSubscription($id = null, $post = null)
     {
+        if ($post) {
+            /** @var Post $post */
+            $subscriptionServiceIds = $post->subscriptionServices()->pluck('id')->toArray();
+
+            return $this->subscriptions()->active()->whereIn('service_id', $subscriptionServiceIds)->orderByDesc('id')->first();
+        }
         if (!$id) {
             $subscriptionService = SubscriptionService::query()->where('name', 'like', "%Revista%")->first();
             $id = $subscriptionService->id ?? 'not found';
@@ -128,5 +135,17 @@ class User extends \TCG\Voyager\Models\User
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function canSeePostBody(Post $post)
+    {
+        return $this->isAdmin()
+            || (bool)$post->privacy
+            || $post->privateUnderSubscription($this);
     }
 }
