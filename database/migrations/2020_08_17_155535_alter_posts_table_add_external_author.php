@@ -14,7 +14,7 @@ class AlterPostsTableAddExternalAuthor extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('external_author')->after('event_date')->nullable();
+            $table->longText('external_author')->after('event_date')->nullable();
         });
     }
 

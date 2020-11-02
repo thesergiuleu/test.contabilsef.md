@@ -17,14 +17,14 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->integer('author_id');
-            $table->string('title');
+            $table->longText('title');
             $table->longText('body')->nullable();
             $table->string('image')->nullable();
-            $table->string('slug')->unique();
+            $table->longText('slug')->unique();
             $table->boolean('has_sidebar')->default(0);
-            $table->text('meta_description')->nullable();
-            $table->text('seo_title')->nullable();
-            $table->text('meta_keywords')->nullable();
+            $table->longText('meta_description')->nullable();
+            $table->longText('seo_title')->nullable();
+            $table->longText('meta_keywords')->nullable();
             $table->enum('status', Page::$statuses)->default(Page::STATUS_INACTIVE);
             $table->timestamps();
         });

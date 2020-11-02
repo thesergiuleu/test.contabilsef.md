@@ -18,7 +18,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "tcg/voyager": "^1.4",
-        "mikemclin/laravel-wp-password": "~2.0.1"
+        "mikemclin/laravel-wp-password": "~2.0.1",
+        "ext-dom": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

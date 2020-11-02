@@ -18,3 +18,11 @@ Route::get('posts', [PostImportController::class, 'posts']);
 
 Route::get('categories', [PostImportController::class, 'categories']);
 
+Route::get('users', [PostImportController::class, 'users']);
+
+Route::get('subscription-services', [PostImportController::class, 'subscriptionServices']);
+
+Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
+
+Route::get('pages', [PostImportController::class, 'pages']);
+

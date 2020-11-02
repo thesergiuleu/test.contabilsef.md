@@ -187,8 +187,7 @@ class Category extends Model
     {
         return $this
             ->hasManyThrough(Post::class, self::class, 'parent_id', 'category_id')
-            ->published()
-            ->orderBy('created_at', 'DESC');
+            ->published();
     }
 
     public function getPosts()
