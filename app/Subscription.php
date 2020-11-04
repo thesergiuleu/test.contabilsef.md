@@ -94,7 +94,7 @@ class Subscription extends Model
 
     public function scopeActive(Builder $builder)
     {
-        return $builder->whereNotNull('end_date')->whereRaw('DATE(end_date) > ' . Carbon::now()->format('Y-m-d'));
+        return $builder->whereNotNull('end_date')->whereRaw('DATE(end_date) > ' . "'" . Carbon::now()->format('Y-m-d') . "'");
     }
 
     public function serviceId()
