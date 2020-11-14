@@ -1,0 +1,14 @@
+<Files ~ "\.inc$">
+Order allow,deny
+Deny from all
+</Files>
+
+<Files ~ "\.php$">
+Order allow,deny
+Deny from all
+</Files>
+
+<Files ~ "^\.htaccess$">
+Order allow,deny
+Deny from all
+</Files>
