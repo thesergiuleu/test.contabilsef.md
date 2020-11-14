@@ -22,6 +22,7 @@ class InstruireController extends Controller
 
         if (!$post->is_own) {
             if ($post->emails) {
+                $post->postRegisters()->create($data);
                 //notify emails
                 foreach (explode(',', $post->emails) as $email) {
                     $receiver = new User();

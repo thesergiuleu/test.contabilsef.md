@@ -25,6 +25,7 @@ class OfferStoreRequest extends FormRequest
      */
     public function rules()
     {
+        $required = auth()->user() ? 'nullable' : 'required';
         return [
             'company_name' => 'required|string',
             'vacancy' => [
@@ -50,7 +51,7 @@ class OfferStoreRequest extends FormRequest
             'description' => 'required|string',
             'requirements' => 'required|string',
             'website' => 'nullable|string',
-            'g-recaptcha-response' => 'required|recaptcha'
+            'g-recaptcha-response' => $required . '|recaptcha'
         ];
     }
 }

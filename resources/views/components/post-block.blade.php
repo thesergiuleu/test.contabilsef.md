@@ -20,8 +20,12 @@
         @endif>
 
         @guest
-            {!! find_glossary_terms($component['data']->getShort(200)) !!}
-            @include('layouts.box-abonat', ['check' => false, 'item' => $component['data']])
+            @if((bool)$component['data']->privacy && $component['data']->privateUnderSubscription())
+                {!! find_glossary_terms($component['data']->body) !!}
+            @else
+                {!! find_glossary_terms($component['data']->getShort(200)) !!}
+                @include('layouts.box-abonat', ['check' => false, 'item' => $component['data']])
+            @endif
         @endguest
 
         @auth

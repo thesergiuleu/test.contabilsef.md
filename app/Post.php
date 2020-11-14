@@ -233,12 +233,12 @@ class Post extends Model
         return $this->belongsToMany(SubscriptionService::class, 'post_subscription_services', 'post_id', 'subscription_service_id');
     }
 
-    public function privateUnderSubscription(User $user)
+    public function privateUnderSubscription(?User $user = null)
     {
         $ids = $this->subscriptionServices()->pluck('id')->toArray();
 
         if (!empty($ids)) {
-            return $user->activeSubscription($ids);
+            return $user ? $user->activeSubscription($ids) : false;
         }
 
         return true;

@@ -73,7 +73,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('dictionar-contabil', [GlosaryController::class, 'index'])->name('glossary.index');
 
-Route::get('contact', 'ContactsController@getPage')->name('contact');
+Route::get('contacte', 'ContactsController@getPage')->name('contact');
 
 Route::get(Page::SUBSCRIBE, 'PageController@getSubscribePage')->name('subscribe');
 Route::get('/page/{slug}', 'PageController@view')->name('page.view');

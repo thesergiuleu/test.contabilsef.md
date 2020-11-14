@@ -235,7 +235,7 @@
                                             {!! replace_price($service->description, $service) !!}
 
 
-                                            <p><a href="{{ route('page.view', $service->pageId->slug) }}">Termeni și
+                                            <p><a href="{{ route('page.view', $service->pageId->slug ?? 'not-found') }}">Termeni și
                                                     condiții</a></p>
                                             @php
                                                 $subscription = auth()->user()->activeSubscription($service->id);
@@ -246,7 +246,7 @@
                                             <div style="padding-top: 0; padding-bottom: 30px" class="take-decizion">
                                                 <div class="div-button">
                                                     <a href="#"
-                                                       onclick="openSubscribeModal('{{ route("page.view", $service->pageId->slug) }}',
+                                                       onclick="openSubscribeModal('{{ route("page.view", $service->pageId->slug ?? 'not-found') }}',
                                                            '{{ $service->name }}', '{{ $service->id }}',
                                                            '{{  apply_discount($service->price, $service->getDiscount()) }}')"
                                                        class="red-btn">

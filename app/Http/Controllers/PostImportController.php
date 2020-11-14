@@ -11,6 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Role;
@@ -26,7 +27,7 @@ class PostImportController extends Controller
 
     public function posts()
     {
-        $wpPosts = $this->database->table('wp_posts')->whereDate('post_date', '>', '2019-01-01')->where('post_type', 'post')->get();
+        $wpPosts = $this->database->table('wp_posts')->whereDate('post_date', '>', '2018-01-01')->where('post_type', 'post')->get();
 
         $wpPosts = $wpPosts->each(function (&$wpPost) {
             $wpPost->post_meta = $this->database->table('wp_postmeta')->where('post_id', $wpPost->ID)->get();
@@ -47,34 +48,14 @@ class PostImportController extends Controller
         });
 
 
-        $this->savePostsToLaravel($wpPosts);
+        $this->savePostsToLaravel($wpPosts->unique('ID'));
         return response()->json($wpPosts->values());
     }
 
     private function savePostsToLaravel(Collection $wpPosts)
     {
         foreach ($wpPosts as $wpPost) {
-            $wpCategorySlug = $wpPost->category->first()->wp_term_slug;
-            if (!Post::whereSlug($wpPost->post_name)->first() && $category = Category::whereSlug($wpCategorySlug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $wpCategorySlug)->first()) {
-                $post = new Post();
-                $post->category_id = $category->id;
-                $post->author_id = $wpPost->post_author;
-                $post->title = $wpPost->post_title;
-                $post->seo_title = $wpPost->post_title;
-                $post->body = $wpPost->post_content;
-                $post->slug = $wpPost->post_name;
-                $post->status = $this->handleWpPostStatus($wpPost->post_status);
-                $post->privacy = $this->getWpPrivacy($wpPost);
-                $post->emails = $this->getWpEmail($wpPost);
-                $post->views = $this->getWpViews($wpPost);
-                $post->event_date = $this->getWpEventDate($wpPost);
-                $post->external_author = $this->getWpExternalAuthor($wpPost);
-                $post->created_at = Carbon::make($wpPost->post_date);
-                $post->updated_at = Carbon::make($wpPost->post_modified);
-                $post->external_link = $this->getWpExternalLink($wpPost);
-
-//                $post->save();
-            }
+            $this->savePost($wpPost);
         }
     }
 
@@ -119,7 +100,9 @@ class PostImportController extends Controller
     {
         $eventDate = $wpPost->post_meta->where('meta_key', 'date_in_calendar')->first()->meta_value;
         if (trim($eventDate) != "") {
-            return Carbon::make($eventDate);
+            if (Carbon::canBeCreatedFromFormat($eventDate, 'Ymd')) {
+                return Carbon::make($eventDate);
+            }
         }
         return null;
     }
@@ -147,25 +130,11 @@ class PostImportController extends Controller
 
     public function categories()
     {
-        $wpParentCategories = $this->database->table('wp_posts')
-            ->whereIn('post_name', array_keys(Category::PARENT_CATEGORIES))
-            ->orderBy('post_parent')
-            ->get()
-            ->each(function (&$wpPost) {
-//                $wpPost->children = $this->getChildren($wpPost);
-                $wpPost->parent = $this->getParentPost($wpPost);
-            });
-
-        $wpCategories = $this->database->table('wp_terms')
-            ->leftJoin('wp_term_taxonomy', 'wp_term_taxonomy.term_id', 'wp_terms.term_id')
-            ->where('wp_term_taxonomy.taxonomy', 'category')
-            ->get()->keyBy('term_id')->except(['662', '663', '664', '666']);
-
-
-        $this->saveParentCategoriesToLaravel($wpParentCategories->values());
-
-        $this->saveCategoriesToLaravel($wpCategories->values());
-
+        $categories = collect(json_decode(file_get_contents(database_path('imports/categories.json')), true))->values();
+        $wpParentCategories = $categories->where('menu_item_parent', 0)->values();
+        $this->saveParentCategoriesToLaravel($wpParentCategories);
+        $wpCategories = $categories->where('menu_item_parent', '>', 0)->values();
+        $this->saveCategoriesToLaravel($wpCategories, $categories);
 
         return response()->json([
             'parent_categories' => $wpParentCategories->values(),
@@ -173,51 +142,29 @@ class PostImportController extends Controller
         ]);
     }
 
-    private function getParentPost($post)
-    {
-        $wpParentPost = $this->database->table('wp_posts')->where('ID', $post->post_parent)->first();
-
-        if ($wpParentPost && $wpParentPost->post_parent > 0) {
-            $wpParentPost->parent = $this->getParentPost($wpParentPost);
-        }
-        return $wpParentPost;
-    }
-
     private function saveParentCategoriesToLaravel($wpParentCategories)
     {
         foreach ($wpParentCategories as $key => $wpParentCategory) {
-            preg_match('/\].*?\[/', $wpParentCategory->post_title, $matches);
-            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpParentCategory->post_title;
+            preg_match('/\].*?\[/', $wpParentCategory['title'], $matches);
+            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpParentCategory['title'];
+            $slug = rtrim($wpParentCategory['url'], '/');
+            $slug = explode('/', $slug);
+            $slug = last($slug);
 
-            if ($wpParentCategory->post_parent > 0) {
-
-                $parent = $wpParentCategories->where('ID', $wpParentCategory->post_parent)->first();
-
-                $parentCategory = Category::whereSlug(Category::PARENT_CATEGORIES[$parent->post_name])->first();
-            }
-
-            if (!Category::whereSlug(Category::PARENT_CATEGORIES[$wpParentCategory->post_name])->first()) {
+            if (!Category::whereSlug(Category::PARENT_CATEGORIES[$slug])->first()) {
                 $category = new Category();
-                $category->parent_id = $parentCategory->id ?? null;
                 $category->name = $title;
-                $category->slug = Category::PARENT_CATEGORIES[$wpParentCategory->post_name];
+                $category->slug = Category::PARENT_CATEGORIES[$slug];
 
                 $category->save();
             }
         }
     }
 
-    private function saveCategoriesToLaravel(Collection $wpCategories)
+    private function saveCategoriesToLaravel(Collection $wpCategories, Collection  $allCategories)
     {
         foreach ($wpCategories as $wpCategory) {
-            $slug = $wpCategory->slug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $wpCategory->slug;
-            if (!Category::whereSlug($slug)->first()) {
-                $category = new Category();
-                $category->name = $wpCategory->name;
-                $category->slug = $slug;
-
-                $category->save();
-            }
+            $this->saveCategory($wpCategory, $allCategories);
         }
     }
 
@@ -410,6 +357,98 @@ class PostImportController extends Controller
                 return SubscriptionService::whereName('Consultant SNC')->first();
             default:
                 return SubscriptionService::whereName('Codul Fiscal')->first();
+        }
+    }
+
+    private function saveCategory($wpCategory, $allCategories)
+    {
+        $slug = rtrim($wpCategory['url'], '/');
+        $slug = explode('/', $slug);
+        $slug = last($slug);
+        if (isset(Category::PARENT_CATEGORIES[$slug])) {
+            $slug = Category::PARENT_CATEGORIES[$slug];
+        }
+        $slug = $slug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $slug;
+
+        if (!$item = Category::whereSlug($slug)->first()) {
+            preg_match('/\].*?\[/', $wpCategory['title'], $matches);
+            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpCategory['title'];
+
+            $item = new Category();
+            $item->name = $title;
+            $item->slug = $slug;
+
+            $wpParent = $allCategories->where('ID', $wpCategory['menu_item_parent'])->first();
+            if ($wpParent) {
+                $category1 = $this->saveCategory($wpParent, $allCategories);
+                $item->parent_id = $category1->id ?? null;
+            }
+            $item->save();
+            if ($wpCategory['object'] === 'post') {
+                $wpPost = $this->database->table('wp_posts')->where('ID', $wpCategory['object_id'])->first();
+                $wpPost->post_meta = $this->database->table('wp_postmeta')->where('post_id', $wpPost->ID)->get();
+                $this->savePost($wpPost, $item);
+            }
+        }
+
+        return $item;
+    }
+
+    private function savePost($wpPost, $category = null)
+    {
+
+        if (!$category) {
+            $wpCategorySlug = $wpPost->category->first()->wp_term_slug;
+            $category = Category::whereSlug($wpCategorySlug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $wpCategorySlug)->first();
+        }
+        if (!Post::whereSlug($wpPost->post_name)->first()) {
+            if ($category) {
+                preg_match('/\].*?\[/', $wpPost->post_title, $matches);
+                $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_title;
+
+                preg_match('/\].*?\[/', $wpPost->post_content, $matches);
+                $body = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_content;
+
+                $post = new Post();
+                $post->category_id = $category->id;
+                $post->author_id = $wpPost->post_author;
+                $post->title = $title;
+                $post->seo_title = $title;
+                $post->body = $body;
+                $post->slug = $wpPost->post_name;
+                $post->status = $this->handleWpPostStatus($wpPost->post_status);
+                $post->privacy = $this->getWpPrivacy($wpPost);
+                $post->emails = $this->getWpEmail($wpPost);
+                $post->views = $this->getWpViews($wpPost);
+                $post->event_date = $this->getWpEventDate($wpPost);
+                $post->external_author = $this->getWpExternalAuthor($wpPost);
+                $post->created_at = Carbon::make($wpPost->post_date);
+                $post->updated_at = Carbon::make($wpPost->post_modified);
+                $post->external_link = $this->getWpExternalLink($wpPost);
+
+
+                if ($imageId = $wpPost->post_meta->where('meta_key', '_thumbnail_id')->first()->meta_value ?? null) {
+                    $image = $this->database->table('wp_posts')->where('ID', $imageId)->first();
+                    $imagePath = substr($image->guid, strpos($image->guid, 'uploads/'));
+
+                    $newFile = new UploadedFile( public_path() . '/assets/imgs/' . $imagePath, $imagePath);
+                    $newFile->storePubliclyAs('posts', str_replace('uploads/', '/', $imagePath), 'public');
+
+                    $post->image = str_replace('uploads/', 'posts/', $imagePath);
+                }
+
+                $post->save();
+                if (isset($wpPost->category)) {
+                    if ($wpService = $wpPost->category->whereIn('term_id', [663, 664, 666])->first()) {
+
+                        $service = SubscriptionService::whereName($wpService->wp_term_name)->first();
+
+                        if ($service) {
+                            $post->subscriptionServices()->syncWithoutDetaching($service);
+                        }
+                    }
+                }
+            }
         }
     }
 }

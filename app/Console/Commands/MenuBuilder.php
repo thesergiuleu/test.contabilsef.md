@@ -53,11 +53,11 @@ class MenuBuilder extends Command
 
         $menu = Menu::query()->where('name', 'site')->first();
 
-        if (!$menuItem = MenuItem::query()->where('menu_id', $menu->id)->where('title', 'contact')->first()) {
+        if (!$menuItem = MenuItem::query()->where('menu_id', $menu->id)->where('title', 'contacte')->first()) {
             MenuItem::create([
-                'title' => 'contact',
+                'title' => 'contacte',
                 'menu_id' => $menu->id,
-                'url' => '/contact',
+                'url' => '/contacte',
                 'target' => '_self',
                 'order' => $lastKey + 1,
             ]);

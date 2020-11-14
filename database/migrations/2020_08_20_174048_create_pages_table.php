@@ -20,7 +20,7 @@ class CreatePagesTable extends Migration
             $table->longText('title');
             $table->longText('body')->nullable();
             $table->string('image')->nullable();
-            $table->longText('slug')->unique();
+            $table->longText('slug');
             $table->boolean('has_sidebar')->default(0);
             $table->longText('meta_description')->nullable();
             $table->longText('seo_title')->nullable();

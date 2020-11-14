@@ -34,7 +34,7 @@ class StoreInstruireRegisterRequest extends FormRequest
             'payment_method' => ['nullable', Rule::in(array_flip(Post::PAYMENT_METHODS))],
             'message' => 'nullable',
             'ip_address' => 'nullable',
-            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => auth()->user() ? 'nullable' : 'required',
             'terms' => 'required',
             'subscribe' => 'nullable'
         ];

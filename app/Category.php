@@ -57,8 +57,12 @@ class Category extends Model
     const LEGISLATIA = 'ro-legisla-ia-ru-en-legisla-ia';
     const INFORMATII_UTILE = 'ro-informa-ii-utile-ru-en-informa-ii-utile';
     const FORMULARE = 'ro-formulare-ru-en';
-    const CONTABILITATE = 'ro-contabile-ru-en';
+    const CONTABILITATE = 'contabilitate';
     const FISCALE = 'ro-fiscale-ru-en';
+    const INSTRUIRE = 'seminare';
+    const CONTACTE = 'ro-contacte-ru-en';
+    const AUDIT = 'ro-audit-ru-en';
+    const LEGISLATIA_FISCALA = 'ro-legisla-ia-fiscal-ru-en';
 
     const PARENT_CATEGORIES = [
         self::DESPRE_NOI => 'despre-noi',
@@ -69,6 +73,10 @@ class Category extends Model
         self::FORMULARE => 'formulare',
         self::CONTABILITATE => 'contabile',
         self::FISCALE => 'fiscale',
+        self::INSTRUIRE => 'instruire',
+        self::CONTACTE => 'contacte',
+        self::AUDIT => 'ro-audit-ru-en',
+        self::LEGISLATIA_FISCALA => 'ro-legisla-ia-fiscal-ru-en',
     ];
 
     const NEWS_CATEGORY = 'nouta-i';
