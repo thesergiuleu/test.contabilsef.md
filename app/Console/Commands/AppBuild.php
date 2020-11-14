@@ -33,7 +33,7 @@ class AppBuild extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return int
      */
     public function handle()
     {
@@ -42,6 +42,13 @@ class AppBuild extends Command
 
         $this->comment('php artisan db:seed');
         $this->call('db:seed');
+
+        $this->comment('php artisan import:all');
+        $this->call('import:all');
+
+        $this->comment('php artisan build:menu');
+        $this->call('build:menu');
+        $this->call('cache:clear');
 
         $this->comment('php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"');
         exec('php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravelRecent"');

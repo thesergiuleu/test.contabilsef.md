@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Console\Commands;
 
 use App\Category;
 use App\Page;
@@ -11,19 +11,65 @@ use App\User;
 use Carbon\Carbon;
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Console\Command;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Role;
 
-class PostImportController extends Controller
+class ImportAll extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'import:all';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
     private $database;
 
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
+        parent::__construct();
         $this->database = DB::connection('mysql-2');
+
     }
+
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        $this->alert('Start Importing');
+        $this->alert('Import Users');
+        $this->users();
+        $this->alert('Import categories');
+        $this->categories();
+        $this->alert('Import pages');
+        $this->pages();
+        $this->alert('Import subscription services');
+        $this->subscriptionServices();
+        $this->alert('Import subscriptions');
+        $this->subscriptions();
+//        $this->alert('Import posts');
+//        $this->posts();
+        $this->alert('done importing');
+
+    }
+
 
     public function posts()
     {
@@ -192,7 +238,7 @@ class PostImportController extends Controller
 
             if (User::whereId($wpUser->ID)->first()) continue;
 
-            if ($usr = User::whereEmail($wpUser->user_email)->first()) continue;
+            if ($usr = User::whereEmail($wpUser->user_email)->first()) $usr->delete();
 
             $created_at = $wpUser->user_registered;
 
