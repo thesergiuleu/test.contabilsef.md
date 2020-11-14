@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('users', [PostImportController::class, 'users']);
+Route::get('categories', [PostImportController::class, 'categories']);
+Route::get('pages', [PostImportController::class, 'pages']);
+Route::get('subscription-services', [PostImportController::class, 'subscriptionServices']);
+Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
 Route::get('posts', [PostImportController::class, 'posts']);
 
-Route::get('categories', [PostImportController::class, 'categories']);
 
-Route::get('users', [PostImportController::class, 'users']);
 
-Route::get('subscription-services', [PostImportController::class, 'subscriptionServices']);
 
-Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
 
-Route::get('pages', [PostImportController::class, 'pages']);
 

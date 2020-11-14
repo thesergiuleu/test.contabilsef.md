@@ -189,7 +189,8 @@ class PostImportController extends Controller
             ]);
         }
         foreach ($wpUsers as $wpUser) {
-            if (User::whereId($wpUser->ID)->exists()) continue;
+
+            if (User::whereId($wpUser->ID)->first()) continue;
 
             if ($usr = User::whereEmail($wpUser->user_email)->first()) $usr->delete();
 
