@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->longText('meta_description');
             $table->longText('meta_keywords');
             $table->enum('status', ['PUBLISHED', 'DRAFT', 'PENDING'])->default('DRAFT');
-            $table->tinyInteger('privacy')->default(1);
+            $table->tinyInteger('privacy')->default(0);
             $table->tinyInteger('is_own')->default(0);
             $table->bigInteger('views')->default(0);
             $table->timestamp('event_date')->default(null)->nullable();

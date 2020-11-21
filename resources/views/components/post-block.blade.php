@@ -20,7 +20,7 @@
         @endif>
 
         @guest
-            @if((bool)$component['data']->privacy && $component['data']->privateUnderSubscription())
+            @if((bool)$component['data']->privacy)
                 {!! find_glossary_terms($component['data']->body) !!}
             @else
                 {!! find_glossary_terms($component['data']->getShort(200)) !!}
