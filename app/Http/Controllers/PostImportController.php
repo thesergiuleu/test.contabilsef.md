@@ -432,10 +432,12 @@ class PostImportController extends Controller
                     $image = $this->database->table('wp_posts')->where('ID', $imageId)->first();
                     $imagePath = substr($image->guid, strpos($image->guid, 'uploads/'));
 
-                    $newFile = new UploadedFile( public_path() . '/assets/imgs/' . $imagePath, $imagePath);
-                    $newFile->storePubliclyAs('posts', str_replace('uploads/', '/', $imagePath), 'public');
+                    if (file_exists(public_path() . '/assets/imgs/' . $imagePath)) {
+                        $newFile = new UploadedFile( public_path() . '/assets/imgs/' . $imagePath, $imagePath);
+                        $newFile->storePubliclyAs('posts', str_replace('uploads/', '/', $imagePath), 'public');
 
-                    $post->image = str_replace('uploads/', 'posts/', $imagePath);
+                        $post->image = str_replace('uploads/', 'posts/', $imagePath);
+                    }
                 }
 
                 $post->save();
