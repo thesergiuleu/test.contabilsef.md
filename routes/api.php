@@ -20,6 +20,8 @@ Route::get('pages', [PostImportController::class, 'pages']);
 Route::get('subscription-services', [PostImportController::class, 'subscriptionServices']);
 Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
 Route::get('posts', [PostImportController::class, 'posts']);
+Route::get('glossary', [PostImportController::class, 'glossary']);
+Route::get('forms', [PostImportController::class, 'forms']);
 
 
 

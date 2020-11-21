@@ -3,8 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Category;
+use App\Contact;
+use App\Glosary;
+use App\Newsletter;
 use App\Page;
 use App\Post;
+use App\PostRegister;
 use App\Subscription;
 use App\SubscriptionService;
 use App\User;
@@ -64,8 +68,8 @@ class ImportAll extends Command
         $this->subscriptionServices();
         $this->alert('Import subscriptions');
         $this->subscriptions();
-//        $this->alert('Import posts');
-//        $this->posts();
+        $this->alert('Import glossary');
+        $this->glossary();
         $this->alert('done importing');
 
     }
@@ -497,5 +501,122 @@ class ImportAll extends Command
                 }
             }
         }
+    }
+
+
+    public function glossary()
+    {
+        $words = $this->database->table('wp_posts')->where('post_type', 'glossary')->get();
+        foreach ($words as $word) {
+            preg_match('/\].*?\[/', $word->post_title, $matches);
+            $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $word->post_title;
+
+            preg_match('/\].*?\[/', $word->post_content, $matches);
+            $body = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $word->post_content;
+            $glossary = new Glosary([
+                'keyword' => $title,
+                'description' => $body
+            ]);
+            $glossary->save();
+        }
+
+        return response()->json($words);
+    }
+
+    public function forms()
+    {
+        $postForms = $this->database->table('wp_posts')->where('post_type', 'wpcf7_contact_form')->get();
+        foreach ($postForms as $postForm) {
+            $forms = $this->database->table('wp_db7_forms')->where('form_post_id', $postForm->ID)->get()->map(function ($form) {
+                return unserialize($form->form_value);
+            });
+            $model = null;
+            switch ($postForm->post_title) {
+                case 'Home page "Adreseaza o intrebare"':
+                    $page = Contact::CONTACT_FORM;
+                    $this->saveContact($forms, $page);
+                    break;
+                case 'Mesaje':
+                    $page = Contact::PAGE_PROFILE;
+                    $this->saveContact($forms, $page);
+                    break;
+                case 'Contacte':
+                    $page = Contact::PAGE_CONTACT;
+                    $this->saveContact($forms, $page);
+                    break;
+                case 'Newsletters':
+                    foreach ($forms as $form) {
+                        if (Newsletter::whereEmail($form['your-email'])->exists()) continue;
+                        $newsletter = new Newsletter([
+                            'name' => $form['your-name'] ?? null,
+                            'email' => $form['your-email'] ?? null
+                        ]);
+                        $newsletter->save();
+                    }
+                    break;
+                case 'Seminare':
+                    foreach ($forms as $form) {
+                        if ($this->getSeminar($form['your-seminar-id'] ?? null)) {
+                            $postRegister = new PostRegister([
+                                'name' => $this->handleField($form['your-name'] ?? null),
+                                'email' => $this->handleField($form['your-email'] ?? null),
+                                'phone' => $this->handleField($form['your-phone'] ?? null),
+                                'cod_fiscal' => $this->handleField($form['your-idno'] ?? null),
+                                'company_name' => $this->handleField($form['your-company-name'] ?? null),
+                                'payment_method' => $this->handleField($form['your-pay-method'] ?? null),
+                                'message' => $this->handleField($form['your-message'] ?? null),
+                                'post_id' => $this->getSeminar($form['your-seminar-id'] ?? null),
+                            ]);
+                            $postRegister->save();
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    /**
+     * @param Collection $forms
+     * @param string $page
+     * @return void
+     */
+    public function saveContact(Collection $forms, string $page): void
+    {
+        foreach ($forms as $form) {
+            $contact = new Contact([
+                'name' => $form['your-name'] ?? null,
+                'email' => $form['your-email'] ?? null,
+                'message' => $form['your-message'] ?? null,
+                'phone' => $form['your-phone'] ?? null,
+                'page' => $page,
+                'ip_address' => $form['ip-address'] ?? null,
+            ]);
+            $contact->save();
+        }
+    }
+
+    private function getSeminar($param)
+    {
+        if (trim($param) == "") {
+            return null;
+        }
+
+        if (!$wpPost = $this->database->table('wp_posts')->where('ID', $param)->first()) {
+            return null;
+        }
+
+        preg_match('/\].*?\[/', $wpPost->post_title, $matches);
+        $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_title;
+        if (!$post = Post::whereTitle($title)->first()) {
+            return null;
+        }
+
+        return $post->id;
+    }
+
+    private function handleField($param)
+    {
+        if (trim($param) == '') return null;
+        return $param;
     }
 }

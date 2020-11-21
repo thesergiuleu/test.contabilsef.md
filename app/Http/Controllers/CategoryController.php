@@ -18,6 +18,7 @@ class CategoryController extends SiteBaseController
 
         $item = Category::whereSlug($slug)->firstOrFail();
 
+        $this->viewData['classes'] = 'lista-de-articole Un-articole DespreProiect Legislatie';
 
         $this->getCategoryData($item);
 

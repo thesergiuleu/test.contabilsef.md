@@ -24,5 +24,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Glosary extends Model
 {
-    //
+    protected $fillable = [
+        'keyword',
+        'description'
+    ];
 }
