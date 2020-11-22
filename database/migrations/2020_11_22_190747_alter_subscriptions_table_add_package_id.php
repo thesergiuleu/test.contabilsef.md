@@ -14,7 +14,7 @@ class AlterSubscriptionsTableAddPackageId extends Migration
     public function up()
     {
         Schema::table('subscriptions', function (Blueprint $table) {
-            $table->unsignedBigInteger('package_id');
+            $table->unsignedBigInteger('package_id')->nullable();
         });
     }
 
