@@ -454,7 +454,7 @@ class PostImportController extends Controller
                             'email' => $comment->comment_author_email,
                             'created_at' => Carbon::make($comment->comment_date),
                             'body' => $comment->comment_content,
-                            'is_approved' => $comment->comment_approved,
+                            'is_approved' => (int)$comment->comment_approved,
                             'parent_id' => $comment->comment_parent > 0 ? $comment->comment_parent : null
                         ];
                         $post->comments()->create($data);
