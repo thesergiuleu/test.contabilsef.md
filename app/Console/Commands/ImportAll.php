@@ -81,7 +81,6 @@ class ImportAll extends Command
 
         $wpPosts = $wpPosts->each(function (&$wpPost) {
             $wpPost->post_meta = $this->database->table('wp_postmeta')->where('post_id', $wpPost->ID)->get();
-            $wpPost->comments = $this->database->table('wp_comments')->where('comment_post_ID', $wpPost->ID)->get();
 
             $wpPost->category = $this->database
                 ->table('wp_term_taxonomy')

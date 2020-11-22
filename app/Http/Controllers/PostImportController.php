@@ -31,11 +31,10 @@ class PostImportController extends Controller
 
     public function posts()
     {
-        $wpPosts = $this->database->table('wp_posts')->whereDate('post_date', '>', '2018-01-01')->where('post_type', 'post')->get();
+        $wpPosts = $this->database->table('wp_posts')->whereDate('post_date', '>', env('POSTS_FROM_YEAR'))->where('post_type', 'post')->get();
 
         $wpPosts = $wpPosts->each(function (&$wpPost) {
             $wpPost->post_meta = $this->database->table('wp_postmeta')->where('post_id', $wpPost->ID)->get();
-            $wpPost->comments = $this->database->table('wp_comments')->where('comment_post_ID', $wpPost->ID)->get();
 
             $wpPost->category = $this->database
                 ->table('wp_term_taxonomy')
