@@ -125,7 +125,7 @@ class PostImportController extends Controller
         $metaValue = $wpPost->post_meta->where('meta_key', 'type')->first()->meta_value;
 
         if ($metaValue == '2') {
-            preg_match('/\].*?\[/', $wpPost->post_content, $matches);
+            preg_match('/\].*?\[/s', $wpPost->post_content, $matches);
             $content = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_content;
             return trim(strip_tags($content));
         }
@@ -149,7 +149,7 @@ class PostImportController extends Controller
     private function saveParentCategoriesToLaravel($wpParentCategories)
     {
         foreach ($wpParentCategories as $key => $wpParentCategory) {
-            preg_match('/\].*?\[/', $wpParentCategory['title'], $matches);
+            preg_match('/\].*?\[/s', $wpParentCategory['title'], $matches);
             $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpParentCategory['title'];
             $slug = rtrim($wpParentCategory['url'], '/');
             $slug = explode('/', $slug);
@@ -238,10 +238,10 @@ class PostImportController extends Controller
     private function savePagesToLaravel(Collection $wpPages)
     {
         foreach ($wpPages as $wpPage) {
-            preg_match('/\].*?\[/', $wpPage->post_title, $matches);
+            preg_match('/\].*?\[/s', $wpPage->post_title, $matches);
             $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPage->post_title;
 
-            preg_match('/\].*?\[/', $wpPage->post_title, $matches);
+            preg_match('/\].*?\[/s', $wpPage->post_title, $matches);
             $body = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPage->post_content;
 
             if ($pg = Page::whereSlug($wpPage->post_name)->first()) $pg->delete();
@@ -376,7 +376,7 @@ class PostImportController extends Controller
         $slug = $slug == 'seminare' ? Category::INSTRUIRE_CATEGORY : $slug;
 
         if (!$item = Category::whereSlug($slug)->first()) {
-            preg_match('/\].*?\[/', $wpCategory['title'], $matches);
+            preg_match('/\].*?\[/s', $wpCategory['title'], $matches);
             $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpCategory['title'];
 
             $item = new Category();
@@ -408,10 +408,10 @@ class PostImportController extends Controller
         }
         if (!Post::whereSlug($wpPost->post_name)->first()) {
             if ($category) {
-                preg_match('/\].*?\[/', $wpPost->post_title, $matches);
+                preg_match('/\].*?\[/s', $wpPost->post_title, $matches);
                 $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_title;
 
-                preg_match('/\].*?\[/', $wpPost->post_content, $matches);
+                preg_match('/\].*?\[/s', $wpPost->post_content, $matches);
                 $body = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_content;
 
                 $post = new Post();
@@ -480,11 +480,13 @@ class PostImportController extends Controller
     {
         $words = $this->database->table('wp_posts')->where('post_type', 'glossary')->get();
         foreach ($words as $word) {
-            preg_match('/\].*?\[/', $word->post_title, $matches);
+            preg_match('/\].*?\[/s', $word->post_title, $matches);
             $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $word->post_title;
 
-            preg_match('/\].*?\[/', $word->post_content, $matches);
-            $body = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $word->post_content;
+
+            preg_match('/\].*?\[/s', $word->post_content, $matches2);
+            $body = isset($matches2[0]) ? str_replace(']', '', str_replace('[', '', $matches2[0])) : $word->post_content;
+
             $glossary = new Glosary([
                 'keyword' => $title,
                 'description' => $body
@@ -577,7 +579,7 @@ class PostImportController extends Controller
             return null;
         }
 
-        preg_match('/\].*?\[/', $wpPost->post_title, $matches);
+        preg_match('/\].*?\[/s', $wpPost->post_title, $matches);
         $title = isset($matches[0]) ? str_replace(']', '', str_replace('[', '', $matches[0])) : $wpPost->post_title;
         if (!$post = Post::whereTitle($title)->first()) {
             return null;
