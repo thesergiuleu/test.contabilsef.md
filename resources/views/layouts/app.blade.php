@@ -26,7 +26,7 @@
                     <div class="post-nav icons-mobile">
 
                         @guest
-                            |<a href="#" class="autentific">Autentificare</a>|<a href="#" class="inregistrare_cont">Înregistrare</a>|
+                            |<a href="{{ route('login') }}">Autentificare</a>|<a href="{{ route('register') }}">Înregistrare</a>|
                         @endguest
 
                         @auth('web')

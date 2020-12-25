@@ -134,8 +134,11 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasRole('admin');
     }
 
-    public function canSeePostBody(Post $post)
+    public static function canSeePostBody(Post $post, ?User $user = null)
     {
-        return (bool)$post->privacy || $this->isAdmin() || $post->privateUnderSubscription($this);
+        if ($user) {
+            return (bool)$post->privacy || $user->isAdmin() || $post->privateUnderSubscription($user);
+        }
+        return (bool)$post->privacy && $post->privateUnderSubscription($user);
     }
 }

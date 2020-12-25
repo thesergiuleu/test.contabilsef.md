@@ -1,6 +1,18 @@
+<style>
+    .boxt-title {
+        background-color: #a5a2a2;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 10px 40px;
+        text-align: center;
+    }
+</style>
 <div class="box-abounat">
-    @if($check)
-        <p style="font-weight: bold; font-size: 20px">Această informație este destinată pentru abonații: <a
+    @if($item->subscriptionServices()->exists())
+        <p style="font-weight: bold; font-size: 20px; text-align: center !important;">Această informație este destinată pentru abonații: <a
                 href="{{ route('profile') }}"
                 style="font-weight: bold; font-size: 20px;text-decoration: underline; color: black !important;">{{ $item->getPostSubscriptionServices() }}</a>
         </p>
@@ -22,20 +34,18 @@
             </ul>
         </div>
     @else
-        @if($item->subscriptionServices()->exists())
-            <p>Versiunea completă a acestui articol este disponibilă doar pentru abonații la</p>
-            <p><a
-                    href="{{ route('profile') }}"
-                    style="font-weight: bold; font-size: 20px;text-decoration: underline; color: black !important;">{{ $item->getPostSubscriptionServices() }}</a>
-            </p>
-        @else
-            <p>Această informație este protejata</p>
-            <p>Pentru a vizualiza vă rugăm să vă autentificați</p>
-        @endif
+        <p>Această informație este protejata</p>
+        <p>Pentru a vizualiza vă rugăm să vă autentificați</p>
         <div class="post-item">
-            <a style="color: black !important;" href="#" class="first inregistrare_cont">Inregistrare</a>
-            <a style="color: #FFFFFF !important;" href="#" class="autentific">Autentificare</a>
+            <a style="color: black !important;" href="{{ route('register') }}" class="first">Inregistrare</a>
+            <a style="color: #FFFFFF !important;" href="{{ route('login') }}" class="">Autentificare</a>
         </div>
-
     @endif
 </div>
+@guest
+    @if($item->subscriptionServices()->exists())
+        <div class="boxt-title">
+            <span>Dacă ești deja abonat <a style="color: #ffffff" href="{{ route('login') }}">Autentifică-te</a></span>
+        </div>
+    @endif
+@endguest

@@ -61,8 +61,11 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $this->validator($request->all())->after(function ($validator) use ($request) {
-            if (!(bool)$request->has('terms')) {
+            if (!(bool)$request->get('terms')) {
                 $validator->errors()->add('terms', __('Accept terms and conditions.'));
+            }
+            if ($request->get('is_bot')) {
+                $validator->errors()->add('is_bot', __('You are bot!'));
             }
         })->validate();
 
@@ -82,7 +85,7 @@ class RegisterController extends Controller
         ]);
 
         Notification::send($user, new EmailVerificationNotification($validation));
-//        $this->guard()->login($user);
+        $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
             return $response;
@@ -98,6 +101,20 @@ class RegisterController extends Controller
     }
 
     /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        if ($user) {
+            return redirect($request->toArray()['redirect_to'] ?? route('home'));
+        }
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param array $data
@@ -108,7 +125,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'numeric', 'min:9'],
+            'phone' => ['required', 'string', 'min:9'],
             'company' => ['nullable', 'string'],
             'position' => ['nullable', 'string'],
             'terms' => ['required'],

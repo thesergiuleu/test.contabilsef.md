@@ -19,22 +19,11 @@
             onmousedown="return false;"
         @endif>
 
-        @guest
-            @if((bool)$component['data']->privacy)
-                {!! find_glossary_terms($component['data']->body) !!}
-            @else
-                {!! find_glossary_terms($component['data']->getShort(200)) !!}
-                @include('layouts.box-abonat', ['check' => false, 'item' => $component['data']])
-            @endif
-        @endguest
-
-        @auth
-            @if(auth()->user()->canSeePostBody($component['data']))
-                {!! find_glossary_terms($component['data']->body) !!}
-            @else
-                {!! find_glossary_terms($component['data']->getShort(200)) !!}
-                @include('layouts.box-abonat', ['check' => true, 'item' => $component['data']])
-            @endif
-        @endauth
+        @if(\App\User::canSeePostBody($component['data'], auth()->user()))
+            {!! find_glossary_terms($component['data']->body) !!}
+        @else
+            {!! find_glossary_terms($component['data']->getShort(200)) !!}
+            @include('layouts.box-abonat', ['item' => $component['data']])
+        @endif
     </div>
 </div>

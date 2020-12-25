@@ -52,11 +52,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, User $user)
     {
         if ($user) {
-            return response()->json([
-                'status' => 'success',
-                'data' => $user,
-                'redirect_url' => route('home')
-            ]);
+            return redirect($request->toArray()['redirect_to'] ?? route('home'));
         }
     }
 
@@ -73,11 +69,6 @@ class LoginController extends Controller
         Validator::make($request->all(), [
             $this->username() => 'required|string',
             'password' => 'required|string',
-        ])->after(function ($validator) use ($request) {
-            $user = User::whereEmail($request->get($this->username()))->first();
-            if ($user && !$user->email_verified_at) {
-                $validator->errors()->add('email', 'Contul nu a fost confirmat.');
-            }
-        })->validate();
+        ])->validate();
     }
 }
