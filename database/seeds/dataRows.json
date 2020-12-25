@@ -675,7 +675,9 @@
         "edit": 1,
         "add": 1,
         "delete": 1,
-        "details": {},
+        "details": {
+            "checked": "true"
+        },
         "order": 15
     },
     {
