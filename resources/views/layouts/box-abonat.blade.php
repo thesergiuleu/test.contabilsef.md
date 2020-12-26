@@ -87,11 +87,31 @@
             </div>
         </div>
     @else
-        <p>Această informație este protejata</p>
-        <p>Pentru a vizualiza vă rugăm să vă autentificați</p>
-        <div class="post-item">
-            <a style="color: black !important;" href="{{ route('register') }}" class="first">Inregistrare</a>
-            <a style="color: #FFFFFF !important;" href="{{ route('login') }}" class="">Autentificare</a>
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center" class="col-md-12">
+                    Această informație este protejata <br>
+                    Pentru a vizualiza vă rugăm să vă autentificați
+                </div>
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+                    <div style="border: 1px solid black; background-color: #FFFFFF;" class="red-btn-aboneazate">
+                        <a style="color: black !important;" href="{{ route('register') }}"
+                           class="first">Inregistrare</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="red-btn-aboneazate">
+                        <a style="color: #FFFFFF !important;" href="{{ route('login') }}" class="">Autentificare</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
         </div>
     @endif
 </div>
