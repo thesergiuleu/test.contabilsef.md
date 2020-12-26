@@ -78,9 +78,9 @@ Route::get('dictionar-contabil', [GlosaryController::class, 'index'])->name('glo
 Route::get('contacte', 'ContactsController@getPage')->name('contact');
 
 Route::get(Page::SUBSCRIBE, 'PageController@getSubscribePage')->name('subscribe');
-Route::get('/page/{slug}', 'PageController@view')->name('page.view');
+Route::get('page/{slug}', 'PageController@view')->name('page.view');
 
-Route::post('/contact', 'ContactsController@store')->name('contact-post');
+Route::post('contact', 'ContactsController@store')->name('contact-post');
 
 Route::prefix('offers')->group(function () {
     Route::get('', [OfferController::class, 'index'])->name('offer.index');
@@ -89,12 +89,13 @@ Route::prefix('offers')->group(function () {
     Route::get('{offer}', [OfferController::class, 'view'])->name('offer.view');
 });
 
-Route::get('/{categorySlug}/{slug}', [PostController::class, 'view'])->name('post.view');
-Route::get('/{slug}', [CategoryController::class, 'view'])->name('category.view');
-Route::post('/newsletter', 'NewslettersController@submit')->name('newsletter');
+Route::post('newsletter', 'NewslettersController@submit')->name('newsletter');
 Route::post('comments/{post}', 'CommentsController@store')->name('comments.store');
 Route::post('instruire/register/{post}', 'InstruireController@register')->name('instruire.register');
 Route::post('pool/{pool}', 'PoolsController@vote')->name('pool.vote');
+Route::get('posts/{categorySlug}/{slug}', [PostController::class, 'view'])->name('post.view');
+Route::get('{slug}', [CategoryController::class, 'view'])->name('category.view');
+
 
 
 
