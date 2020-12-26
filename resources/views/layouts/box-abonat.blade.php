@@ -60,8 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <p style="font-weight: bold; font-size: 20px; text-align: center !important;">Această informație
-                        este destinată pentru abonații: {!! $item->getPostSubscriptionServices() !!}
+                    <p style="font-weight: bold; font-size: 20px; text-align: center !important;">Versiunea completă a acestui articol este disponibilă doar pentru abonații la Serviciul {!! $item->getPostSubscriptionServices() !!}
                     </p>
                 </div>
                 <div style="margin-top: 20px" class="col-md-3">
