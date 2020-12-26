@@ -250,7 +250,8 @@ class Post extends Model
 
         $subscriptionServiceStr = "";
         foreach ($this->subscriptionServices as $subscriptionService) {
-            $subscriptionServiceStr .= $subscriptionService->name . ', ';
+            $route = route('service-landing', $subscriptionService->id);
+            $subscriptionServiceStr .= "<a href='$route' style='font-weight: bold; font-size: 20px;text-decoration: underline; color: black !important;'>$subscriptionService->name</a>" . ', ';
         }
         return rtrim($subscriptionServiceStr, ', ');
     }

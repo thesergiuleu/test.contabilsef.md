@@ -38,7 +38,9 @@ Route::get('magic/{type?}', function ($type = 'dataType') {
 });
 Auth::routes();
 Route::get('confirm/{hash}', [UsersController::class, 'confirm'])->name('confirm');
-
+Route::get('service/{subscriptionService}', function (\App\SubscriptionService $subscriptionService) {
+    return "<h1>Landing page for $subscriptionService->name</h1>";
+})->name('service-landing');
 /* ******************************************** ADMIN *************************************************************** */
 
 Route::group(['prefix' => 'admin'], function () {
@@ -93,6 +95,8 @@ Route::post('/newsletter', 'NewslettersController@submit')->name('newsletter');
 Route::post('comments/{post}', 'CommentsController@store')->name('comments.store');
 Route::post('instruire/register/{post}', 'InstruireController@register')->name('instruire.register');
 Route::post('pool/{pool}', 'PoolsController@vote')->name('pool.vote');
+
+
 
 
 

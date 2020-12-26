@@ -61,9 +61,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p style="font-weight: bold; font-size: 20px; text-align: center !important;">Această informație
-                        este destinată pentru abonații: <a
-                            href="{{ route('profile') }}"
-                            style="font-weight: bold; font-size: 20px;text-decoration: underline; color: black !important;">{{ $item->getPostSubscriptionServices() }}</a>
+                        este destinată pentru abonații: {!! $item->getPostSubscriptionServices() !!}
                     </p>
                 </div>
                 <div style="margin-top: 20px" class="col-md-3">
