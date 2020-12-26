@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <input type="hidden" value="{{ session()->get('_previous')['url'] }}" name="redirect_to">
+            <input type="hidden" value="{{ session()->get('_previous')['url'] ?? route('home') }}" name="redirect_to">
 
             <input type="hidden" name="is_bot">
 

@@ -19,7 +19,7 @@
             onmousedown="return false;"
         @endif>
 
-        @if(\App\User::canSeePostBody($component['data'], auth()->user()))
+        @if($component['data']->canBeSeen(auth()->user()))
             {!! find_glossary_terms($component['data']->body) !!}
         @else
             {!! find_glossary_terms($component['data']->getShort(200)) !!}

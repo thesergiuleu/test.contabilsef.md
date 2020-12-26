@@ -233,7 +233,7 @@ class Post extends Model
         return $this->belongsToMany(SubscriptionService::class, 'post_subscription_services', 'post_id', 'subscription_service_id');
     }
 
-    public function privateUnderSubscription(?User $user = null)
+    public function canBeSeenBy(?User $user = null)
     {
         $ids = $this->subscriptionServices()->pluck('id')->toArray();
 
@@ -253,5 +253,13 @@ class Post extends Model
             $subscriptionServiceStr .= $subscriptionService->name . ', ';
         }
         return rtrim($subscriptionServiceStr, ', ');
+    }
+
+    public function canBeSeen(?User $user = null)
+    {
+        if (!$user) return (bool)$this->privacy && $this->canBeSeenBy();
+
+        return $this->canBeSeenBy($user);
+
     }
 }

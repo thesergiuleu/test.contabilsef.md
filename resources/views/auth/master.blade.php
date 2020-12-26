@@ -55,7 +55,7 @@
                             <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
                         @endif
                         <div class="copy animated fadeIn">
-                            <h1>{{ Voyager::setting('site.name', 'Contabil Șef') }}</h1>
+                            <h1><a style="color: #ffffff" href="{{route('home')}}">{{ Voyager::setting('site.name', 'Contabil Șef') }}</a></h1>
                             <p>{{ Voyager::setting('site.description', __('voyager::login.welcome')) }}</p>
                         </div>
                     </div> <!-- .logo-title-container -->

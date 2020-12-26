@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Notifications\ResetPassword;
-use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -134,11 +133,4 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasRole('admin');
     }
 
-    public static function canSeePostBody(Post $post, ?User $user = null)
-    {
-        if ($user) {
-            return (bool)$post->privacy || $user->isAdmin() || $post->privateUnderSubscription($user);
-        }
-        return (bool)$post->privacy && $post->privateUnderSubscription($user);
-    }
 }

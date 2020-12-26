@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <input type="hidden" value="{{ session()->get('_previous')['url'] }}" name="redirect_to">
+            <input type="hidden" value="{{ session()->get('_previous')['url'] ?? route('home') }}" name="redirect_to">
 
             <button type="submit" class="btn btn-block login-button">
                 <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
