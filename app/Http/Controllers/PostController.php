@@ -82,7 +82,7 @@ class PostController extends SiteBaseController
                     ->setData($item)->build(),
                 $this->componentService
                     ->setName('components.owl-carousel-2')
-                    ->setData($this->getData($item->category->posts))
+                    ->setData($this->getData($item->category->posts()->limit(20)->get()))
                     ->setViewMore(true)
                     ->setRoute(route('category.view', Category::ARTICLES_CATEGORY))
                     ->setTitle(setting('site.articole-similare') ?? 'Articole similare')
