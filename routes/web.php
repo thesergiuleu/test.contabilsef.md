@@ -36,6 +36,11 @@ Route::get('magic/{type?}', function ($type = 'dataType') {
         print_r(json_encode(\TCG\Voyager\Models\MenuItem::query()->where('menu_id', 1)->get()));
     } elseif ($type == 'menu') {
         print_r(json_encode(\TCG\Voyager\Models\Menu::all()));
+    } elseif ($type == 'options') {
+        print_r(json_encode(\App\Option::all()));
+    } elseif ($type == 'packages') {
+        print_r(json_encode(\App\Package::all()));
+
     }
 });
 Auth::routes();
