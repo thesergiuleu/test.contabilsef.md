@@ -67,7 +67,7 @@ class ImportAll extends Command
         $this->alert('Import subscription services');
         $this->subscriptionServices();
         $this->alert('Import subscriptions');
-        $this->subscriptions();
+//        $this->subscriptions();
         $this->alert('Import glossary');
         $this->glossary();
         $this->alert('done importing');
@@ -340,9 +340,7 @@ class ImportAll extends Command
             $service = new SubscriptionService();
             $service->name = $wpService->name;
             $service->description = $wpService->description;
-            $service->discount = 0;
             $service->page_id = $this->getTermsAndConditionPage($wpService);
-            $service->price = $this->getPrice($wpService);
             $service->save();
         }
     }

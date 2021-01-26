@@ -5,34 +5,30 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
+
 /**
  * App\SubscriptionService
  *
  * @property int $id
  * @property string $name
  * @property string $description
- * @property int $page_id
- * @property string $price
+ * @property int|null $page_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Page $pageId
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService wherePageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Package[] $packages
+ * @property-read int|null $packages_count
+ * @property-read \App\Page|null $page
+ * @property-read \App\Page|null $pageId
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService wherePageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SubscriptionService whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property string|null $discount_end_date
- * @property string|null $discount_start_date
- * @property int $discount
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereDiscount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereDiscountEndDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\SubscriptionService whereDiscountStartDate($value)
  */
 class SubscriptionService extends Model
 {

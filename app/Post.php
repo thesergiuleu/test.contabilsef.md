@@ -89,6 +89,11 @@ use TCG\Voyager\Traits\Translatable;
  * @method static Builder|Post wherePrice($value)
  * @property string|null $scheduled_at
  * @method static Builder|Post whereScheduledAt($value)
+ * @property string|null $external_link
+ * @property-read Collection|\App\SubscriptionService[] $subscriptionServices
+ * @property-read int|null $subscription_services_count
+ * @method static Builder|Post instruire()
+ * @method static Builder|Post whereExternalLink($value)
  */
 class Post extends Model
 {

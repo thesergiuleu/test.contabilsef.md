@@ -4,6 +4,38 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Payment
+ *
+ * @property int $id
+ * @property int|null $user_id
+ * @property string|null $name
+ * @property string|null $company
+ * @property string|null $cod_fiscal
+ * @property string|null $payment_method
+ * @property string|null $phone
+ * @property string|null $payed_company
+ * @property string|null $payed_amount
+ * @property string|null $payed_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCodFiscal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCompany($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePayedAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePayedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePayedCompany($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Payment extends Model
 {
     //
