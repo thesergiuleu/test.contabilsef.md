@@ -25,6 +25,9 @@ class OptionAndPackagesSeeder extends Seeder
 
         $file = file_get_contents(database_path('seeds') . '/packages.json');
         foreach (json_decode($file, true) as $item) {
+            $optionIds = array_map(function ($v) {
+                return $v['id'];
+            }, $item['options']);
             $package = \App\Package::query()->where('alias', $item['alias'])->first();
             if (!$package) {
                 $package = new \App\Package();
@@ -36,6 +39,8 @@ class OptionAndPackagesSeeder extends Seeder
                     'discount_started_at' => $item['discount_started_at'],
                     'discount_ended_at' => $item['discount_ended_at'],
                 ])->save();
+
+                $package->options()->syncWithoutDetaching($optionIds);
             }
         }
     }
