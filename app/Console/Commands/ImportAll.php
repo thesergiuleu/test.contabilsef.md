@@ -243,23 +243,26 @@ class ImportAll extends Command
 
             if ($usr = User::whereEmail($wpUser->user_email)->first()) $usr->delete();
 
-            $created_at = $wpUser->user_registered;
+            $created_at = Carbon::parse($wpUser->user_registered)->toISOString();
 
+
+//            dd($created_at);
             if ($wpUser->user_registered === "0000-00-00 00:00:00") {
-                $created_at = Carbon::now()->format('Y-m-d H:i:s');
+                $created_at = Carbon::now()->toISOString();
             }
-            $user = new User();
+            $user = new \stdClass();
             $user->id = $wpUser->ID;
             $user->role_id = $role->id;
             $user->name = $wpUser->display_name;
             $user->password = trim($wpUser->user_pass) != "" ? $wpUser->user_pass : $wpUser->last_password;
             $user->email = $wpUser->user_email;
-            $user->created_at = Carbon::make($created_at);
+            $user->created_at = $created_at;
             $user->phone = $wpUser->user_phone;
             $user->company = $wpUser->user_company;
             $user->position = $wpUser->user_function;
-            $user->email_verified_at = Carbon::make($created_at);
-            $user->save();
+            $user->email_verified_at = $created_at;
+
+            $user = User::query()->create(json_decode(json_encode($user), true));
         }
     }
 

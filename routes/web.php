@@ -5,8 +5,10 @@ use App\Http\Controllers\GlosaryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubscriptionsController;
+use App\Http\Controllers\SubscriptionServiceController;
 use App\Http\Controllers\UsersController;
 use App\Page;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -38,9 +40,10 @@ Route::get('magic/{type?}', function ($type = 'dataType') {
 });
 Auth::routes();
 Route::get('confirm/{hash}', [UsersController::class, 'confirm'])->name('confirm');
-Route::get('service/{subscriptionService}', function (\App\SubscriptionService $subscriptionService) {
-    return "<h1>Landing page for $subscriptionService->name</h1>";
-})->name('service-landing');
+Route::get('service/{subscriptionService}', [SubscriptionServiceController::class, 'show'])->name('service-landing');
+Route::post('checkout', [PaymentsController::class, 'postCheckout'])->name('checkout.store');
+Route::get('check-email', [PaymentsController::class, 'checkEmail'])->name('check-email');
+Route::get('checkout/{service}/{package}', [PaymentsController::class, 'getCheckoutPage'])->name('checkout');
 /* ******************************************** ADMIN *************************************************************** */
 
 Route::group(['prefix' => 'admin'], function () {

@@ -42,5 +42,8 @@ class PermissionsTableSeeder extends Seeder
         Permission::generateFor('comments');
         Permission::generateFor('subscription_services');
         Permission::generateFor('glosaries');
+        Permission::generateFor('payments');
+        Permission::generateFor('packages');
+        Permission::generateFor('options');
     }
 }

@@ -5,7 +5,6 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Traits\Translatable;
 
 /**
@@ -70,16 +69,8 @@ class Subscription extends Model
 {
     use Translatable;
 
-    const TYPE_REVISTA = 'revista';
-    const TYPE_CONSULTANT = 'consultant';
-
-    const TYPES = [
-        self::TYPE_REVISTA,
-        self::TYPE_CONSULTANT
-    ];
-
     protected $fillable = [
-        'user_id', 'service_id', 'cod_fiscal', 'payment_method', 'message', 'name', 'email', 'phone', 'company', 'start_date', 'end_date', 'price', 'payed_at'
+        'user_id', 'package_id', 'payment_id', 'service_id', 'started_at', 'expired_at'
     ];
 
     /** for voyager BREAD */
@@ -87,6 +78,7 @@ class Subscription extends Model
     {
         return $this->belongsTo(User::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
@@ -94,9 +86,31 @@ class Subscription extends Model
 
     public function scopeActive(Builder $builder)
     {
-        return $builder->whereNotNull('end_date')->whereRaw('DATE(end_date) > ' . "'" . Carbon::now()->format('Y-m-d') . "'");
+        return $builder->whereNotNull('expired_at')->whereRaw('DATE(expired_at) > ' . "'" . Carbon::now()->format('Y-m-d') . "'");
     }
 
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id', 'id');
+    }
+    public function packageId()
+    {
+        return $this->belongsTo(Package::class, 'package_id', 'id');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
+    }
+    public function paymentId()
+    {
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(SubscriptionService::class, 'service_id', 'id');
+    }
     public function serviceId()
     {
         return $this->belongsTo(SubscriptionService::class, 'service_id', 'id');

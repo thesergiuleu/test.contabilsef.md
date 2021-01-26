@@ -2472,169 +2472,20 @@
     {
         "id": 144,
         "data_type_id": 16,
-        "field": "name",
-        "type": "text",
-        "display_name": "Name",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {
-            "validation": {
-                "rule": "required"
-            }
-        },
-        "order": 3
-    },
-    {
-        "id": 145,
-        "data_type_id": 16,
-        "field": "company",
-        "type": "text",
-        "display_name": "Company",
-        "required": 0,
-        "browse": 0,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 5
-    },
-    {
-        "id": 146,
-        "data_type_id": 16,
-        "field": "phone",
-        "type": "text",
-        "display_name": "Phone",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 6
-    },
-    {
-        "id": 147,
-        "data_type_id": 16,
-        "field": "email",
-        "type": "text",
-        "display_name": "Email",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {
-            "validation": {
-                "rule": "required"
-            }
-        },
-        "order": 7
-    },
-    {
-        "id": 148,
-        "data_type_id": 16,
-        "field": "cod_fiscal",
-        "type": "text",
-        "display_name": "Cod Fiscal",
-        "required": 0,
-        "browse": 0,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 8
-    },
-    {
-        "id": 149,
-        "data_type_id": 16,
-        "field": "payment_method",
-        "type": "select_dropdown",
-        "display_name": "Payment Method",
-        "required": 0,
-        "browse": 0,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {
-            "options": {
-                "": "Alege",
-                "transfer": "Transfer",
-                "cash": "Numerar"
-            }
-        },
-        "order": 9
-    },
-    {
-        "id": 150,
-        "data_type_id": 16,
-        "field": "message",
-        "type": "text_area",
-        "display_name": "Message",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 10
-    },
-    {
-        "id": 151,
-        "data_type_id": 16,
-        "field": "start_date",
-        "type": "timestamp",
-        "display_name": "Start Date",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 11
-    },
-    {
-        "id": 152,
-        "data_type_id": 16,
-        "field": "end_date",
-        "type": "timestamp",
-        "display_name": "End Date",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 12
-    },
-    {
-        "id": 153,
-        "data_type_id": 16,
         "field": "created_at",
         "type": "timestamp",
         "display_name": "Created At",
         "required": 0,
-        "browse": 0,
+        "browse": 1,
         "read": 1,
-        "edit": 1,
+        "edit": 0,
         "add": 0,
-        "delete": 1,
+        "delete": 0,
         "details": {},
         "order": 13
     },
     {
-        "id": 154,
+        "id": 145,
         "data_type_id": 16,
         "field": "updated_at",
         "type": "timestamp",
@@ -2649,7 +2500,7 @@
         "order": 14
     },
     {
-        "id": 155,
+        "id": 146,
         "data_type_id": 17,
         "field": "id",
         "type": "text",
@@ -2664,7 +2515,7 @@
         "order": 1
     },
     {
-        "id": 156,
+        "id": 147,
         "data_type_id": 17,
         "field": "post_id",
         "type": "hidden",
@@ -2679,7 +2530,7 @@
         "order": 3
     },
     {
-        "id": 157,
+        "id": 148,
         "data_type_id": 17,
         "field": "parent_id",
         "type": "hidden",
@@ -2694,7 +2545,7 @@
         "order": 4
     },
     {
-        "id": 158,
+        "id": 149,
         "data_type_id": 17,
         "field": "name",
         "type": "text",
@@ -2709,7 +2560,7 @@
         "order": 5
     },
     {
-        "id": 159,
+        "id": 150,
         "data_type_id": 17,
         "field": "email",
         "type": "text",
@@ -2724,7 +2575,7 @@
         "order": 6
     },
     {
-        "id": 160,
+        "id": 151,
         "data_type_id": 17,
         "field": "body",
         "type": "text_area",
@@ -2743,7 +2594,7 @@
         "order": 7
     },
     {
-        "id": 161,
+        "id": 152,
         "data_type_id": 17,
         "field": "is_approved",
         "type": "checkbox",
@@ -2758,7 +2609,7 @@
         "order": 8
     },
     {
-        "id": 162,
+        "id": 153,
         "data_type_id": 17,
         "field": "created_at",
         "type": "timestamp",
@@ -2773,7 +2624,7 @@
         "order": 9
     },
     {
-        "id": 163,
+        "id": 154,
         "data_type_id": 17,
         "field": "updated_at",
         "type": "timestamp",
@@ -2788,7 +2639,7 @@
         "order": 10
     },
     {
-        "id": 164,
+        "id": 155,
         "data_type_id": 17,
         "field": "comment_hasone_comment_relationship",
         "type": "relationship",
@@ -2813,7 +2664,7 @@
         "order": 11
     },
     {
-        "id": 165,
+        "id": 156,
         "data_type_id": 17,
         "field": "comment_hasmany_comment_relationship",
         "type": "relationship",
@@ -2838,7 +2689,7 @@
         "order": 12
     },
     {
-        "id": 166,
+        "id": 157,
         "data_type_id": 17,
         "field": "comment_hasmany_post_relationship",
         "type": "relationship",
@@ -2863,7 +2714,7 @@
         "order": 2
     },
     {
-        "id": 167,
+        "id": 158,
         "data_type_id": 10,
         "field": "is_approved",
         "type": "checkbox",
@@ -2878,7 +2729,7 @@
         "order": 14
     },
     {
-        "id": 168,
+        "id": 159,
         "data_type_id": 8,
         "field": "ip_address",
         "type": "text",
@@ -2893,7 +2744,7 @@
         "order": 8
     },
     {
-        "id": 169,
+        "id": 160,
         "data_type_id": 8,
         "field": "page",
         "type": "select_dropdown",
@@ -2914,7 +2765,7 @@
         "order": 6
     },
     {
-        "id": 170,
+        "id": 161,
         "data_type_id": 1,
         "field": "phone",
         "type": "text",
@@ -2933,7 +2784,7 @@
         "order": 6
     },
     {
-        "id": 171,
+        "id": 162,
         "data_type_id": 1,
         "field": "company",
         "type": "text",
@@ -2952,7 +2803,7 @@
         "order": 7
     },
     {
-        "id": 172,
+        "id": 163,
         "data_type_id": 1,
         "field": "position",
         "type": "text",
@@ -2971,7 +2822,7 @@
         "order": 8
     },
     {
-        "id": 173,
+        "id": 164,
         "data_type_id": 1,
         "field": "email_verified_at",
         "type": "timestamp",
@@ -2986,7 +2837,7 @@
         "order": 9
     },
     {
-        "id": 174,
+        "id": 165,
         "data_type_id": 6,
         "field": "price",
         "type": "number",
@@ -3001,7 +2852,7 @@
         "order": 20
     },
     {
-        "id": 175,
+        "id": 166,
         "data_type_id": 5,
         "field": "cant_copy",
         "type": "checkbox",
@@ -3016,7 +2867,7 @@
         "order": 13
     },
     {
-        "id": 176,
+        "id": 167,
         "data_type_id": 6,
         "field": "cant_copy",
         "type": "checkbox",
@@ -3031,7 +2882,7 @@
         "order": 13
     },
     {
-        "id": 177,
+        "id": 168,
         "data_type_id": 5,
         "field": "price",
         "type": "text",
@@ -3046,7 +2897,7 @@
         "order": 19
     },
     {
-        "id": 178,
+        "id": 169,
         "data_type_id": 18,
         "field": "id",
         "type": "text",
@@ -3061,7 +2912,7 @@
         "order": 1
     },
     {
-        "id": 179,
+        "id": 170,
         "data_type_id": 18,
         "field": "name",
         "type": "text",
@@ -3076,7 +2927,7 @@
         "order": 2
     },
     {
-        "id": 180,
+        "id": 171,
         "data_type_id": 18,
         "field": "description",
         "type": "rich_text_box",
@@ -3095,12 +2946,12 @@
         "order": 3
     },
     {
-        "id": 181,
+        "id": 172,
         "data_type_id": 18,
         "field": "page_id",
         "type": "select_dropdown",
         "display_name": "Pagina cu termenii si conditiile",
-        "required": 1,
+        "required": 0,
         "browse": 1,
         "read": 1,
         "edit": 1,
@@ -3118,22 +2969,7 @@
         "order": 4
     },
     {
-        "id": 182,
-        "data_type_id": 18,
-        "field": "price",
-        "type": "number",
-        "display_name": "Price",
-        "required": 1,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 5
-    },
-    {
-        "id": 183,
+        "id": 173,
         "data_type_id": 18,
         "field": "created_at",
         "type": "timestamp",
@@ -3148,7 +2984,7 @@
         "order": 6
     },
     {
-        "id": 184,
+        "id": 174,
         "data_type_id": 18,
         "field": "updated_at",
         "type": "timestamp",
@@ -3163,57 +2999,7 @@
         "order": 7
     },
     {
-        "id": 185,
-        "data_type_id": 16,
-        "field": "service_id",
-        "type": "select_dropdown",
-        "display_name": "Service Id",
-        "required": 1,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {
-            "relationship": {
-                "key": "id",
-                "label": "id"
-            }
-        },
-        "order": 14
-    },
-    {
-        "id": 186,
-        "data_type_id": 16,
-        "field": "price",
-        "type": "number",
-        "display_name": "Price",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 14
-    },
-    {
-        "id": 187,
-        "data_type_id": 16,
-        "field": "payed_at",
-        "type": "timestamp",
-        "display_name": "Data achitarii",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 12
-    },
-    {
-        "id": 188,
+        "id": 175,
         "data_type_id": 1,
         "field": "user_hasmany_subscription_relationship",
         "type": "relationship",
@@ -3238,7 +3024,7 @@
         "order": 13
     },
     {
-        "id": 189,
+        "id": 176,
         "data_type_id": 1,
         "field": "user_belongsto_role_relationship",
         "type": "relationship",
@@ -3263,7 +3049,7 @@
         "order": 14
     },
     {
-        "id": 190,
+        "id": 177,
         "data_type_id": 1,
         "field": "user_belongstomany_role_relationship",
         "type": "relationship",
@@ -3288,7 +3074,7 @@
         "order": 15
     },
     {
-        "id": 191,
+        "id": 178,
         "data_type_id": 19,
         "field": "id",
         "type": "text",
@@ -3303,7 +3089,7 @@
         "order": 1
     },
     {
-        "id": 192,
+        "id": 179,
         "data_type_id": 19,
         "field": "keyword",
         "type": "text",
@@ -3318,7 +3104,7 @@
         "order": 2
     },
     {
-        "id": 193,
+        "id": 180,
         "data_type_id": 19,
         "field": "description",
         "type": "text_area",
@@ -3333,7 +3119,7 @@
         "order": 3
     },
     {
-        "id": 194,
+        "id": 181,
         "data_type_id": 19,
         "field": "created_at",
         "type": "timestamp",
@@ -3348,7 +3134,7 @@
         "order": 4
     },
     {
-        "id": 195,
+        "id": 182,
         "data_type_id": 19,
         "field": "updated_at",
         "type": "timestamp",
@@ -3363,7 +3149,7 @@
         "order": 5
     },
     {
-        "id": 196,
+        "id": 183,
         "data_type_id": 10,
         "field": "end_date",
         "type": "timestamp",
@@ -3378,7 +3164,7 @@
         "order": 15
     },
     {
-        "id": 197,
+        "id": 184,
         "data_type_id": 5,
         "field": "scheduled_at",
         "type": "timestamp",
@@ -3393,7 +3179,7 @@
         "order": 22
     },
     {
-        "id": 198,
+        "id": 185,
         "data_type_id": 6,
         "field": "scheduled_at",
         "type": "timestamp",
@@ -3408,52 +3194,7 @@
         "order": 15
     },
     {
-        "id": 199,
-        "data_type_id": 18,
-        "field": "discount_end_date",
-        "type": "timestamp",
-        "display_name": "Discount End Date",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 6
-    },
-    {
-        "id": 200,
-        "data_type_id": 18,
-        "field": "discount_start_date",
-        "type": "timestamp",
-        "display_name": "Discount Start Date",
-        "required": 0,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 7
-    },
-    {
-        "id": 201,
-        "data_type_id": 18,
-        "field": "discount",
-        "type": "number",
-        "display_name": "Discount",
-        "required": 1,
-        "browse": 1,
-        "read": 1,
-        "edit": 1,
-        "add": 1,
-        "delete": 1,
-        "details": {},
-        "order": 8
-    },
-    {
-        "id": 202,
+        "id": 186,
         "data_type_id": 5,
         "field": "excerpt",
         "type": "text",
@@ -3468,7 +3209,7 @@
         "order": 24
     },
     {
-        "id": 203,
+        "id": 187,
         "data_type_id": 5,
         "field": "external_link",
         "type": "text",
@@ -3483,7 +3224,7 @@
         "order": 25
     },
     {
-        "id": 204,
+        "id": 188,
         "data_type_id": 6,
         "field": "excerpt",
         "type": "text",
@@ -3498,7 +3239,7 @@
         "order": 23
     },
     {
-        "id": 205,
+        "id": 189,
         "data_type_id": 6,
         "field": "external_link",
         "type": "text",
@@ -3513,7 +3254,7 @@
         "order": 24
     },
     {
-        "id": 206,
+        "id": 190,
         "data_type_id": 5,
         "field": "post_belongstomany_subscription_service_relationship",
         "type": "relationship",
@@ -3536,5 +3277,527 @@
             "taggable": "on"
         },
         "order": 16
+    },
+    {
+        "id": 191,
+        "data_type_id": 20,
+        "field": "id",
+        "type": "text",
+        "display_name": "Id",
+        "required": 1,
+        "browse": 1,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 1
+    },
+    {
+        "id": 192,
+        "data_type_id": 20,
+        "field": "alias",
+        "type": "text",
+        "display_name": "Alias",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 2
+    },
+    {
+        "id": 193,
+        "data_type_id": 20,
+        "field": "name",
+        "type": "text",
+        "display_name": "Name",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 3
+    },
+    {
+        "id": 194,
+        "data_type_id": 20,
+        "field": "created_at",
+        "type": "timestamp",
+        "display_name": "Created At",
+        "required": 0,
+        "browse": 1,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 4
+    },
+    {
+        "id": 195,
+        "data_type_id": 20,
+        "field": "updated_at",
+        "type": "timestamp",
+        "display_name": "Updated At",
+        "required": 0,
+        "browse": 0,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 5
+    },
+    {
+        "id": 196,
+        "data_type_id": 21,
+        "field": "id",
+        "type": "text",
+        "display_name": "Id",
+        "required": 1,
+        "browse": 1,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 1
+    },
+    {
+        "id": 197,
+        "data_type_id": 21,
+        "field": "alias",
+        "type": "text",
+        "display_name": "Alias",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 2
+    },
+    {
+        "id": 198,
+        "data_type_id": 21,
+        "field": "name",
+        "type": "text",
+        "display_name": "Name",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 3
+    },
+    {
+        "id": 199,
+        "data_type_id": 21,
+        "field": "price",
+        "type": "text",
+        "display_name": "Price",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 4
+    },
+    {
+        "id": 200,
+        "data_type_id": 21,
+        "field": "discount",
+        "type": "text",
+        "display_name": "Discount",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 5
+    },
+    {
+        "id": 201,
+        "data_type_id": 21,
+        "field": "discount_started_at",
+        "type": "timestamp",
+        "display_name": "Discount Started At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 6
+    },
+    {
+        "id": 202,
+        "data_type_id": 21,
+        "field": "discount_ended_at",
+        "type": "timestamp",
+        "display_name": "Discount Ended At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 7
+    },
+    {
+        "id": 203,
+        "data_type_id": 21,
+        "field": "created_at",
+        "type": "timestamp",
+        "display_name": "Created At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 0,
+        "add": 0,
+        "delete": 1,
+        "details": {},
+        "order": 8
+    },
+    {
+        "id": 204,
+        "data_type_id": 21,
+        "field": "updated_at",
+        "type": "timestamp",
+        "display_name": "Updated At",
+        "required": 0,
+        "browse": 0,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 9
+    },
+    {
+        "id": 205,
+        "data_type_id": 22,
+        "field": "id",
+        "type": "text",
+        "display_name": "Id",
+        "required": 1,
+        "browse": 1,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 1
+    },
+    {
+        "id": 206,
+        "data_type_id": 22,
+        "field": "user_id",
+        "type": "number",
+        "display_name": "User Id",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 2
+    },
+    {
+        "id": 207,
+        "data_type_id": 22,
+        "field": "name",
+        "type": "text",
+        "display_name": "Name",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 3
+    },
+    {
+        "id": 208,
+        "data_type_id": 22,
+        "field": "company",
+        "type": "text",
+        "display_name": "Company",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 4
+    },
+    {
+        "id": 209,
+        "data_type_id": 22,
+        "field": "cod_fiscal",
+        "type": "text",
+        "display_name": "Cod Fiscal",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 5
+    },
+    {
+        "id": 210,
+        "data_type_id": 22,
+        "field": "payment_method",
+        "type": "select_multiple",
+        "display_name": "Payment Method",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "options": {
+                "card": "Card",
+                "cash": "Numerar",
+                "transfer": "Transfer"
+            }
+        },
+        "order": 6
+    },
+    {
+        "id": 211,
+        "data_type_id": 22,
+        "field": "phone",
+        "type": "text",
+        "display_name": "Phone",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 7
+    },
+    {
+        "id": 212,
+        "data_type_id": 22,
+        "field": "payed_company",
+        "type": "text",
+        "display_name": "Payed Company",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 8
+    },
+    {
+        "id": 213,
+        "data_type_id": 22,
+        "field": "payed_amount",
+        "type": "number",
+        "display_name": "Payed Amount",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 9
+    },
+    {
+        "id": 214,
+        "data_type_id": 22,
+        "field": "payed_at",
+        "type": "timestamp",
+        "display_name": "Payed At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 10
+    },
+    {
+        "id": 215,
+        "data_type_id": 22,
+        "field": "created_at",
+        "type": "timestamp",
+        "display_name": "Created At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 11
+    },
+    {
+        "id": 216,
+        "data_type_id": 22,
+        "field": "updated_at",
+        "type": "timestamp",
+        "display_name": "Updated At",
+        "required": 0,
+        "browse": 0,
+        "read": 0,
+        "edit": 0,
+        "add": 0,
+        "delete": 0,
+        "details": {},
+        "order": 12
+    },
+    {
+        "id": 217,
+        "data_type_id": 18,
+        "field": "subscription_service_belongstomany_package_relationship",
+        "type": "relationship",
+        "display_name": "packages",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "model": "App\\Package",
+            "table": "packages",
+            "type": "belongsToMany",
+            "column": "id",
+            "key": "id",
+            "label": "name",
+            "pivot_table": "subscription_service_packages",
+            "pivot": "1",
+            "taggable": "0"
+        },
+        "order": 9
+    },
+    {
+        "id": 218,
+        "data_type_id": 21,
+        "field": "package_belongstomany_option_relationship",
+        "type": "relationship",
+        "display_name": "options",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "model": "App\\Option",
+            "table": "options",
+            "type": "belongsToMany",
+            "column": "id",
+            "key": "id",
+            "label": "name",
+            "pivot_table": "package_options",
+            "pivot": "1",
+            "taggable": "0"
+        },
+        "order": 10
+    },
+    {
+        "id": 219,
+        "data_type_id": 16,
+        "field": "package_id",
+        "type": "select_dropdown",
+        "display_name": "Package",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "validation": {
+                "rule": "required"
+            },
+            "relationship": {
+                "key": "id",
+                "label": "id"
+            }
+        },
+        "order": 3
+    },
+    {
+        "id": 220,
+        "data_type_id": 16,
+        "field": "payment_id",
+        "type": "select_dropdown",
+        "display_name": "Payment",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "validation": {
+                "rule": "required"
+            },
+            "relationship": {
+                "key": "id",
+                "label": "id"
+            }
+        },
+        "order": 4
+    },
+    {
+        "id": 221,
+        "data_type_id": 16,
+        "field": "started_at",
+        "type": "timestamp",
+        "display_name": "Started At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 5
+    },
+    {
+        "id": 222,
+        "data_type_id": 16,
+        "field": "expired_at",
+        "type": "timestamp",
+        "display_name": "Expired At",
+        "required": 0,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {},
+        "order": 6
     }
 ]

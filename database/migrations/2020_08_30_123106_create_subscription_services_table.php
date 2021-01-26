@@ -18,7 +18,6 @@ class CreateSubscriptionServicesTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->unsignedBigInteger('page_id')->nullable();
-            $table->string('price');
             $table->timestamps();
         });
     }

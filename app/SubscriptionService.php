@@ -36,12 +36,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SubscriptionService extends Model
 {
-    protected $fillable = ['page_id', 'name', 'description', 'price', 'discount_end_date', 'discount_start_date', 'discount'];
+    protected $fillable = ['page_id', 'name', 'description'];
 
     public function pageId() {
         return $this->belongsTo(Page::class, 'page_id','id');
     }
+    public function page() {
+        return $this->belongsTo(Page::class, 'page_id','id');
+    }
 
+    /**
+     * todo
+     * @return int
+     */
     public function getDiscount()
     {
 
@@ -52,5 +59,10 @@ class SubscriptionService extends Model
         }
 
         return 0;
+    }
+
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'subscription_service_packages');
     }
 }

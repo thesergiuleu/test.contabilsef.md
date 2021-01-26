@@ -224,49 +224,6 @@
                                         <p class="message"></p>
                                     </form>
                                 </div>
-                                @foreach(\App\SubscriptionService::all() as $service)
-                                    <div class="item-tab-sub">
-                                        <div class="box-sub-tab">
-                                            <div class="post-images"
-                                                 style="background-image: url('{{ asset('assets/imgs/contabile__personal.png') }}')">
-                                                <p class="information">{{ $service->name }}</p>
-                                            </div>
-
-                                            {!! replace_price($service->description, $service) !!}
-
-
-                                            <p><a href="{{ route('page.view', $service->pageId->slug ?? 'not-found') }}">Termeni și
-                                                    condiții</a></p>
-                                            @php
-                                                $subscription = auth()->user()->activeSubscription($service->id);
-                                            @endphp
-                                            @if($subscription)
-                                                <p class="for_info">Data de sfirsit a abonamentului : {{ format_date($subscription->end_date) }}.</p>
-                                            @endif
-                                            <div style="padding-top: 0; padding-bottom: 30px" class="take-decizion">
-                                                <div class="div-button">
-                                                    <a href="#"
-                                                       onclick="openSubscribeModal('{{ route("page.view", $service->pageId->slug ?? 'not-found') }}',
-                                                           '{{ $service->name }}', '{{ $service->id }}',
-                                                           '{{  apply_discount($service->price, $service->getDiscount()) }}')"
-                                                       class="red-btn">
-                                                        {{ $subscription && \Carbon\Carbon::parse($subscription->end_date)->format('Y-m-d') < \Carbon\Carbon::now()->format('Y-m-d') ? 'Prelungiți Abonamentul' : 'Abonează-te'}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <p>La efectuarea plății, vă rugăm să indicați ID-ul personal din
-                                                cabinetul personal sau din contul de plată. După achitarea
-                                                abonamentului, va fi activat serviciul ales și veți primi o
-                                                scrisoare de înștiințare pe e-mail. Ulterior, trimiteți întrebările
-                                                Dvs. pe poșta electronică <b>consultant@contabilsef.md</b>, după
-                                                care specialiștii noștri vor pregăti răspunsurile și le vor remite
-                                                prin poșta electronică indicată la înregistrare. </p>
-                                            <p>Pentru orice întrebări sau detalii puteți să ne contactați la
-                                                e-mailul office@contabilsef.md sau la numărul de telefon 022
-                                                22-49-37.</p>
-                                        </div>
-                                    </div>
-                                @endforeach
                             </div>
                         </div>
                     </div>

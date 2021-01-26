@@ -414,3 +414,66 @@ function submitForm(form) {
         }
     });
 }
+function checkEmail(element) {
+    if (element.value.length >= 1) {
+        const url = $(element).data('url') + '?email=' + element.value
+        $.ajax({
+            type: 'GET',
+            url: `${url}`,
+            beforeSend: function(request) {
+                request.setRequestHeader("Accept", 'application/json');
+            },
+            success: function(results) {
+                $('#new-user-form').html(results.form)
+            },
+            error: function(err) {
+                console.warn(err)
+            }
+        });
+    }
+}
+
+function login(url) {
+    const email = $('#email');
+    const password = $('#password');
+
+    if (!is_email(email.val())) {
+        email.addClass('has-error');
+    }
+
+    if (!password.val() || password.val().length < 5) {
+        password.addClass('has-error');
+    }
+
+    if (is_email(email.val()) && password.val().length > 5) {
+        email.removeClass('has-error');
+        password.removeClass('has-error');
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: url,
+            beforeSend: function(request) {
+                request.setRequestHeader("Accept", 'application/json');
+            },
+            data: {
+                '_token': $('#csrf_token').val(),
+                'email': email.val(),
+                'password': password.val(),
+            },
+            success: function (data) {
+                if (data.status == 'success') {
+                    location.reload();
+                }
+            },
+            error: function (err) {
+                if (err.status == 422) {
+                    $.each(err.responseJSON.errors, function (i, error) {
+                        var el = $(document).find('[name="'+i+'"]');
+                        $(el).addClass('has-error')
+                    });
+                }
+            }
+        });
+    }
+}

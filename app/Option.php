@@ -8,6 +8,6 @@ class Option extends Model
 {
     protected $fillable = [
         'alias',
-        'display_name'
+        'name'
     ];
 }

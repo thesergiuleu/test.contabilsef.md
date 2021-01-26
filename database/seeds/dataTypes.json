@@ -19,8 +19,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 2,
@@ -36,8 +36,8 @@
         "generate_permissions": 1,
         "server_side": 0,
         "details": [],
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 3,
@@ -53,8 +53,8 @@
         "generate_permissions": 1,
         "server_side": 0,
         "details": [],
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 4,
@@ -76,8 +76,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 5,
@@ -99,8 +99,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 6,
@@ -122,8 +122,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 7,
@@ -144,8 +144,8 @@
             "order_direction": "asc",
             "default_search_key": "id"
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 8,
@@ -166,8 +166,8 @@
             "order_direction": "asc",
             "default_search_key": "id"
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 9,
@@ -188,8 +188,8 @@
             "order_direction": "asc",
             "default_search_key": "id"
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 10,
@@ -211,8 +211,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 11,
@@ -234,8 +234,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 12,
@@ -257,8 +257,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 13,
@@ -279,8 +279,8 @@
             "order_direction": "asc",
             "default_search_key": "id"
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 14,
@@ -302,8 +302,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 15,
@@ -325,8 +325,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 16,
@@ -342,14 +342,14 @@
         "generate_permissions": 1,
         "server_side": 1,
         "details": {
-            "order_column": "end_date",
+            "order_column": null,
             "order_display_column": null,
             "order_direction": "asc",
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 17,
@@ -371,8 +371,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 18,
@@ -394,8 +394,8 @@
             "default_search_key": "id",
             "scope": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     },
     {
         "id": 19,
@@ -416,7 +416,76 @@
             "order_direction": "asc",
             "default_search_key": null
         },
-        "created_at": "2020-09-03T16:27:44.000000Z",
-        "updated_at": "2020-09-03T16:27:44.000000Z"
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
+    },
+    {
+        "id": 20,
+        "name": "options",
+        "slug": "options",
+        "display_name_singular": "Option",
+        "display_name_plural": "Options",
+        "icon": "voyager-browser",
+        "model_name": "App\\Option",
+        "policy_name": null,
+        "controller": null,
+        "description": null,
+        "generate_permissions": 1,
+        "server_side": 1,
+        "details": {
+            "order_column": null,
+            "order_display_column": null,
+            "order_direction": "asc",
+            "default_search_key": "id",
+            "scope": null
+        },
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
+    },
+    {
+        "id": 21,
+        "name": "packages",
+        "slug": "packages",
+        "display_name_singular": "Package",
+        "display_name_plural": "Packages",
+        "icon": "voyager-phone",
+        "model_name": "App\\Package",
+        "policy_name": null,
+        "controller": null,
+        "description": null,
+        "generate_permissions": 1,
+        "server_side": 1,
+        "details": {
+            "order_column": null,
+            "order_display_column": null,
+            "order_direction": "asc",
+            "default_search_key": "id",
+            "scope": null
+        },
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
+    },
+    {
+        "id": 22,
+        "name": "payments",
+        "slug": "payments",
+        "display_name_singular": "Payment",
+        "display_name_plural": "Payments",
+        "icon": "voyager-paypal",
+        "model_name": "App\\Payment",
+        "policy_name": null,
+        "controller": null,
+        "description": null,
+        "generate_permissions": 1,
+        "server_side": 1,
+        "details": {
+            "order_column": null,
+            "order_display_column": null,
+            "order_direction": "asc",
+            "default_search_key": "id",
+            "scope": null
+        },
+        "created_at": "2021-01-19T18:40:04.000000Z",
+        "updated_at": "2021-01-19T18:40:04.000000Z"
     }
 ]

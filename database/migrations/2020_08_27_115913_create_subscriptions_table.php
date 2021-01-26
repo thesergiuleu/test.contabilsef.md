@@ -16,16 +16,11 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name')->nullable();
-            $table->string('type')->comment('revista electronica sau consultant SNC');
-            $table->string('company')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
-            $table->string('cod_fiscal')->nullable();
-            $table->string('payment_method')->nullable();
-            $table->longText('message')->nullable();
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->unsignedBigInteger('package_id');
+            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('service_id');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }

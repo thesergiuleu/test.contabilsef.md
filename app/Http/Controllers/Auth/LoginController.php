@@ -52,6 +52,13 @@ class LoginController extends Controller
     protected function authenticated(Request $request, User $user)
     {
         if ($user) {
+            if (\request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $user,
+                    'redirect_url' => route('home')
+                ]);
+            }
             return redirect($request->toArray()['redirect_to'] ?? route('home'));
         }
     }

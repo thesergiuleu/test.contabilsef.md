@@ -96,7 +96,7 @@ class User extends \TCG\Voyager\Models\User
      */
     public function activeSubscription($id)
     {
-        $query = $this->subscriptions()->active()->orderByDesc('end_date');
+        $query = $this->subscriptions()->active()->orderByDesc('expired_at');
 
         if (is_array($id)) {
             return $query->whereIn('service_id', $id)->first();
