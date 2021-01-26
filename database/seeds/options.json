@@ -1,0 +1,79 @@
+[
+    {
+        "id": 1,
+        "alias": "current_year_articles",
+        "name": "Acces la articole anului curent",
+        "created_at": "2021-01-26T20:17:38.000000Z",
+        "updated_at": "2021-01-26T20:17:38.000000Z"
+    },
+    {
+        "id": 2,
+        "alias": "mark_as_read_unread",
+        "name": "Marcarea articolelor citit\/necitit",
+        "created_at": "2021-01-26T20:17:55.000000Z",
+        "updated_at": "2021-01-26T20:17:55.000000Z"
+    },
+    {
+        "id": 3,
+        "alias": "mark_as_favourite",
+        "name": "Marcarea articolelor preferate",
+        "created_at": "2021-01-26T20:18:07.000000Z",
+        "updated_at": "2021-01-26T20:18:07.000000Z"
+    },
+    {
+        "id": 4,
+        "alias": "alert_about_reports_presentation",
+        "name": "Alerta privind termenul de prezentare a rapoartelor",
+        "created_at": "2021-01-26T20:18:30.000000Z",
+        "updated_at": "2021-01-26T20:18:30.000000Z"
+    },
+    {
+        "id": 5,
+        "alias": "alert_taxes_pay",
+        "name": "Alerta privind termenul de plata impozitelor",
+        "created_at": "2021-01-26T20:18:54.000000Z",
+        "updated_at": "2021-01-26T20:18:54.000000Z"
+    },
+    {
+        "id": 6,
+        "alias": "access_to_archived_posts",
+        "name": "Acces la arhiva articolelor din anii preceden\u021bi",
+        "created_at": "2021-01-26T20:19:12.000000Z",
+        "updated_at": "2021-01-26T20:19:12.000000Z"
+    },
+    {
+        "id": 7,
+        "alias": "accountant_policy_form",
+        "name": "Formarea Politicii contabile",
+        "created_at": "2021-01-26T20:19:35.000000Z",
+        "updated_at": "2021-01-26T20:19:35.000000Z"
+    },
+    {
+        "id": 8,
+        "alias": "verification_list_of_presented_information_in_explicative_notes",
+        "name": "Lista de verificare a informa\u021biilor prezentate \u00een notele explicative",
+        "created_at": "2021-01-26T20:20:16.000000Z",
+        "updated_at": "2021-01-26T20:20:16.000000Z"
+    },
+    {
+        "id": 9,
+        "alias": "verification_list_in_work_reports_domain",
+        "name": "Lista de verificare \u00een domeniul raporturilor de munc\u0103",
+        "created_at": "2021-01-26T20:20:51.000000Z",
+        "updated_at": "2021-01-26T20:20:51.000000Z"
+    },
+    {
+        "id": 10,
+        "alias": "contabilsef_instructions_discount",
+        "name": "Reduceri la seminarele Contabilsef.md",
+        "created_at": "2021-01-26T20:21:18.000000Z",
+        "updated_at": "2021-01-26T20:21:18.000000Z"
+    },
+    {
+        "id": 11,
+        "alias": "five_questions_answers",
+        "name": "R\u0103spunsuri la 5 \u00eentreb\u0103ri ale dvs.",
+        "created_at": "2021-01-26T20:21:38.000000Z",
+        "updated_at": "2021-01-26T20:21:38.000000Z"
+    }
+]

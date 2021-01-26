@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->command->line('Instruire started');
         $this->seed('InstruireTableSeeder');
         $this->seed('PermissionRoleTableSeeder');
+        $this->seed('OptionAndPackagesSeeder');
     }
 }
