@@ -9,7 +9,7 @@
                 </div>
                 <div>
                     <h5 class="title">{{ $item->title }}</h5>
-                    <p class="text"> {{ $item->getShort(200) }}</p>
+                    <p class="text"> {!! $item->getShort(200) !!}</p>
                 </div>
             </div>
         @endforeach

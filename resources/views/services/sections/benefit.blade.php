@@ -34,7 +34,7 @@
                     <div class="item-img">
                         <img src="{{ asset("images/search_result.svg" )}}" alt="ofer">
                     </div>
-                    <h4 class="item-title">Suntem în online</h4>
+                    <h4 class="item-title">Suntem în mediu online</h4>
                     <p class="item-desc">Căutarea informațiilor devine mai simplă și rapidă. Totodată nu trebuie să aveți grija privind livrarea sau păstrarea revistei.</p>
                 </div>
             </div>

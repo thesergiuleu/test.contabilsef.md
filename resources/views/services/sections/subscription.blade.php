@@ -3,7 +3,7 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                @foreach($packages as $item)
+                @foreach($packages as $key => $item)
                     <div class="col-12 col-lg-4">
                         <div class="subsc-item" >
                             <div class="head">
@@ -17,7 +17,9 @@
                                         <li><img class="icon" src="{{ in_array($option->id, $item->options()->pluck('id')->toArray()) ? asset('images/icons8-check-mark-48.png') : asset('images/icons8-cross-mark-48.png') }}" alt="icon" /><p class="text">{{ $option->name }}</p></li>
                                     @endforeach
                                 </ul>
-                                <label class="year">Alegeți anul:  <input value="2021" id="datepicker" class="year-select" type="text"></label>
+                                @if ($key === 0)
+                                    <label class="year">Alegeți anul:  <input value="2021" id="datepicker" class="year-select" type="text"></label>a
+                                @endif
                                 <a href="{{ route('checkout', [$service->id, $item->id]) }}" class="banner-button">Abonează-te</a>
                             </div>
                         </div>
