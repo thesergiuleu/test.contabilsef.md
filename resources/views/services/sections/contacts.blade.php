@@ -10,8 +10,8 @@
         </a>
         <span class="in-social">Noi în rețele sociale:</span>
         <div class="social">
-            <img src="{{ asset("images/fbOrange.svg" )}}" alt="fb">
-            <img src="{{ asset("images/twOrange.svg" )}}" alt="inst">
+            <a href="https://www.facebook.com/contabilsef" target="_blank"><img src="{{ asset("images/fbOrange.svg" )}}" alt="fb"></a>
+            <a href="https://www.instagram.com/contabilsef.md/" target="_blank"><img src="{{ asset("images/twOrange.svg" )}}" alt="inst"></a>
         </div>
     </div>
 </section>

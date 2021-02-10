@@ -27,8 +27,8 @@
         <div class="menu-desktop"></div>
         <div class="right-list">
             <a class="phone" href="tel: +373 22 22 49 47">+373 22 22 49 47</a>
-            <a class="icon" href="#"><img src="{{ asset("images/fb.svg" )}}" alt="fb"></a>
-            <a class="icon" href="#"><img src="{{ asset("images/tw.svg" )}}" alt="tw"></a>
+            <a class="icon" target="_blank" href="https://www.facebook.com/contabilsef"><img src="{{ asset("images/fb.svg" )}}" alt="fb"></a>
+            <a class="icon" target="_blank" href="https://www.instagram.com/contabilsef.md/"><img src="{{ asset("images/tw.svg" )}}" alt="tw"></a>
         </div>
     </div>
     <div class="nav-mobile" id="nav_mobile">
@@ -95,7 +95,7 @@
     <div class="content">
         <div class="srl-desktop">© 2021 Totul pentru contabil SRL</div>
         <ul>
-            <li><a href="#ofer">Despre proiect</a></li>
+            <li><a href="#ofer">Despre revistă</a></li>
             <li><a href="#why-we">Beneficii</a></li>
             <li><a href="#subscription">Abonamente</a></li>
             <li><a href="#contacts">Contacte</a></li>
