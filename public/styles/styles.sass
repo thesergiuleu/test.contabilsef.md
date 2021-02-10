@@ -13,988 +13,1001 @@ $blue-color: #1f5bff
 
 
 html, body, ul
-  padding: 0
-  margin: 0
-  font-family: 'Roboto', Arial,sans-serif
+    padding: 0
+    margin: 0
+    font-family: 'Roboto', Arial,sans-serif
+    overflow-x: hidden
 
 li
-  list-style-type: none
+    list-style-type: none
 
 a
-  text-decoration: none
-  color: #ffffff
-
-  &:hover
+    text-decoration: none
     color: #ffffff
 
+    &:hover
+        color: #ffffff
+
 section
-  padding: 80px 15px
-  @media ($desktop)
-    padding: 100px 20px
-
-  .section-title
-    color: #000000
-    width: 100%
-    text-align: center
-    margin-bottom: 40px
-    font-size: 30px
+    padding: 80px 15px
     @media ($desktop)
-      font-size: 42px
-      margin-bottom: 80px
+        padding: 100px 20px
 
-  .section-subtitle
-    color: #000000
-    width: 100%
-    text-align: center
-    margin-bottom: 40px
-    font-size: 20px
-    font-weight: 300
-    line-height: 1.5
-    @media ($desktop)
-      font-size: 22px
-      margin-bottom: 60px
+    .section-title
+        color: #000000
+        width: 100%
+        text-align: center
+        margin-bottom: 40px
+        font-size: 30px
+        @media ($desktop)
+            font-size: 42px
+            margin-bottom: 80px
 
-  .item-title
-    color: #000000
-    font-size: 20px
-    margin-bottom: 15px
-    font-weight: 600
-    @media ($desktop)
-      margin-bottom: 25px
-      font-size: 26px
+    .section-subtitle
+        color: #000000
+        width: 100%
+        text-align: center
+        margin-bottom: 40px
+        font-size: 20px
+        font-weight: 300
+        line-height: 1.5
+        @media ($desktop)
+            font-size: 22px
+            margin-bottom: 60px
 
-  .item-desc
-    color: #000000
-    font-size: 16px
-    font-weight: 300
-    @media ($desktop)
-      font-size: 18px
+    .item-title
+        color: #000000
+        font-size: 20px
+        margin-bottom: 15px
+        font-weight: 600
+        @media ($desktop)
+            margin-bottom: 25px
+            font-size: 26px
 
-  .item-img
-    margin-bottom: 15px
-    @media ($desktop)
-      margin-bottom: 25px
+    .item-desc
+        color: #000000
+        font-size: 16px
+        font-weight: 300
+        @media ($desktop)
+            font-size: 18px
 
-    img
-      width: 100%
+    .item-img
+        margin-bottom: 15px
+        @media ($desktop)
+            margin-bottom: 25px
+
+        img
+            width: 100%
 
 
 .banner-button
-  display: flex
-  justify-content: center
-  align-items: center
-  text-transform: uppercase
-  background: $orange-color
-  color: #ffffff
-  font-size: 14px
-  height: 50px
-  width: 200px
-  border-radius: 4px
-  font-weight: 700
-  transition: .5s
-  @media ($desktop)
-    height: 60px
-    width: 290px
-    font-size: 16px
+    display: flex
+    justify-content: center
+    align-items: center
+    text-transform: uppercase
+    background: $orange-color
+    color: #ffffff
+    font-size: 14px
+    height: 50px
+    width: 200px
+    border-radius: 4px
+    font-weight: 700
+    transition: .5s
+    @media ($desktop)
+        height: 60px
+        width: 290px
+        font-size: 16px
 
-  &:hover
-    background: lighten($orange-color, 10%)
+    &:hover
+        background: lighten($orange-color, 10%)
 
 .section-button
-  @extend .banner-button
-  text-transform: initial
-  background: $blue-color
-  border-radius: 10px
-  margin-top: 30px
-  transition: .5s
-  @media ($desktop)
-    margin-top: 80px
+    @extend .banner-button
+    text-transform: initial
+    background: $blue-color
+    border-radius: 10px
+    margin-top: 30px
+    transition: .5s
+    @media ($desktop)
+        margin-top: 80px
 
-  &:hover
-    background: lighten($blue-color, 10%)
+    &:hover
+        background: lighten($blue-color, 10%)
 
 
 header
-  position: relative
+    position: relative
 
 .nav-desktop
-  display: none
-  justify-content: space-between
-  height: 120px
-  width: 100%
-  padding: 0 40px
-  background: transparent
-  position: absolute
-  z-index: 3
-  @media ($wide)
-    display: flex
-
-  .menu-desktop
-    display: flex
-    height: 100%
-    align-items: center
+    display: none
     justify-content: space-between
-    z-index: 4
+    height: 120px
+    width: 100%
+    padding: 0 40px
+    background: transparent
+    position: absolute
+    z-index: 3
+    @media ($wide)
+        display: flex
 
-    ul
-      display: flex
+    .menu-desktop
+        display: flex
+        height: 100%
+        align-items: center
+        justify-content: space-between
+        z-index: 4
 
-      li
-        margin-right: 30px
-        color: #fff
-        font-weight: 500
+        ul
+            display: flex
 
-  .logo
-    height: 100%
-    display: flex
+            li
+                margin-right: 30px
+                color: #fff
+                font-weight: 500
 
-    img
-      display: flex
-      width: 300px
+    .logo
+        height: 100%
+        display: flex
 
-  .right-list
+        img
+            display: flex
+            width: 300px
+
+    .right-list
+        display: flex
+        justify-content: flex-end
+        align-items: center
+        height: 100%
+        z-index: 4
+
+        .phone
+            font-size: 20px
+            font-weight: 500
+            margin-right: 15px
+
+        .icon
+            margin-left: 10px
+
+.nav-mobile.is-active
+    transition: .5s
+    background: #000
+
+.nav-mobile
+    height: 80px
+    background: transparent
+    width: 100%
+    padding: 0
+    position: absolute
+    z-index: 3
     display: flex
     justify-content: flex-end
     align-items: center
-    height: 100%
-    z-index: 4
-
-    .phone
-      font-size: 20px
-      font-weight: 500
-      margin-right: 15px
-
-    .icon
-      margin-left: 10px
-
-.nav-mobile.is-active
-  transition: .5s
-  background: #000
-
-.nav-mobile
-  height: 80px
-  background: transparent
-  width: 100%
-  padding: 0
-  position: absolute
-  z-index: 3
-  display: flex
-  justify-content: flex-end
-  align-items: center
-  @media ($wide)
-    display: none
-    padding: 0 20px
+    @media ($wide)
+        display: none
+        padding: 0 20px
 
 
-  .mob-nav
-    display: none
-
-  .mob-nav.is-active
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    animation: fade .5s
-    position: absolute
-    top: 80px
-    left: 0
-    width: 100%
-    background: #000
-    padding: 20px
-    color: #ffffff
-
-    .phone
-      font-weight: 500
-
-    .menu-mobile
-      width: 100%
-      display: flex
-      justify-content: center
-
-      ul
-        li
-          text-align: center
-          font-weight: 500
-          margin-bottom: 20px
-
-    .logo
-      width: 100%
-      display: flex
-      justify-content: center
-      margin-bottom: 0
-      @media ($desktop)
-        margin-bottom: 50px
-
-      img
-        width: 100%
-        @media ($desktop)
-          width: 800px
-
-    .icons-list
-      width: 100%
-      display: flex
-      justify-content: center
-      margin-top: 20px
-
-      a
-        margin: 0 5px
-
-.banner
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: center
-  height: 100vh
-  position: relative
-  z-index: 1
-
-  &:after
-    content: ''
-    display: flex
-    position: absolute
-    width: 100%
-    height: 100%
-    top: 0
-    left: 0
-    background: rgba(0, 0, 0, .6)
-    z-index: 2
-
-  .content
-    z-index: 3
-    color: #ffffff
-    max-width: 960px
-    text-align: center
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    padding: 0 20px
-    @media ($desktop)
-      padding: 0
-
-    h1
-      font-size: 42px
-      font-weight: 600
-      margin-bottom: 20px
-      @media ($desktop)
-        font-size: 62px
-
-    p
-      font-size: 18px
-      font-weight: 300
-      line-height: 32px
-      margin-bottom: 80px
-      @media ($desktop)
-        font-size: 22px
-
-    .link-down
-      position: absolute
-      bottom: 100px
-      left: 0
-      width: 100%
-      display: flex
-      justify-content: center
-
-      .arrow-down
-        animation: bounceDown 2s infinite
-
-.ofer
-  background: #ffffff
-
-  .action
-    width: 100%
-    display: flex
-    justify-content: center
-
-  .ofer-item
-    margin-bottom: 40px
-    @media ($desktop)
-      margin-bottom: 0
-
-.benefit
-  background: #e0e0e0
-
-  .benefit-item
-    margin-bottom: 40px
-    padding: 0 15px
-    @media ($desktop)
-      padding: 0 35px
-
-    .item-img
-      display: flex
-      justify-content: center
-
-      img
-        width: 90px
-
-    .item-title
-      margin: 30px 0
-
-    .item-title, .item-desc
-      text-align: center
-
-.get-access
-  position: relative
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
-  z-index: 1
-
-  &:after
-    content: ''
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-direction: column
-    position: absolute
-    width: 100%
-    height: 100%
-    top: 0
-    left: 0
-    background: rgba(0, 0, 0, .8)
-    z-index: 2
-
-  .bg-parallax
-    position: absolute
-    background: url('/images/bg-paralax.jpg')
-    background-attachment: fixed !important
-    background-position: center !important
-    background-size: cover !important
-    width: 100%
-    height: 100%
-
-  .content
-    max-width: 960px
-    text-align: center
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    z-index: 3
-
-    .section-title
-      font-size: 30px
-      margin-bottom: 40px
-      padding: 0 30px
-      @media ($desktop)
-        font-size: 48px
-
-    .item-desc
-      font-size: 20px
-      padding: 0 20px
-      margin-bottom: 40px
-      @media ($desktop)
-        font-size: 24px
-        padding: 0 180px
-
-    .section-title, .item-desc
-      color: #ffffff
-
-  .action
-    margin-top: 60px
-    position: relative
-    justify-content: center
-    display: flex
-    z-index: 4
-    padding: 0 25px
-
-    .banner-button
-      width: 320px
-
-    .arrow-aside
-      display: none
-      position: absolute
-      left: 0
-      top: 0
-      transform: translate(-80px, -30px)
-      @media ($tablet)
-        display: flex
-
-      img
-        height: 110px
-
-    .arrow-down
-      display: flex
-      height: 40px
-      position: absolute
-      top: 0
-      left: 0
-      transform: translate(150px, -60px)
-      @media ($tablet)
+    .mob-nav
         display: none
 
-.why-we
-  display: flex
-  flex-direction: column
-  align-items: center
-  .section-title
-    margin-bottom: 20px
-
-  .section-subtitle
-    margin-bottom: 30px
-    padding: 0 40px
-    @media ($desktop)
-      padding: 0 20%
-
-  .content
-    max-width: 640px
-    display: flex
-    align-items: center
-    flex-direction: column
-    padding: 0 20px
-
-    .why-item
-      display: flex
-      align-items: flex-start
-      margin-bottom: 20px
-
-      .icon
-        margin-right: 15px
-        img
-          width: 38px
-          height: 38px
-
-      .why-title
-        font-size: 16px
-        margin-bottom: 14px
-        line-height: 1.35
-        font-weight: 600
-        @media ($desktop)
-          font-size: 18px
-
-      .why-desc
-        font-size: 14px
-        line-height: 1.45
-        font-weight: 300
-        @media ($desktop)
-          font-size: 16px
-
-  .action
-    width: 100%
-    display: flex
-    justify-content: center
-
-    .section-button
-      background: $orange-color
-
-      &:hover
-        background: lighten($orange-color, 10%)
-
-.reviews
-  background: #ededed
-
-  .review-item
-    width: 100%
-    display: flex
-    align-items: center
-    flex-direction: column
-    margin-bottom: 40px
-    @media ($tablet)
-      flex-direction: row
-      align-items: flex-start
-      justify-content: flex-start
-
-    .review-img
-      display: flex
-      margin-bottom: 10px
-
-      img
-        border-radius: 50%
-        width: 100px
-        height: 100px
-
-    .review-desc
-      width: 100%
-      display: flex
-      flex-direction: column
-      align-items: center
-      padding: 0 40px
-      @media ($tablet)
-        align-items: flex-start
-
-      .review-more
-        outline: none
-        border: 0
-        font-size: 14px
-        padding: 5px 0
-        color: $orange-color
-        font-weight: 500
-        transition: .5s
-
-        &:hover
-          color: lighten($orange-color, 10%)
-
-        &:focus, &:active
-          outline: none
-
-      .desc
-        text-align: center
-        font-size: 12px
-        font-weight: 300
-        overflow: hidden
-        text-overflow: ellipsis
-        display: -webkit-box
-        -webkit-line-clamp: 3
-        -webkit-box-orient: vertical
-        @media ($tablet)
-          text-align: left
-          font-size: 14px
-
-      .name
-        margin-top: 15px
-        font-size: 12px
-        font-weight: 600
-        @media ($tablet)
-          font-size: 14px
-
-      .position
-        font-size: 12px
-        margin-top: 5px
-        font-weight: 300
-
-        a
-          color: #000000
-          border-bottom: 2px solid $orange-color
-
-.subscription
-  background: #FFFFFF
-
-  .subsc-item
-    width: 100%
-    display: block
-    position: relative
-    background: #ededed
-    margin-bottom: 40px
-    border-radius: 10px
-
-    .head
-      background: $orange-color
-      display: flex
-      width: 100%
-      flex-direction: column
-      align-items: center
-      padding: 20px
-      border-top-left-radius: 10px
-      border-top-right-radius: 10px
-
-
-      .variant
-        width: 100%
-        text-transform: uppercase
-        font-size: 18px
-        border-bottom: 1px solid #dedede
-        padding: 0 0 18px 0
-        display: flex
-        justify-content: center
-        font-weight: 500
-
-      .price
-        margin-top: 30px
-        font-weight: 600
-        font-size: 30px
-
-      .period
-        font-size: 18px
-        font-weight: 300
-    .content
-      display: flex
-      align-items: center
-      flex-direction: column
-      padding: 30px 20px
-
-      ul
-        li
-          display: flex
-          align-items: flex-start
-          img
-            width: 25px
-            height: 25px
-            margin: 2px 15px 0 0
-          p
-            font-size: 18px
-            margin-bottom: 15px
-            font-weight: 300
-
-      .year
-        display: flex
-        font-size: 18px
-        font-weight: 600
-        height: 27px
-
-        .year-select
-          background: transparent
-          border-left: 0
-          border-right: 0
-          border-top: 0
-          border-bottom: 1px solid $orange-color
-          width: 80px
-          margin-left: 10px
-          text-align: center
-
-          &:focus, &:active
-            outline: none
-
-      .year-empty
-        display: none
-        @media ($base)
-          display: flex
-
-
-      .banner-button
-        color: #000
-        text-transform: initial
-        font-size: 16px
-        font-weight: 500
-        width: 156px
-        height: 60px
-        margin-top: 50px
-
-.guaranty
-  background: #eeeeee
-  display: flex
-  flex-direction: column
-  align-items: center
-
-  .section-subtitle
-    margin-bottom: 30px
-
-  .content
-    max-width: 960px
-    width: auto
-    @media ($base)
-      width: 960px
-    ul
-      .guaranty-item
+    .mob-nav.is-active
         display: flex
         flex-direction: column
-        background: #FFFFFF
-        margin-bottom: 3px
+        align-items: center
+        justify-content: center
+        animation: fade .5s
+        position: absolute
+        top: 80px
+        left: 0
+        width: 100%
+        background: #000
+        padding: 20px
+        color: #ffffff
 
-        .head
-          padding: 20px
-          display: flex
-          justify-content: space-between
-          align-items: center
+        .phone
+            font-weight: 500
 
-          .title
-            margin-bottom: 0
-            font-size: 18px
-            width: 70%
-            line-height: 1.5
-            cursor: pointer
-
-          .icon-collapse.active
-            transform: rotate(-45deg)
-
-
-          .icon-collapse
-            width: 40px
-            height: 40px
-            border-radius: 50%
-            cursor: pointer
-            transition: .5s
+        .menu-mobile
+            width: 100%
             display: flex
             justify-content: center
-            align-items: center
 
-            &:hover
-              background: #eeeeee
+            ul
+                li
+                    text-align: center
+                    font-weight: 500
+                    margin-bottom: 20px
 
-        .desc
-          padding: 0 60px 0 20px
-          font-weight: 300
+        .logo
+            width: 100%
+            display: flex
+            justify-content: center
+            margin-bottom: 0
+            @media ($desktop)
+                margin-bottom: 50px
 
-.articles
-  background: #FFFFFF
-  display: flex
-  align-items: center
-  flex-direction: column
+            img
+                width: 100%
+                @media ($desktop)
+                    width: 800px
 
-  .content
-    display: flex
-    flex-direction: column
-    justify-content: center
-    padding: 0 20px
-    max-width: 960px
+        .icons-list
+            width: 100%
+            display: flex
+            justify-content: center
+            margin-top: 20px
 
-    .article-item
-      display: flex
-      align-items: flex-start
-      margin-bottom: 30px
+            a
+                margin: 0 5px
 
-      .icon
-        position: relative
-        display: flex
-        justify-content: flex-end
-        margin-right: 15px
-        width: 220px
-        @media ($desktop)
-          margin-right: 20px
-
-        .image
-          width: 100%
-          border-radius: 4px
-
-        .image-svg
-          width: 38px
-          height: 38px
-          @media ($desktop)
-            width: 45px
-            height: 45px
-
-      .title
-        font-size: 16px
-        margin-bottom: 14px
-        line-height: 1.35
-        font-weight: 600
-        @media ($desktop)
-          font-size: 18px
-
-      .text
-        font-size: 14px
-        line-height: 1.45
-        font-weight: 300
-        @media ($desktop)
-          font-size: 16px
-
-  .action
+.banner
     width: 100%
     display: flex
+    align-items: center
     justify-content: center
+    height: 100vh
+    position: relative
+    z-index: 1
 
-    .section-button
-      background: $blue-color
+    &:after
+        content: ''
+        display: flex
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background: rgba(0, 0, 0, .6)
+        z-index: 2
 
-      &:hover
-        background: lighten($blue-color, 10%)
+    .content
+        z-index: 3
+        color: #ffffff
+        max-width: 960px
+        text-align: center
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        padding: 0 20px
+        @media ($desktop)
+            padding: 0
 
-.how_subscribe
-  background: #eeeeee
+        h1
+            font-size: 22px
+            font-weight: 600
+            margin-bottom: 20px
+            @media ($tablet)
+                font-size: 42px
+            @media ($desktop)
+                font-size: 62px
 
-  .content
+        p
+            font-size: 16px
+            font-weight: 300
+            line-height: 22px
+            margin-bottom: 40px
+            @media ($tablet)
+                margin-bottom: 80px
+                line-height: 32px
+                font-size: 18px
+            @media ($desktop)
+                font-size: 22px
+
+        .link-down
+            position: absolute
+            bottom: 100px
+            left: 0
+            width: 100%
+            display: flex
+            justify-content: center
+
+            .arrow-down
+                animation: bounceDown 2s infinite
+
+.ofer
+    background: #ffffff
+
+    .action
+        width: 100%
+        display: flex
+        justify-content: center
+
+    .ofer-item
+        margin-bottom: 40px
+        @media ($desktop)
+            margin-bottom: 0
+
+.benefit
+    background: #e0e0e0
+
+    .benefit-item
+        margin-bottom: 40px
+        padding: 0 15px
+        @media ($desktop)
+            padding: 0 35px
+
+        .item-img
+            display: flex
+            justify-content: center
+
+            img
+                width: 90px
+
+        .item-title
+            margin: 30px 0
+
+        .item-title, .item-desc
+            text-align: center
+
+.get-access
+    position: relative
+    width: 100%
     display: flex
-    margin-top: 60px
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    z-index: 1
 
-    .hs-item
-      display: flex
-      flex-direction: column
-      align-items: center
-      margin-bottom: 60px
-
-      .number
-        width: 80px
-        height: 80px
-        border-radius: 50%
+    &:after
+        content: ''
         display: flex
         justify-content: center
         align-items: center
-        font-size: 24px
-        color: #FFFFFF
-        background: #212121
-        font-weight: 600
+        flex-direction: column
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+        background: rgba(0, 0, 0, .8)
+        z-index: 2
+
+    .bg-parallax
+        position: absolute
+        background: url('/images/bg-paralax.jpg')
+        background-attachment: fixed !important
+        background-position: center !important
+        background-size: cover !important
+        width: 100%
+        height: 100%
+
+    .content
+        max-width: 960px
+        text-align: center
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        z-index: 3
+
+        .section-title
+            font-size: 30px
+            margin-bottom: 40px
+            padding: 0 30px
+            @media ($desktop)
+                font-size: 48px
+
+        .item-desc
+            font-size: 20px
+            padding: 0 20px
+            margin-bottom: 40px
+            @media ($desktop)
+                font-size: 24px
+                padding: 0 180px
+
+        .section-title, .item-desc
+            color: #ffffff
+
+    .action
+        margin-top: 60px
+        position: relative
+        justify-content: center
+        display: flex
+        z-index: 4
+        padding: 0 25px
+
+        .banner-button
+            width: 320px
+
+        .arrow-aside
+            display: none
+            position: absolute
+            left: 0
+            top: 0
+            transform: translate(-80px, -30px)
+            @media ($tablet)
+                display: flex
+
+            img
+                height: 110px
+
+        .arrow-down
+            display: flex
+            height: 40px
+            position: absolute
+            top: 0
+            left: 0
+            transform: translate(150px, -60px)
+            @media ($tablet)
+                display: none
+
+.why-we
+    display: flex
+    flex-direction: column
+    align-items: center
+    .section-title
         margin-bottom: 20px
 
-      .title
-        font-weight: 600
-        font-size: 20px
-        margin-bottom: 15px
+    .section-subtitle
+        margin-bottom: 30px
+        padding: 0 40px
+        @media ($desktop)
+            padding: 0 20%
 
-      .title, .sub-title
-        text-align: center
-
-      .sub-title
+    .content
+        max-width: 640px
+        display: flex
+        align-items: center
+        flex-direction: column
         padding: 0 20px
-        font-weight: 300
 
-  .action
-    width: 100%
+        .why-item
+            display: flex
+            align-items: flex-start
+            margin-bottom: 20px
+
+            .icon
+                margin-right: 15px
+                img
+                    width: 38px
+                    height: 38px
+
+            .why-title
+                font-size: 16px
+                margin-bottom: 14px
+                line-height: 1.35
+                font-weight: 600
+                @media ($desktop)
+                    font-size: 18px
+
+            .why-desc
+                font-size: 14px
+                line-height: 1.45
+                font-weight: 300
+                @media ($desktop)
+                    font-size: 16px
+
+    .action
+        width: 100%
+        display: flex
+        justify-content: center
+
+        .section-button
+            background: $orange-color
+
+            &:hover
+                background: lighten($orange-color, 10%)
+
+.reviews
+    background: #ededed
+
+    .review-item
+        width: 100%
+        display: flex
+        align-items: center
+        flex-direction: column
+        margin-bottom: 40px
+        @media ($tablet)
+            flex-direction: row
+            align-items: flex-start
+            justify-content: flex-start
+
+        .review-img
+            display: flex
+            margin-bottom: 10px
+
+            img
+                border-radius: 50%
+                width: 100px
+                height: 100px
+
+        .review-desc
+            width: 100%
+            display: flex
+            flex-direction: column
+            align-items: center
+            padding: 0 40px
+            @media ($tablet)
+                align-items: flex-start
+
+            .review-more
+                outline: none
+                border: 0
+                font-size: 14px
+                padding: 5px 0
+                color: $orange-color
+                font-weight: 500
+                transition: .5s
+
+                &:hover
+                    color: lighten($orange-color, 10%)
+
+                &:focus, &:active
+                    outline: none
+
+            .desc
+                text-align: center
+                font-size: 12px
+                font-weight: 300
+                overflow: hidden
+                text-overflow: ellipsis
+                display: -webkit-box
+                -webkit-line-clamp: 3
+                -webkit-box-orient: vertical
+                @media ($tablet)
+                    text-align: left
+                    font-size: 16px
+
+            .name
+                margin-top: 15px
+                font-size: 12px
+                font-weight: 600
+                @media ($tablet)
+                    font-size: 14px
+
+            .position
+                font-size: 12px
+                margin-top: 5px
+                font-weight: 300
+
+                a
+                    color: #000000
+                    border-bottom: 2px solid $orange-color
+
+.subscription
+    background: #FFFFFF
+
+    .subsc-item
+        width: 100%
+        display: block
+        position: relative
+        background: #ededed
+        margin-bottom: 40px
+        border-radius: 10px
+
+        .head
+            background: $orange-color
+            display: flex
+            width: 100%
+            flex-direction: column
+            align-items: center
+            padding: 20px
+            border-top-left-radius: 10px
+            border-top-right-radius: 10px
+
+
+            .variant
+                width: 100%
+                text-transform: uppercase
+                font-size: 18px
+                border-bottom: 1px solid #dedede
+                padding: 0 0 18px 0
+                display: flex
+                justify-content: center
+                font-weight: 500
+
+            .price
+                margin-top: 30px
+                font-weight: 600
+                font-size: 30px
+
+            .period
+                font-size: 18px
+                font-weight: 300
+        .content
+            display: flex
+            align-items: center
+            flex-direction: column
+            padding: 30px 20px
+
+            ul
+                li
+                    display: flex
+                    align-items: flex-start
+                    img
+                        width: 25px
+                        height: 25px
+                        margin: 2px 15px 0 0
+                    p
+                        font-size: 18px
+                        margin-bottom: 15px
+                        font-weight: 300
+
+            .year
+                display: flex
+                font-size: 18px
+                font-weight: 600
+                height: 27px
+
+                .year-select
+                    background: transparent
+                    border-left: 0
+                    border-right: 0
+                    border-top: 0
+                    border-bottom: 1px solid $orange-color
+                    width: 80px
+                    margin-left: 10px
+                    text-align: center
+
+                    &:focus, &:active
+                        outline: none
+
+            .year-empty
+                display: none
+                @media ($base)
+                    display: flex
+
+
+            .banner-button
+                color: #000
+                text-transform: initial
+                font-size: 16px
+                font-weight: 500
+                width: 156px
+                height: 60px
+                margin-top: 50px
+
+.guaranty
+    background: #eeeeee
     display: flex
-    justify-content: center
+    flex-direction: column
+    align-items: center
 
-    .section-button
-      margin-top: 0
-      background: $blue-color
+    .section-subtitle
+        margin-bottom: 30px
 
-      &:hover
-        background: lighten($blue-color, 10%)
+    .content
+        max-width: 960px
+        width: auto
+        @media ($base)
+            width: 960px
+        ul
+            .guaranty-item
+                display: flex
+                flex-direction: column
+                background: #FFFFFF
+                margin-bottom: 3px
+
+                .head
+                    padding: 20px
+                    display: flex
+                    justify-content: space-between
+                    align-items: center
+
+                    .title
+                        margin-bottom: 0
+                        font-size: 20px
+                        width: 70%
+                        line-height: 1.5
+                        cursor: pointer
+
+                    .icon-collapse.active
+                        transform: rotate(-45deg)
+
+
+                    .icon-collapse
+                        width: 40px
+                        height: 40px
+                        border-radius: 50%
+                        cursor: pointer
+                        transition: .5s
+                        display: flex
+                        justify-content: center
+                        align-items: center
+
+                        &:hover
+                            background: #eeeeee
+
+                .desc
+                    padding: 0 60px 0 20px
+                    font-weight: 300
+                    font-size: 18px
+
+.articles
+    background: #FFFFFF
+    display: flex
+    align-items: center
+    flex-direction: column
+
+    .content
+        display: flex
+        flex-direction: column
+        justify-content: center
+        padding: 0 20px
+        max-width: 960px
+
+        .article-item
+            display: flex
+            margin-bottom: 30px
+            flex-direction: column
+            align-items: center
+            @media ($tablet)
+                flex-direction: row
+                align-items: flex-start
+
+            .icon
+                position: relative
+                display: flex
+                justify-content: flex-end
+                margin-right: 0
+                width: 100%
+                margin-bottom: 15px
+                @media ($tablet)
+                    margin-bottom: 0
+                    min-width: 120px
+                    max-width: 120px
+                    margin-right: 20px
+
+                .image
+                    width: 100%
+                    border-radius: 4px
+
+                .image-svg
+                    width: 38px
+                    height: 38px
+                    display: none
+                    @media ($tablet)
+                        display: block
+                        width: 45px
+                        height: 45px
+
+            .title
+                font-size: 18px
+                margin-bottom: 14px
+                line-height: 1.35
+                font-weight: 600
+
+            .text
+                font-size: 16px
+                line-height: 1.45
+                font-weight: 300
+
+    .action
+        width: 100%
+        display: flex
+        justify-content: center
+
+        .section-button
+            background: $blue-color
+
+            &:hover
+                background: lighten($blue-color, 10%)
+
+.how_subscribe
+    background: #eeeeee
+
+    .content
+        display: flex
+        margin-top: 60px
+
+        .hs-item
+            display: flex
+            flex-direction: column
+            align-items: center
+            margin-bottom: 60px
+
+            .number
+                width: 80px
+                height: 80px
+                border-radius: 50%
+                display: flex
+                justify-content: center
+                align-items: center
+                font-size: 24px
+                color: #FFFFFF
+                background: #212121
+                font-weight: 600
+                margin-bottom: 20px
+
+            .title
+                font-weight: 600
+                font-size: 20px
+                margin-bottom: 15px
+
+            .title, .sub-title
+                text-align: center
+
+            .sub-title
+                padding: 0 20px
+                font-weight: 300
+
+    .action
+        width: 100%
+        display: flex
+        justify-content: center
+
+        .section-button
+            margin-top: 0
+            background: $blue-color
+
+            &:hover
+                background: lighten($blue-color, 10%)
 
 .contacts
-  width: 100%
-  display: flex
-  align-items: center
-  flex-direction: column
-  background: #cfd3f7
-
-  .section-title
-    margin-bottom: 10px
-
-  .section-subtitle
-    font-weight: 400
-
-  .content
-    max-width: 500px
+    width: 100%
     display: flex
     align-items: center
     flex-direction: column
+    background: #cfd3f7
 
-    .phone
-      border-bottom: 3px solid $orange-color
-      line-height: 32px
+    .section-title
+        margin-bottom: 10px
 
-    a
-      color: #000
-      font-size: 28px
-      font-weight: 500
-      @media ($desktop)
-        font-size: 36px
+    .section-subtitle
+        font-weight: 400
 
-    .address
-      text-align: center
-      margin: 30px 0
-      font-size: 26px
+    .content
+        max-width: 500px
+        display: flex
+        align-items: center
+        flex-direction: column
 
-    .in-social
-      font-weight: 300
-      margin-bottom: 20px
+        .phone
+            border-bottom: 3px solid $orange-color
+            line-height: 32px
 
-    .social
-      img
-        margin-right: 10px
-        width: 40px
-        height: 40px
+        a
+            color: #000
+            font-size: 28px
+            font-weight: 500
+            @media ($desktop)
+                font-size: 36px
+
+        .address
+            text-align: center
+            margin: 30px 0
+            font-size: 26px
+
+        .in-social
+            font-weight: 300
+            margin-bottom: 20px
+
+        .social
+            img
+                margin-right: 10px
+                width: 40px
+                height: 40px
 
 footer
-  width: 100%
-  background: #111111
-  display: flex
-  justify-content: center
-  position: relative
-
-
-  .content
     width: 100%
-    padding: 30px 0
+    background: #111111
     display: flex
-    align-items: center
-    flex-direction: column
-    @media ($tablet)
-      padding: 30px
-      flex-direction: row
-      align-items: center
-      justify-content: space-between
+    justify-content: center
+    position: relative
 
-    ul
-      display: flex
-      align-items: center
-      flex-direction: column
-      @media ($tablet)
-        flex-direction: row
+
+    .content
+        width: 100%
+        padding: 30px 0
+        display: flex
         align-items: center
-
-      li
-        font-size: 14px
-        border-bottom: 1px solid $orange-color
-        margin-bottom: 15px
+        flex-direction: column
         @media ($tablet)
-          margin-right: 20px
-          margin-bottom: 0
+            padding: 30px
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
 
-    .srl-desktop
-      display: none
-      @media ($tablet)
+        ul
+            display: flex
+            align-items: center
+            flex-direction: column
+            @media ($tablet)
+                flex-direction: row
+                align-items: center
+
+            li
+                font-size: 14px
+                border-bottom: 1px solid $orange-color
+                margin-bottom: 15px
+                @media ($tablet)
+                    margin-right: 20px
+                    margin-bottom: 0
+
+        .srl-desktop
+            display: none
+            @media ($tablet)
+                display: flex
+
+        .srl-mobile
+            display: flex
+            @media ($tablet)
+                display: none
+
+        .srl-desktop, .srl-mobile
+            font-size: 14px
+            color: #FFFFFF
+
+
+        .back-to-top-desktop
+            display: none
+            @media ($tablet)
+                display: flex
+
+    .back-to-top-desktop, .back-to-top-mobile
+        font-size: 16px
         display: flex
+        align-items: center
+        @media ($tablet)
+            font-size: 18px
 
-    .srl-mobile
-      display: flex
-      @media ($tablet)
-        display: none
+        svg
+            width: 16px
 
-    .srl-desktop, .srl-mobile
-      font-size: 14px
-      color: #FFFFFF
-
-
-    .back-to-top-desktop
-      display: none
-      @media ($tablet)
+    .back-to-top-mobile
         display: flex
-
-  .back-to-top-desktop, .back-to-top-mobile
-    font-size: 16px
-    display: flex
-    align-items: center
-    @media ($tablet)
-      font-size: 18px
-
-    svg
-      width: 16px
-
-  .back-to-top-mobile
-    display: flex
-    position: absolute
-    right: 20px
-    top: 20px
-    font-size: 16px
-    @media ($tablet)
-      display: none
+        position: absolute
+        right: 20px
+        top: 20px
+        font-size: 16px
+        @media ($tablet)
+            display: none
 
 
 #modal
-  .close
-    border: 0
+    .close
+        border: 0
 
-    &:active, &:focus
-      outline: none
+        &:active, &:focus
+            outline: none
 
 .modal-dialog
-  min-height: calc(100vh - 60px)
-  display: flex
-  flex-direction: column
-  justify-content: center
-  overflow: auto
-  @media(max-width: 768px)
-    min-height: calc(100vh - 20px)
+    min-height: calc(100vh - 60px)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    overflow: auto
+    @media(max-width: 768px)
+        min-height: calc(100vh - 20px)
 
 
 .slick-prev, .slick-next
-  width: 40px !important
-  height: 40px !important
-  top: 40% !important
+    width: 40px !important
+    height: 40px !important
+    top: 40% !important
 
 .slick-next
-  right: -5px !important
-  @media ($tablet)
-    right: -20px !important
+    right: -5px !important
+    @media ($tablet)
+        right: -20px !important
 
 .slick-prev
-  left: -5px !important
-  @media ($tablet)
-    left: -20px !important
+    left: -5px !important
+    @media ($tablet)
+        left: -20px !important
 
 
 .slick-prev:before, .slick-next:before
-  font-size: 40px !important
-  opacity: 1 !important
+    font-size: 40px !important
+    opacity: 1 !important
 
 .slick-slide
-  &:active, &:focus
-    border: 0 !important
-    outline: none !important
+    &:active, &:focus
+        border: 0 !important
+        outline: none !important
 
 @keyframes fade
-  0%
-    opacity: 0
-  100%
-    opacity: 1
+    0%
+        opacity: 0
+    100%
+        opacity: 1
 
 
 @keyframes bounceDown
-  0%
-    transform: translateY(0)
-  50%
-    transform: translateY(10px)
-  100%
-    transform: translateY(0)
-
+    0%
+        transform: translateY(0)
+    50%
+        transform: translateY(10px)
+    100%
+        transform: translateY(0)
