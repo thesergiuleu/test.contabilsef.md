@@ -18,7 +18,7 @@
                                     @endforeach
                                 </ul>
                                 @if ($key === 0)
-                                    <label class="year">Alegeți anul:  <input value="2021" id="datepicker" class="year-select" type="text"></label>a
+                                    <label class="year">Alegeți anul:  <input value="2021" id="datepicker" class="year-select" type="text"></label>
                                 @endif
                                 <a href="{{ route('checkout', [$service->id, $item->id]) }}" class="banner-button">Abonează-te</a>
                             </div>
