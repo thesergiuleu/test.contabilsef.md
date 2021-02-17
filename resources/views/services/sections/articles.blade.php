@@ -9,6 +9,7 @@
                 </div>
                 <div>
                     <h5 class="title">{{ $item->title }}</h5>
+                    <div class="author">Some undefined author</div>
                     <p class="text"> {!! $item->getShort(200) !!}</p>
                 </div>
             </div>

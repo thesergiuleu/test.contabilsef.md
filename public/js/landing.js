@@ -29,20 +29,29 @@ for (let i = 0; i < reviewBtn.length; i++) {
     })
 }
 
-const collapseIcons = document.querySelectorAll(".icon-collapse");
-for (let i = 0; i < collapseIcons.length; i++) {
-    collapseIcons[i].addEventListener("click", () => {
-        collapseIcons[i].classList.toggle("active");
-    })
-}
-
-const collapseTitle = document.querySelectorAll(".guaranty-title");
-for (let i = 0; i < collapseTitle.length; i++) {
-    collapseTitle[i].addEventListener("click", () => {
-        collapseIcons[i].classList.toggle("active");
-    })
-}
+// const collapseIcons = document.querySelectorAll(".icon-collapse");
+// for (let i = 0; i < collapseIcons.length; i++) {
+//     collapseIcons[i].addEventListener("click", () => {
+//         collapseIcons[i].classList.toggle("active");
+//     })
+// }
+//
+// const collapseTitle = document.querySelectorAll(".guaranty-title");
+// for (let i = 0; i < collapseTitle.length; i++) {
+//     collapseTitle[i].addEventListener("click", () => {
+//         collapseIcons[i].classList.toggle("active");
+//     })
+// }
 $(document).ready(() => {
+    $('[data-toggle="collapse"]').on('click',function(e){
+        if ( $(this).parents('.accordion').find('.collapse.show') ){
+            let idx = $(this).index('[data-toggle="collapse"]');
+            if (idx == $('.collapse.show').index('.collapse')) {
+                // prevent collapse
+                e.stopPropagation();
+            }
+        }
+    });
     $("#datepicker").datepicker({
         format: "yyyy",
         viewMode: "years",
