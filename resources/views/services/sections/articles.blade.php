@@ -9,7 +9,9 @@
                 </div>
                 <div>
                     <h5 class="title">{{ $item->title }}</h5>
-                    <div class="author">Some undefined author</div>
+                    @if($item->link)
+                        <div class="author">{!! $item->link !!}</div>
+                    @endif
                     <p class="text"> {!! $item->getShort(200) !!}</p>
                 </div>
             </div>
