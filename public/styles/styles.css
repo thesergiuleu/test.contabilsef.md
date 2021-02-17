@@ -882,6 +882,12 @@ header {
     color: #bfbdbd;
     margin: 10px 0;
 }
+.author a {
+    color: #bfbdbd;
+}
+.author a:hover {
+    color: #bfbdbd;
+}
 .articles .action {
     width: 100%;
     display: flex;
