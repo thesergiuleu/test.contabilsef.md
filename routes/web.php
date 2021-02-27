@@ -46,7 +46,7 @@ Route::get('magic/{type?}', function ($type = 'dataType') {
 Auth::routes();
 Route::get('confirm/{hash}', [UsersController::class, 'confirm'])->name('confirm');
 Route::get('service/{subscriptionService}', [SubscriptionServiceController::class, 'show'])->name('service-landing');
-Route::post('checkout', [PaymentsController::class, 'postCheckout'])->name('checkout.store');
+Route::post('checkout/{service?}/{package?}', [PaymentsController::class, 'postCheckout'])->name('checkout.store');
 Route::get('check-email', [PaymentsController::class, 'checkEmail'])->name('check-email');
 Route::get('checkout/{service}/{package}', [PaymentsController::class, 'getCheckoutPage'])->name('checkout');
 /* ******************************************** ADMIN *************************************************************** */

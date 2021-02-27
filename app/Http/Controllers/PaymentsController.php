@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Package;
+use App\Payment;
+use App\Subscription;
 use App\SubscriptionService;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentsController extends SiteBaseController
 {
@@ -27,9 +32,36 @@ class PaymentsController extends SiteBaseController
         return view('checkout', $this->viewData);
     }
 
-    public function postCheckout(Request $request)
+    public function postCheckout(Request $request, ?SubscriptionService $service, ?Package $package)
     {
-        dd($request->all());
+        $data = $request->all();
+        if ($service && $package) {
+
+            if ($data['payment_method'] == 'card') {
+                $data['payed_at'] = Carbon::now();
+                $data['subscription']['started_at'] = Carbon::now();
+                $data['subscription']['expired_at'] = Carbon::now()->addYear();
+            }
+
+            if (!($user = Auth::user())) {
+                User::validateUser($data)->validate();
+                $user = User::createUser($data);
+                auth()->login($user);
+            }
+
+            $payment = new Payment($data + ['user_id' => $user->id]);
+            $payment->save();
+
+            $subscription = new Subscription($data['subscription'] + [
+                    'user_id' => $user->id,
+                    'package_id' => $package->id,
+                    'service_id' => $service->id,
+                    'payment_id' => $payment->id
+                ]);
+            $subscription->save();
+
+            return redirect('/');
+        }
     }
 
     public function checkEmail(): JsonResponse

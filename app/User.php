@@ -11,6 +11,8 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use TCG\Voyager\Models\Role;
 
 /**
@@ -133,4 +135,29 @@ class User extends \TCG\Voyager\Models\User
         return $this->hasRole('admin');
     }
 
+    public static function createUser(array $data)
+    {
+        return User::query()->create([
+            'name' => $data['name'],
+            'phone' => $data['phone'] ?? null,
+            'company' => $data['company'] ?? null,
+            'position' => $data['position'] ?? null,
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+
+    public static function validateUser($data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'min:9'],
+            'company' => ['nullable', 'string'],
+            'position' => ['nullable', 'string'],
+            'terms' => ['required', 'accepted'],
+            'newsletter' => ['nullable'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+    }
 }

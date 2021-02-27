@@ -15,7 +15,7 @@
                                     <h4>Poți întrerupe oricând abonamentul tău, cu un click, direct din contul tău</h4>
                                 </div>
                                 <div class="col-md-8">
-                                    <form method="POST" action="{{route('checkout.store')}}">
+                                    <form method="POST" action="{{route('checkout.store', [$service, $package])}}">
                                         @csrf
                                         <div style="width: 100%" class="articol">
                                             <div class="position-post">
@@ -99,9 +99,11 @@
                                                             <span style="font-weight: bold">Total</span>
                                                         </div>
                                                         <div class="col-md-4">
+                                                            <input type="hidden" name="payed_amount" value="{{ $package->price - $package->getDiscount() }}">
                                                             <span style="font-weight: bold">MDL {{ $package->price - $package->getDiscount() }}</span>
                                                         </div>
                                                     @endif
+                                                    <input type="hidden" name="payed_amount" value="{{ $package->price - $package->getDiscount() }}">
                                                     <br>
                                                     <br>
                                                     <div class="col-md-12">

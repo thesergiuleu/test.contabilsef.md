@@ -38,5 +38,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Payment extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'user_id',
+        'email',
+        'company',
+        'cod_fiscal',
+        'payment_method',
+        'phone',
+        'payed_at',
+        'payed_amount',
+        'payed_company'
+    ];
 }
