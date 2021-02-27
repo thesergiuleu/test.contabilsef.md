@@ -2482,7 +2482,7 @@
         "add": 0,
         "delete": 0,
         "details": {},
-        "order": 13
+        "order": 8
     },
     {
         "id": 145,
@@ -2497,7 +2497,7 @@
         "add": 0,
         "delete": 0,
         "details": {},
-        "order": 14
+        "order": 9
     },
     {
         "id": 146,
@@ -3507,7 +3507,7 @@
         "id": 206,
         "data_type_id": 22,
         "field": "user_id",
-        "type": "number",
+        "type": "select_dropdown",
         "display_name": "User Id",
         "required": 0,
         "browse": 1,
@@ -3515,7 +3515,15 @@
         "edit": 1,
         "add": 1,
         "delete": 1,
-        "details": {},
+        "details": {
+            "validation": {
+                "rule": "required"
+            },
+            "relationship": {
+                "key": "id",
+                "label": "id"
+            }
+        },
         "order": 2
     },
     {
@@ -3745,7 +3753,7 @@
                 "label": "id"
             }
         },
-        "order": 3
+        "order": 4
     },
     {
         "id": 220,
@@ -3768,7 +3776,7 @@
                 "label": "id"
             }
         },
-        "order": 4
+        "order": 5
     },
     {
         "id": 221,
@@ -3783,7 +3791,7 @@
         "add": 1,
         "delete": 1,
         "details": {},
-        "order": 5
+        "order": 6
     },
     {
         "id": 222,
@@ -3798,7 +3806,7 @@
         "add": 1,
         "delete": 1,
         "details": {},
-        "order": 6
+        "order": 7
     },
     {
         "id": 223,
@@ -3813,6 +3821,29 @@
         "add": 1,
         "delete": 1,
         "details": {},
+        "order": 3
+    },
+    {
+        "id": 224,
+        "data_type_id": 16,
+        "field": "service_id",
+        "type": "select_dropdown",
+        "display_name": "Service Id",
+        "required": 1,
+        "browse": 1,
+        "read": 1,
+        "edit": 1,
+        "add": 1,
+        "delete": 1,
+        "details": {
+            "validation": {
+                "rule": "required"
+            },
+            "relationship": {
+                "key": "id",
+                "label": "id"
+            }
+        },
         "order": 3
     }
 ]

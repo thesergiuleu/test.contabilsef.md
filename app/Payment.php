@@ -50,4 +50,9 @@ class Payment extends Model
         'payed_amount',
         'payed_company'
     ];
+
+    public function userId()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
