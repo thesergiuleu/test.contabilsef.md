@@ -11,8 +11,11 @@
         </div>
         <div class="col-md-12">
         </div>
-        <div style="margin-top: 7px" class="col-md-6">
+        <div style="margin: 0;top: 50%;" class="col-md-6">
             <button onclick="login('{{route('login')}}')" type="button" class="btn btn-block btn-primary">Autentificare</button>
+        </div>
+        <div style="margin: 0;top: 50%;"  class="col-md-6">
+            <a class="btn" href="{{ route('password.request') }}">Ați uitat parola?</a>
         </div>
     @else
         <div style="margin-bottom: 8px;" class="col-md-12">
