@@ -34,6 +34,6 @@ class SendSubscriptionInvoice extends AbstractAction
 
     public function shouldActionDisplayOnDataType()
     {
-        return $this->dataType->slug == 'subscriptions';
+        return $this->dataType->slug == 'subscriptions' && $this->data->payment_method == 'transfer';
     }
 }
