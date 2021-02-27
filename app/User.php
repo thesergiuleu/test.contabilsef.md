@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\EmailVerificationNotification;
 use App\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -12,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use TCG\Voyager\Models\Role;
 
@@ -91,6 +93,17 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendConfirmEmail()
+    {
+        /** @var EmailValidation $validation */
+        $validation = $this->emailValidation()->create([
+            'user_id' => $this->id,
+            'token' => $this->email_hash
+        ]);
+
+        Notification::send($this, new EmailVerificationNotification($validation));
+    }
 
     /**
      * @param array|int $id

@@ -253,6 +253,11 @@ $(document).ready(function ($) {
         console.log('hakuna matata')
         submitForm(this);
     });
+    $('#checkoutForm').on('submit', function (e){
+        e.preventDefault();
+        console.log('hakuna matata')
+        submitForm(this);
+    });
     $('#commentform').on('submit', function (e){
         e.preventDefault();
         console.log('hakuna matata')

@@ -15,7 +15,7 @@
                                     <h4>Poți întrerupe oricând abonamentul tău, cu un click, direct din contul tău</h4>
                                 </div>
                                 <div class="col-md-8">
-                                    <form method="POST" action="{{route('checkout.store', [$service, $package])}}">
+                                    <form id="checkoutForm" method="POST" action="{{route('checkout.store', [$service, $package])}}">
                                         @csrf
                                         <div style="width: 100%" class="articol">
                                             <div class="position-post">
@@ -116,6 +116,9 @@
                                                     </div>
                                                     <br>
                                                     <br>
+                                                    <div class="div" style="width: 50%; text-align: center; margin: 0 auto">
+                                                        @include('layouts.response-message')
+                                                    </div>
                                                     <br>
 
                                                     <div class="col-md-12">

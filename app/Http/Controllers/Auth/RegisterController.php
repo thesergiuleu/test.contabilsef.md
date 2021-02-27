@@ -77,14 +77,8 @@ class RegisterController extends Controller
                 'name' => $user->name,
             ]);
         }
+        $user->sendConfirmEmail();
 
-        /** @var EmailValidation $validation */
-        $validation = $user->emailValidation()->create([
-            'user_id' => $user->id,
-            'token' => $user->email_hash
-        ]);
-
-        Notification::send($user, new EmailVerificationNotification($validation));
         $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
