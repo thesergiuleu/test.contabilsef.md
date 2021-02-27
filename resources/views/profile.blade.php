@@ -2,12 +2,13 @@
 <style>
 
     .last-button-style:hover,
-    .post-web .box-textsss form .last-button a:hover{
+    .post-web .box-textsss form .last-button a:hover {
         background-color: #b42a30 !important;
         opacity: 0.9 !important;
         cursor: pointer;
     }
-    .post-web .box-textsss form .last-button .delete{
+
+    .post-web .box-textsss form .last-button .delete {
         font-size: 18px;
         font-weight: 600;
         font-style: normal;
@@ -16,7 +17,7 @@
         letter-spacing: normal;
         text-align: left;
         color: #fff;
-        box-shadow: 0 1px 10px 0 hsla(0,0%,45%,.03);
+        box-shadow: 0 1px 10px 0 hsla(0, 0%, 45%, .03);
         padding: 10px 50px;
         text-decoration: none;
         border-radius: 5px;
@@ -24,7 +25,8 @@
         background: #b42a30;
         margin: 0;
     }
-    .post-web .box-textsss form .last-button .delete:hover{
+
+    .post-web .box-textsss form .last-button .delete:hover {
         background-color: #adadad !important;
     }
 
@@ -42,7 +44,8 @@
         margin-bottom: 20px;
         width: auto;
     }
-    a.simple-btn-2:hover{
+
+    a.simple-btn-2:hover {
         opacity: 0.7;
     }
 </style>
@@ -71,7 +74,8 @@
 
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button class="bnts" type="submit" style="top:20px; font-size: 18px; font-weight: 600; color: #252525; padding: 16px 28px; position: relative; cursor: pointer; background: none;  border: none; outline: inherit;">
+                                    <button class="bnts" type="submit"
+                                            style="top:20px; font-size: 18px; font-weight: 600; color: #252525; padding: 16px 28px; position: relative; cursor: pointer; background: none;  border: none; outline: inherit;">
                                         <span> Deconectare </span>
                                     </button>
                                 </form>
@@ -113,22 +117,26 @@
                                                  style="background-image: url('{{ asset('assets/imgs/a4-1238603_1920.png') }}')">
                                                 <span>ID Personal <span>{{ auth()->id()  }}</span> </span>
 
-                                                <p class="p-item">* Atenție acest ID Personal va fi folosit pentru achitarea serviciilor</p>
+                                                <p class="p-item">* Atenție acest ID Personal va fi folosit pentru
+                                                    achitarea serviciilor</p>
                                             </div>
 
                                             <p>Nume, Prenume</p>
-                                            <input type="text" class="required" value="{{ auth()->user()->name }} " name="name">
+                                            <input type="text" class="required" value="{{ auth()->user()->name }} "
+                                                   name="name">
 
                                             <p>Email</p>
                                             <input type="text" class="required" value="{{ auth()->user()->email }}"
                                                    name="email">
 
                                             <p>Telefon</p>
-                                            <input type="text" class="white required" value="{{ auth()->user()->phone }}"
+                                            <input type="text" class="white required"
+                                                   value="{{ auth()->user()->phone }}"
                                                    name="phone" placeholder="+37378930437">
 
                                             <p>Compania / Organizatia</p>
-                                            <input type="text" class="white required" value="{{ auth()->user()->company }}"
+                                            <input type="text" class="white required"
+                                                   value="{{ auth()->user()->company }}"
                                                    name="company" placeholder="Led Zeppelin Inc.">
 
                                             <p>Functia</p>
@@ -158,19 +166,22 @@
                                     <div class="box-textsss">
                                         <div role="form" class="wpcf7" id="wpcf7-f43565-o1" lang="ro-RO" dir="ltr">
                                             <div class="screen-reader-response"></div>
-                                            <form id="contact-form" action="{{ route('contact-post') }}" method="post" novalidate="novalidate">
+                                            <form id="contact-form" action="{{ route('contact-post') }}" method="post"
+                                                  novalidate="novalidate">
                                                 @csrf
                                                 <p>
                                                     <label> Nume, Prenume<br>
                                                         <span class="wpcf7-form-control-wrap your-name">
-                                                            <input type="text" name="name" value="{{ auth()->user()->name }}" size="40">
+                                                            <input type="text" name="name"
+                                                                   value="{{ auth()->user()->name }}" size="40">
                                                         </span>
                                                     </label>
                                                 </p>
                                                 <p>
                                                     <label> Email<br>
                                                         <span class="wpcf7-form-control-wrap your-email">
-                                                            <input type="email" name="email" value="{{ auth()->user()->email }}" size="40">
+                                                            <input type="email" name="email"
+                                                                   value="{{ auth()->user()->email }}" size="40">
                                                         </span>
                                                     </label>
                                                 </p>
@@ -181,8 +192,10 @@
                                                         </span>
                                                     </label>
                                                 </p>
-                                                <input type="hidden" name="ip_address" value="{{ $_SERVER['REMOTE_ADDR'] }}">
-                                                <input type="hidden" name="page" value="{{ \App\Contact::PAGE_PROFILE }}">
+                                                <input type="hidden" name="ip_address"
+                                                       value="{{ $_SERVER['REMOTE_ADDR'] }}">
+                                                <input type="hidden" name="page"
+                                                       value="{{ \App\Contact::PAGE_PROFILE }}">
 
                                                 <div class="last-button">
                                                     <p>
@@ -195,35 +208,43 @@
                                     </div>
                                 </div>
                                 <div class="item-tab-sub">
-                                    <form class="box-sub-tab" id="deleteProfile">
-                                        <input type="hidden" name="action" value="delete_user">
-
-                                        <div class="post-images"
-                                             style="background-image: url('{{ asset('assets/imgs/contabile__personal.png') }}')">
-                                            <p class="information">Cabinet personal</p>
-                                        </div>
-                                        <h1>Prin înregistrarea la serviciul respectiv dvs. primiți acces general la
-                                            diferite
-                                            informații și materiale pregătite și publicate de colectivul website-ului
-                                            www.contabilsef.md</h1>
-                                        <span class="conditions">Termeni si conditii</span>
-
-                                        <p class="for_info">Pentru a vă abona la acest serviciu vă rugăm să vă
-                                            înregistrați ca
-                                            utilizator. După înregistrare, veți primi un mesaj pe e-mail-ul indicat la
-                                            înregistrare privind activarea utilizatorului si primirea accesului la
-                                            serviciul
-                                            respectiv. Pentru orice întrebări sau detalii suplimentare, ne puteți
-                                            contacta prin
-                                            intermediul e-mailului office@contabilsef.md sau la numărul de telefon (022)
-                                            22-49-37.</p>
-
-                                        <div class="take-decizion">
-                                            <a onclick="$('#deleteProfile').submit()">Închide contul</a>
-                                        </div>
-                                        <p class="message"></p>
-                                    </form>
+                                    <div class="box-sub-tab">
+                                    </div>
                                 </div>
+                                @foreach(\App\SubscriptionService::all() as $service)
+                                    <div class="item-tab-sub">
+                                        <div class="box-sub-tab">
+                                            <div class="post-images"
+                                                 style="background-image: url('{{ asset('assets/imgs/contabile__personal.png') }}')">
+                                                <p class="information">{{ $service->name }}</p>
+                                            </div>
+
+                                            {!! replace_price($service->description, $service) !!}
+
+
+                                            <p><a href="{{ route('page.view', $service->pageId->slug) }}">Termeni și
+                                                    condiții</a></p>
+                                            @php
+                                                $subscription = auth()->user()->activeSubscription($service->id);
+                                            @endphp
+                                            @if($subscription)
+                                                <p class="for_info">Data de inceput a abonamentului : {{ format_date($subscription->started_at) }}.<br>
+                                                    Data de sfirsit a abonamentului : {{ format_date($subscription->expired_at) }}.</p>
+                                            @endif
+
+                                            <p>La efectuarea plății, vă rugăm să indicați ID-ul personal din
+                                                cabinetul personal sau din contul de plată. După achitarea
+                                                abonamentului, va fi activat serviciul ales și veți primi o
+                                                scrisoare de înștiințare pe e-mail. Ulterior, trimiteți întrebările
+                                                Dvs. pe poșta electronică <b>consultant@contabilsef.md</b>, după
+                                                care specialiștii noștri vor pregăti răspunsurile și le vor remite
+                                                prin poșta electronică indicată la înregistrare. </p>
+                                            <p>Pentru orice întrebări sau detalii puteți să ne contactați la
+                                                e-mailul office@contabilsef.md sau la numărul de telefon 022
+                                                22-49-37.</p>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -234,7 +255,7 @@
 @endsection
 <script>
     function openSubscribeModal(termsUrl, name, type, price) {
-        $('.popUp_contPersonal').css('display','block');
+        $('.popUp_contPersonal').css('display', 'block');
         $('.service-popup-label').html(name);
         $('#terms-link').attr('href', termsUrl);
         $('[name=\'service_id\']').val(type);
