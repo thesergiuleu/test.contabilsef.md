@@ -43,11 +43,11 @@ class SubscriptionsController extends VoyagerBaseController
         // Validate fields with ajax
         $val = $this->validateBread($request->all(), $dataType->editRows, $dataType->name, $id)->after(function ($validator) use ($request) {
             if ($request->has('notify') && $request->get('notify') == 1) {
-                if (!$request->input('start_date', null)) {
-                    $validator->errors()->add('start_date', 'Setati inceputul abonarii.');
+                if (!$request->input('started_at', null)) {
+                    $validator->errors()->add('started_at', 'Setati inceputul abonarii.');
                 }
-                if (!$request->input('end_date', null)) {
-                    $validator->errors()->add('end_date', 'Setati sfarsitul abonarii.');
+                if (!$request->input('expired_at', null)) {
+                    $validator->errors()->add('expired_at', 'Setati sfarsitul abonarii.');
                 }
             }
         })->validate();

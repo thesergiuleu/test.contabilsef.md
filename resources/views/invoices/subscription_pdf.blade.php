@@ -78,7 +78,7 @@
 <table width="100%" border="0" cellpadding="3" cellspacing="0" class="brd" style="margin-top:20px">
     <tbody>
     <tr>
-        <td style="border-left:1px solid #000000;" colspan="3">Platitor, adresa: &nbsp;&nbsp;&nbsp;<b> {{ $subscription->company ?: $subscription->name}} {{ $subscription->cod_fiscal }} </b>
+        <td style="border-left:1px solid #000000;" colspan="3">Platitor, adresa: &nbsp;&nbsp;&nbsp;<b> {{ $subscription->payment->company ?: $subscription->payment->name}} {{ $subscription->payment->cod_fiscal }} </b>
             <br><br>
         </td>
     </tr>
@@ -93,19 +93,19 @@
     <tr>
         <td>{{ $subscription->display_type }}</td>
         <td align="center"><b>{{ $subscription->user_id }}</b></td>
-        <td align="center"><b>{{ $subscription->price }} lei</b></td>
+        <td align="center"><b>{{ $subscription->payment->payed_amount }} lei</b></td>
     </tr>
     <tr>
         <td colspan="1" style="border:0 none;"></td>
         <td colspan="1" style="border:0 none;">Total</td>
-        <td align="center"><b>{{$subscription->price}} lei</b></td>
+        <td align="center"><b>{{$subscription->payment->payed_amount}} lei</b></td>
     </tr>
     </tbody>
 </table>
 <table border="0" cellpadding="3" cellspacing="0">
     <tbody>
     <tr>
-        <td><br>Total pentru achitare: &nbsp;&nbsp; <b> {{ $subscription->price }} lei.</b></td>
+        <td><br>Total pentru achitare: &nbsp;&nbsp; <b> {{ $subscription->payment->payed_amount }} lei.</b></td>
     </tr>
     <tr>
         <td align="left"></td>

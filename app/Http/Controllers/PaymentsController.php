@@ -44,7 +44,7 @@ class PaymentsController extends SiteBaseController
             if ($data['payment_method'] == 'card') {
                 $data['payed_at'] = Carbon::now();
                 $data['subscription']['started_at'] = Carbon::now();
-                $data['subscription']['expired_at'] = Carbon::now()->addYear();
+                $data['subscription']['expired_at'] = Carbon::now()->addYear()->subDay();
             }
 
             /** @var User $user */
