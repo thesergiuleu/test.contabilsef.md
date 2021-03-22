@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use TCG\Voyager\Traits\Translatable;
 
 
@@ -52,7 +53,7 @@ use TCG\Voyager\Traits\Translatable;
  */
 class Subscription extends Model
 {
-    use Translatable;
+    use Translatable, SoftDeletes;
 
     protected $fillable = [
         'user_id', 'package_id', 'payment_id', 'service_id', 'started_at', 'expired_at'
@@ -106,5 +107,16 @@ class Subscription extends Model
         return $this->serviceId
             ? $this->serviceId->name
             : null;
+    }
+    public function status()
+    {
+        switch (true) {
+            case $this->deleted_at:
+                return "Anulată";
+            case is_null($this->expired_at):
+                return "Așteaptă achitarea";
+            case Carbon::parse($this->expired_at)->format('Y-m-d') > now()->format('Y-m-d'):
+                return "Activă";
+        }
     }
 }

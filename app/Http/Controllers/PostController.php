@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Category;
 use App\Post;
+use App\User;
 
 class PostController extends SiteBaseController
 {
@@ -138,5 +139,33 @@ class PostController extends SiteBaseController
                 ->setName('components.calendar')
                 ->build()
         ];
+    }
+
+    public function markAsSeen(Post $post)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $user->posts()->syncWithoutDetaching($post);
+
+        return response()->json([
+            'message' => setting('raspunsuri.user_update', 'Marcat ca vazut cu success'),
+            'status' => 'success',
+            'redirect_url' => session()->get('_previous')['url']
+        ]);
+    }
+
+    public function markAsUnSeen(Post $post)
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $user->posts()->detach($post);
+
+        return response()->json([
+            'message' => "Marcat ca vazut cu success",
+            'status' => 'success',
+            'redirect_url' => session()->get('_previous')['url']
+        ]);
     }
 }

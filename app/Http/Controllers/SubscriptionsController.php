@@ -6,6 +6,7 @@ use App\Http\Requests\StoreSubscriptionRequest;
 use App\Notifications\SubscriptionNotification;
 use App\Subscription;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
@@ -44,5 +45,11 @@ class SubscriptionsController extends SiteBaseController
     {
         Notification::send($subscription->user, new SubscriptionNotification($subscription));
         return redirect()->back();
+    }
+
+    public function documents(Subscription $subscription)
+    {
+        $pdf = PDF::loadView('invoices.subscription_pdf', compact('subscription')); #this works
+        return $pdf->stream();
     }
 }

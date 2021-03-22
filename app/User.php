@@ -62,6 +62,8 @@ use TCG\Voyager\Models\Role;
  * @property-read int|null $subscriptions_count
  * @property-read EmailValidation $emailValidation
  * @property-read mixed $email_hash
+ * @property-read Collection|\App\Payment[] $payments
+ * @property-read int|null $payments_count
  */
 class User extends \TCG\Voyager\Models\User
 {
@@ -172,5 +174,20 @@ class User extends \TCG\Voyager\Models\User
             'newsletter' => ['nullable'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class, 'user_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'user_posts')->withTimestamps();
+    }
+
+    public function hasSeen(Post $post)
+    {
+        return $this->posts()->where('post_id', $post->id)->exists();
     }
 }

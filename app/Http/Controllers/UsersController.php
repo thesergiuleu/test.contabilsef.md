@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\EmailValidation;
 use App\Http\Requests\UpdateUserRequest;
+use App\SubscriptionService;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
@@ -59,5 +61,17 @@ class UsersController extends Controller
         auth()->logout();
         auth()->login($user);
         return redirect(url('/'));
+    }
+
+    public function posts()
+    {
+        $type = request()->input('type', 'seen');
+        /** @var User $user */
+        $user = \auth()->user();
+        $posts = new Collection();
+        foreach ($user->subscriptions as $subscription) {
+            $posts->merge($subscription->service->posts()->get());
+        }
+        return response()->json($posts);
     }
 }

@@ -44,6 +44,10 @@ Route::get('magic/{type?}', function ($type = 'dataType') {
     }
 });
 Auth::routes();
+Route::get('users/posts', [UsersController::class, 'posts'])->name('user.posts');
+Route::get('subscriptions/doc/{subscription}', [SubscriptionsController::class, 'documents'])->name('subscription.docs');
+Route::get('posts/mark-as-seen/{post}', [PostController::class, 'markAsSeen'])->name('post.mark_as_seen');
+Route::get('posts/mark-as-un-seen/{post}', [PostController::class, 'markAsUnSeen'])->name('post.mark_as_un_seen');
 Route::get('confirm/{hash}', [UsersController::class, 'confirm'])->name('confirm');
 Route::get('service/{subscriptionService}', [SubscriptionServiceController::class, 'show'])->name('service-landing');
 Route::post('checkout/{service?}/{package?}', [PaymentsController::class, 'postCheckout'])->name('checkout.store');

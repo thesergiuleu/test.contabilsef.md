@@ -35,6 +35,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payment whereUserId($value)
  * @mixin \Eloquent
+ * @property string $email
+ * @property-read \App\Subscription|null $subscription
+ * @property-read \App\User $userId
+ * @method static \Illuminate\Database\Eloquent\Builder|Payment whereEmail($value)
  */
 class Payment extends Model
 {
@@ -54,5 +58,18 @@ class Payment extends Model
     public function userId()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class, 'payment_id', 'id')->withTrashed();
+    }
+
+    public function documents()
+    {
+        return [
+            'title' => 'Cont de plată',
+            'url' => route('subscription.docs', $this->subscription)
+        ];
     }
 }

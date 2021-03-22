@@ -71,14 +71,15 @@
                                 @foreach(\App\SubscriptionService::all() as $service)
                                     <div class="li-tab-sub "> {{ $service->name }} <span class="bnts"></span></div>
                                 @endforeach
-
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button class="bnts" type="submit"
-                                            style="top:20px; font-size: 18px; font-weight: 600; color: #252525; padding: 16px 28px; position: relative; cursor: pointer; background: none;  border: none; outline: inherit;">
-                                        <span> Deconectare </span>
-                                    </button>
-                                </form>
+                                <div class="li-tab">Istoric comenzi<span class="bnts "></span></div>
+                                <div class="li-tab">Articole citite<span class="bnts "></span></div>
+                                <div class="li-tab">Articole preferate<span class="bnts "></span></div>
+                                <div class="li-tab">Alerte termene de prezentare și plată<span class="bnts "></span>
+                                </div>
+                                <div class="li-tab">Intrebari raspunsuri<span class="bnts "></span></div>
+                                <div class="li-tab">Formați politici contabile<span class="bnts "></span></div>
+                                <div class="li-tab">Lista verificare SF<span class="bnts "></span></div>
+                                <div class="li-tab">Lista verificare RM<span class="bnts "></span></div>
                             </div>
                             <div class="tabs-content">
                                 <div class="item-tab display-block-tabs general__styles">
@@ -228,8 +229,10 @@
                                                 $subscription = auth()->user()->activeSubscription($service->id);
                                             @endphp
                                             @if($subscription)
-                                                <p class="for_info">Data de inceput a abonamentului : {{ format_date($subscription->started_at) }}.<br>
-                                                    Data de sfirsit a abonamentului : {{ format_date($subscription->expired_at) }}.</p>
+                                                <p class="for_info">Data de inceput a abonamentului
+                                                    : {{ format_date($subscription->started_at) }}.<br>
+                                                    Data de sfirsit a abonamentului
+                                                    : {{ format_date($subscription->expired_at) }}.</p>
                                             @endif
 
                                             <p>La efectuarea plății, vă rugăm să indicați ID-ul personal din
@@ -245,6 +248,103 @@
                                         </div>
                                     </div>
                                 @endforeach
+                                <div class="item-tab general__styles">
+                                    <div class="box-sub-tab">
+                                            <div class="post-images"
+                                                 style="background-image: url('{{ asset('assets/imgs/contabile__personal.png') }}')">
+                                                <p class="information" style="text-align: center">Cabinet personal</p>
+                                            </div>
+                                            <br><span
+                                                style="font-size: 16px;  position: absolute;  margin-top: -15px; font-weight: 700;color: #3c5a98;">ID Personal: {{ auth()->id() }}</span>
+                                            <br>
+                                            <span style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                        lang="ro-RO">Prin înregistrarea la serviciul respectiv dvs. primiți acces general gratuit la diferite informații și materiale pregătite și publicate de echipa paginii </span></span></span><span
+                                                style="color: #0000ff;"><u><a href="http://www.contabilsef.md/"><span
+                                                            style="font-family: Arial, serif;"><span lang="ro-RO">www.contabilsef.md</span></span></a></u></span><span
+                                                style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                        lang="ro-RO">. </span></span></span><br>
+                                            <br>
+                                            <span style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                        lang="ro-RO">Pentru orice întrebări sau detalii suplimentare, ne puteți contacta prin intermediul e-mailului office@contabilsef.md sau la numărul de telefon (022) 22-49-37.</span></span></span>
+
+                                            <div class="take-decizion" style="display: none">
+                                                <a onclick="$('#deleteProfile').submit()">Închide contul</a>
+                                            </div>
+                                            <p class="message"></p>
+                                        <br>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>Data comenzii</th>
+                                                <th>Denumirea serviciului</th>
+                                                <th>Statutul comenzii</th>
+                                                <th>Suma</th>
+                                                <th>Documente</th>
+                                                <th>Data start</th>
+                                                <th>Data expirării</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach(auth()->user()->payments as $payment)
+                                                <tr>
+                                                    <th scope="row">{{ format_date($payment->created_at) }}</th>
+                                                    <td>{{ $payment->subscription->service->name }}, abonament {{ $payment->subscription->package->name }}</td>
+                                                    <td>{{ $payment->subscription->status() }}</td>
+                                                    <td>{{ number_format($payment->payed_amount, 2) }}</td>
+                                                    <td><a target="_blank" href="{{$payment->documents()['url']}}">{{ $payment->documents()['title'] }}</a></td>
+                                                    <td>{{ format_date($payment->subscription->started_at) }}</td>
+                                                    <td>{{ format_date($payment->subscription->expired_at) }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="item-tab general__styles">
+                                    <div class="box-sub-tab">
+                                        <div class="post-images"
+                                             style="background-image: url('{{ asset('assets/imgs/contabile__personal.png') }}')">
+                                            <p class="information" style="text-align: center">Cabinet personal</p>
+                                        </div>
+                                        <br><span
+                                            style="font-size: 16px;  position: absolute;  margin-top: -15px; font-weight: 700;color: #3c5a98;">ID Personal: {{ auth()->id() }}</span>
+                                        <br>
+                                        <span style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                    lang="ro-RO">Prin înregistrarea la serviciul respectiv dvs. primiți acces general gratuit la diferite informații și materiale pregătite și publicate de echipa paginii </span></span></span><span
+                                            style="color: #0000ff;"><u><a href="http://www.contabilsef.md/"><span
+                                                        style="font-family: Arial, serif;"><span lang="ro-RO">www.contabilsef.md</span></span></a></u></span><span
+                                            style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                    lang="ro-RO">. </span></span></span><br>
+                                        <br>
+                                        <span style="color: #333333;"><span style="font-family: Arial, serif;"><span
+                                                    lang="ro-RO">Pentru orice întrebări sau detalii suplimentare, ne puteți contacta prin intermediul e-mailului office@contabilsef.md sau la numărul de telefon (022) 22-49-37.</span></span></span>
+
+                                        <div class="take-decizion" style="display: none">
+                                            <a onclick="$('#deleteProfile').submit()">Închide contul</a>
+                                        </div>
+                                        <p class="message"></p>
+                                        <br>
+                                        @php
+                                            $posts = auth()->user()->posts()->get();
+                                        @endphp
+                                        <table id="tableReadUnread" class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Title</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach(auth()->user()->posts()->paginate() as $post)
+                                                <th scope="row">{{ $post->id }}</th>
+                                                <td><a target="_blank" href="{{ $post->post_url }}">{{ $post->title }}</a></td>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -268,4 +268,18 @@ class Post extends Model
         return $this->canBeSeenBy($user);
 
     }
+
+    public function canBeMarkedAsSeenBy(?User  $user = null)
+    {
+        $postService = $this->subscriptionServices()->whereHas('packages', function ($query) {
+            $query->whereHas('options', function ($query) {
+                $query->where('alias', 'mark_as_read_unread');
+            });
+        })->first();
+
+        if ($postService) {
+            return $this->canBeSeenBy($user);
+        }
+        return  false;
+    }
 }

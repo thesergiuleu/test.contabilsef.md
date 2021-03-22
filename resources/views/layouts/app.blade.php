@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('layouts.header')
+<style>
+    .button-as-link {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        /*optional*/
+        font-family: arial, sans-serif;
+        /*input has OS specific font-family*/
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .form-button {
+        font-size: 15px;
+        font-weight: 500;
+        color: #fefefe;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+</style>
 <body>
-
 <section id="main_container">
     <nav class="nav">
-        <div class="fluide-nav">
+        <div style="width: 100%" class="fluide-nav">
             <div class="kat-container">
                 <div class="content-nav">
                     <div class="post__nav">
@@ -26,12 +52,30 @@
                     <div class="post-nav icons-mobile">
 
                         @guest
-                            |<a href="{{ route('login') }}">Autentificare</a>|<a href="{{ route('register') }}">Înregistrare</a>|
+                            |<a href="{{ route('login') }}">Autentificare</a>|<a href="{{ route('register') }}">Înregistrare</a>
+                            |
                         @endguest
 
                         @auth('web')
-                                <a href="{{ auth()->user()->role_id == \TCG\Voyager\Models\Role::where('name', 'admin')->first()->id ? config('app.admin_url') : route('profile') }}"> <span>{{ auth()->user()->name }}</span> </a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span>{{ auth()->user()->name }}</span>
+                                </a>
+                                <ul style="background-color: #3c5a98" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a style="text-decoration: none" href="{{ auth()->user()->role_id == \TCG\Voyager\Models\Role::where('name', 'admin')->first()->id ? config('app.admin_url') : route('profile') }}">Profile</a>
+                                    </li>
+                                    <li>
+                                        <form class="form-button" method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button class="button-as-link" type="submit">
+                                                <span> Deconectare </span>
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                         @endauth
+
                     </div>
                 </div>
             </div>

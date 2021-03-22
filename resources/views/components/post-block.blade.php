@@ -9,7 +9,13 @@
     <div class="box-posts" style="margin-bottom: 0">
         <h1 class="title-select">{{ $component['data']->title }}</h1>
     </div>
-
+    @if($component['data']->canBeSeen(auth()->user()) && $component['data']->canBeMarkedAsSeenBy(auth()->user()))
+        @if(auth()->user()->hasSeen($component['data']))
+            <span title="Marcați articolul ca necitit, Lista articolelor citite o puteți găsi în cabinetul personal" onclick="markAsUnRead('{{ route('post.mark_as_un_seen', $component['data']->id) }}')" class="categor" style="float: right; cursor: pointer">Articol citit</span>
+        @else
+            <span title="Marcați articolul ca citit, Lista articolelor citite o puteți găsi în cabinetul personal" onclick="markAsRead('{{ route('post.mark_as_seen', $component['data']->id) }}')" class="categor" style="float: right; cursor: pointer">Marcați citit</span>
+        @endif
+    @endif
     @include('layouts.common.under-title', ['options' => $component['options'], 'item' => $component['data']])
     <div class="sub_men padding-null container-p"
         @if((bool)$component['data']->cant_copy)
