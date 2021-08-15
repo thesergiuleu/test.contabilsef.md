@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -54,5 +55,10 @@ class Controller extends BaseController
     protected function getData(Collection $collection, $limit = 4): Collection
     {
         return $collection->chunk($limit);
+    }
+
+    public function responseOk($data): JsonResponse
+    {
+        return response()->json($data);
     }
 }

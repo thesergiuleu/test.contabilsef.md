@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\GeneralsController;
+use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\PostImportController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,22 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::group(['prefix' => 'v1.0'], function () {
+
+    Route::get('menu', [GeneralsController::class, 'menu']);
+
+    Route::prefix('posts')->group(function () {
+        Route::get('', [PostsController::class, 'index']);
+        Route::get('{slug}', [PostsController::class, 'show']);
+        Route::get('category/{slug}', [PostsController::class, 'getPostsByCategorySlug']);
+    });
+    Route::prefix('categories')->group(function () {
+        Route::get('', [CategoriesController::class, 'index']);
+        Route::get('children/{slug}', [CategoriesController::class, 'getCategoryChildren']);
+        Route::get('{slug}', [CategoriesController::class, 'show']);
+    });
+});
 Route::get('users', [PostImportController::class, 'users']);
 Route::get('categories', [PostImportController::class, 'categories']);
 Route::get('pages', [PostImportController::class, 'pages']);

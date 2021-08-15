@@ -161,6 +161,10 @@ class Category extends Model
 
     protected $fillable = ['slug', 'name'];
 
+    protected $appends = [
+        'parent_slug'
+    ];
+
     public function posts()
     {
         return $this->hasMany(Post::class)
@@ -206,5 +210,10 @@ class Category extends Model
                     ->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'))
                     ->orderBy(DB::raw('DATE(event_date)'));
             });
+    }
+
+    public function getParentSlugAttribute()
+    {
+        return $this->parent_category->slug;
     }
 }
