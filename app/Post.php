@@ -113,6 +113,14 @@ class Post extends Model
     protected $translatable = ['title', 'seo_title', 'views', 'privacy', 'body', 'slug', 'meta_description', 'meta_keywords', 'emails'];
     protected $guarded = [];
 
+    protected $appends = [
+        'content'
+    ];
+
+    protected $hidden = [
+        'body'
+    ];
+
     public function save(array $options = [])
     {
         // If no author has been assigned, assign the current user's id as the author of the post
@@ -281,5 +289,10 @@ class Post extends Model
             return $this->canBeSeenBy($user);
         }
         return  false;
+    }
+
+    public function getContentAttribute()
+    {
+        return find_glossary_terms($this->body);
     }
 }
