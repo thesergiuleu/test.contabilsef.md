@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Category;
 use App\Page;
+use App\Services\Pages\HomePageService;
 
 class PageController extends SiteBaseController
 {
@@ -82,5 +83,10 @@ class PageController extends SiteBaseController
         $this->setPageViewData($slug, $page);
 
         return view('single', $this->viewData);
+    }
+
+    public function getHomePage(HomePageService $pageService): array
+    {
+        return $pageService->getPage();
     }
 }

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "ext-dom": "*",
         "ext-json": "*",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "barryvdh/laravel-ide-helper": "^2.7",
@@ -16,10 +17,10 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
+        "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.0",
-        "tcg/voyager": "^1.4",
         "mikemclin/laravel-wp-password": "~2.0.1",
-        "ext-dom": "*"
+        "tcg/voyager": "^1.4"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

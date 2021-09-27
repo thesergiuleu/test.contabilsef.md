@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\HasApiTokens;
 use TCG\Voyager\Models\Role;
 
 /**
@@ -67,7 +68,7 @@ use TCG\Voyager\Models\Role;
  */
 class User extends \TCG\Voyager\Models\User
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

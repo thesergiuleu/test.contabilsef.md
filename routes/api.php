@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostImportController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::get('posts', [PostImportController::class, 'posts']);
 Route::get('glossary', [PostImportController::class, 'glossary']);
 Route::get('forms', [PostImportController::class, 'forms']);
 
+Route::prefix('pages')->group(function () {
+    Route::get('home', [PageController::class, 'getHomePage']);
+});
 
 
 
