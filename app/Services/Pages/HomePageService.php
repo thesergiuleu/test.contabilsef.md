@@ -46,10 +46,10 @@ class HomePageService implements PageInterface
                     ],
                     [
                         'name' => 'Contabil Șef',
-                        'is_name_displayed' => true,
                         'type' => 'posts',
                         'data' => new InstruireCalendarCollection(Post::query()->limit(5)->get()),
                         'config' => [
+                            'is_name_displayed' => true,
                             'grid' => false,
                             'with_header' => true,
                             'with_images' => true
