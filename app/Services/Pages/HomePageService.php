@@ -14,24 +14,27 @@ class HomePageService implements PageInterface
                 'sections' => [
                     [
                         'name' => 'Link-uri utile',
-                        'is_name_displayed' => false,
                         'type' => 'categories',
                         'data' => [],
-                        'config' => []
+                        'config' => [
+                            'is_name_displayed' => false,
+                        ]
                     ],
                     [
                         'name' => 'Top cele mai citite',
                         'type' => 'posts',
-                        'is_name_displayed' => true,
                         'data' => [],
-                        'config' => []
+                        'config' => [
+                            'is_name_displayed' => true,
+                        ]
                     ],
                     [
                         'name' => 'Calendar',
                         'type' => 'calendar',
-                        'is_name_displayed' => false,
                         'data' => new InstruireCalendarCollection(Post::instruire()->limit(5)->get()),
-                        'config' => []
+                        'config' => [
+                            'is_name_displayed' => false,
+                        ]
                     ]
                 ]
             ],
@@ -39,10 +42,11 @@ class HomePageService implements PageInterface
                 'sections' => [
                     [
                         'name' => 'Banner',
-                        'is_name_displayed' => false,
                         'type' => 'banner',
                         'data' => [],
-                        'config' => []
+                        'config' => [
+                            'is_name_displayed' => false,
+                        ]
                     ],
                     [
                         'name' => 'Contabil Șef',
@@ -57,10 +61,10 @@ class HomePageService implements PageInterface
                     ],
                     [
                         'name' => 'Noutăți',
-                        'is_name_displayed' => true,
                         'type' => 'posts',
                         'data' => new InstruireCalendarCollection(Post::query()->limit(5)->get()),
                         'config' => [
+                            'is_name_displayed' => true,
                             'grid' => false,
                             'with_header' => true,
                             'with_images' => true
@@ -68,10 +72,10 @@ class HomePageService implements PageInterface
                     ],
                     [
                         'name' => 'Articole',
-                        'is_name_displayed' => true,
                         'type' => 'posts',
                         'data' => new InstruireCalendarCollection(Post::query()->limit(5)->get()),
                         'config' => [
+                            'is_name_displayed' => true,
                             'grid' => false,
                             'with_header' => true,
                             'with_images' => false
