@@ -31,7 +31,8 @@ class GeneralResource extends JsonResource
             'meta_description' => $this->getMetaDescription(),
             'meta_keywords' => $this->getMetaKeywords(),
             'category_id' => $this->getCategoryId(),
-            'is_new' => $this->getIsNew()
+            'is_new' => $this->getIsNew(),
+            'category_slug' => $this->getCategorySlug()
         ];
     }
 
@@ -115,5 +116,10 @@ class GeneralResource extends JsonResource
         $diff = Carbon::now()->diffInDays(Carbon::parse($this->resource->created_at));
 
         return $diff <= 5;
+    }
+
+    private function getCategorySlug()
+    {
+        return $this->resource->slug ?? null;
     }
 }

@@ -119,3 +119,25 @@ function find_glossary_terms($string)
 
     return $content;
 }
+function getSection(string $name, string $type, $items = [], array $config = []): array
+{
+    return [
+        'name' => $name,
+        'type' => $type,
+        'data' => $items,
+        'config' => array_merge([
+            'is_name_displayed' => false,
+            'grid' => false,
+            'with_header' => false,
+            'with_images' => false,
+            'with_date' => false,
+            'with_external_author' => false,
+            'with_views' => false,
+            'with_comments_count' => false,
+            'with_privacy' => false,
+            'with_category' => false,
+            'with_excerpt' => false,
+            'with_see_more' => false
+        ], $config)
+    ];
+}
