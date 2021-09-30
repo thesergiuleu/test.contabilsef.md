@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Category;
 use App\Page;
+use App\Services\Pages\AboutPageService;
 use App\Services\Pages\HomePageService;
+use App\Services\Pages\PageInterface;
 
 class PageController extends SiteBaseController
 {
@@ -85,8 +87,20 @@ class PageController extends SiteBaseController
         return view('single', $this->viewData);
     }
 
-    public function getHomePage(HomePageService $pageService): array
+    public function getPage(string $page = 'home'): array
     {
+        switch ($page) {
+            case 'about':
+                $service = AboutPageService::class;
+                break;
+            case 'home':
+            default:
+                $service = HomePageService::class;
+                break;
+        }
+
+        /** @var PageInterface $pageService */
+        $pageService = app()->make($service);
         return $pageService->getPage();
     }
 }

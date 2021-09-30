@@ -43,7 +43,7 @@ Route::get('glossary', [PostImportController::class, 'glossary']);
 Route::get('forms', [PostImportController::class, 'forms']);
 
 Route::prefix('pages')->group(function () {
-    Route::get('home', [PageController::class, 'getHomePage']);
+    Route::get('{page}', [PageController::class, 'getPage']);
 });
 
 
