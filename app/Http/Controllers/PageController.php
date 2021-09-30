@@ -7,7 +7,7 @@ use App\Category;
 use App\Page;
 use App\Services\Pages\AboutPageService;
 use App\Services\Pages\HomePageService;
-use App\Services\Pages\PageInterface;
+use App\Services\Pages\NewsPageService;
 
 class PageController extends SiteBaseController
 {
@@ -93,13 +93,16 @@ class PageController extends SiteBaseController
             case 'about':
                 $service = AboutPageService::class;
                 break;
+            case 'noutăți':
+                $service = NewsPageService::class;
+                break;
             case 'home':
             default:
                 $service = HomePageService::class;
                 break;
         }
 
-        /** @var PageInterface $pageService */
+        /** @var Page $pageService */
         $pageService = app()->make($service);
         return $pageService->getPage();
     }

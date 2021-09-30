@@ -6,7 +6,7 @@ use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
 
-class HomePageService implements PageInterface
+class HomePageService extends AbstractPage
 {
     public function getPage(): array
     {
@@ -20,24 +20,24 @@ class HomePageService implements PageInterface
         return [
             'sidebar' => [
                 'sections' => [
-                    getSection('Link-uri utile', 'categories'),
-                    getSection('Noutăți', 'categories', $newsCategoriesData, [
+                    $this->getSection('Link-uri utile', 'categories'),
+                    $this->getSection('Noutăți', 'categories', $newsCategoriesData, [
                         'is_name_displayed' => true
                     ]),
-                    getSection('Top cele mai citite', 'posts', $topData, [
+                    $this->getSection('Top cele mai citite', 'posts', $topData, [
                         'is_name_displayed' => true,
                         'with_header' => true,
                         'with_images' => true,
                         'with_date' => true,
                         'with_external_author' => true,
                     ]),
-                    getSection('Calendar', 'calendar', $calendarData),
+                    $this->getSection('Calendar', 'calendar', $calendarData),
                 ]
             ],
             'main' => [
                 'sections' => [
-                    getSection('Banner', 'banner'),
-                    getSection('Contabil Șef', 'posts', $contabilSefData, [
+                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Contabil Șef', 'posts', $contabilSefData, [
                         'is_name_displayed' => true,
                         'with_header' => true,
                         'with_images' => true,
@@ -46,7 +46,7 @@ class HomePageService implements PageInterface
                         'with_excerpt' => true,
                         'with_see_more' => true
                     ]),
-                    getSection('Noutăți', 'posts', $newsData, [
+                    $this->getSection('Noutăți', 'posts', $newsData, [
                         'is_name_displayed' => true,
                         'with_header' => true,
                         'with_images' => true,
@@ -55,7 +55,7 @@ class HomePageService implements PageInterface
                         'with_excerpt' => true,
                         'with_see_more' => true
                     ]),
-                    getSection('Articole', 'posts', $articlesData, [
+                    $this->getSection('Articole', 'posts', $articlesData, [
                         'is_name_displayed' => true,
                         'with_header' => true,
                         'with_images' => true,

@@ -6,7 +6,7 @@ use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
 
-class AboutPageService implements PageInterface
+class AboutPageService extends AbstractPage
 {
 
     public function getPage(): array
@@ -18,15 +18,13 @@ class AboutPageService implements PageInterface
         return [
             'sidebar' => [
                 'sections' => [
-                    getSection('Despre', 'categories', $aboutUsCategories, [
+                    $this->getSection('Despre', 'categories', $aboutUsCategories, [
                         'is_name_displayed' => true,
                     ]),
-                    getSection('Calendar', 'calendar', $calendarData),
+                    $this->getSection('Calendar', 'calendar', $calendarData),
                 ]
             ],
-            'main' => [
-                'sections' => []
-            ]
+            'main' => null
         ];
     }
 }
