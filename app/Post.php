@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Translation;
 use TCG\Voyager\Traits\Resizable;
 use TCG\Voyager\Traits\Translatable;
@@ -238,7 +239,7 @@ class Post extends Model
      */
     public function scopeInstruire($query)
     {
-        return $query->whereCategoryId(Category::whereSlug(Category::INSTRUIRE_CATEGORY)->first()->id);
+        return $query->whereCategoryId(Category::whereSlug(Category::INSTRUIRE_CATEGORY)->first()->id)->where(DB::raw('DATE(event_date)'), '>=', Carbon::now()->format('Y-m-d'));
     }
 
     public function subscriptionServices()

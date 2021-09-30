@@ -6,6 +6,7 @@ use App\Banner;
 use App\Category;
 use App\Page;
 use App\Services\Pages\AboutPageService;
+use App\Services\Pages\ArticlesPageService;
 use App\Services\Pages\HomePageService;
 use App\Services\Pages\NewsPageService;
 
@@ -95,6 +96,9 @@ class PageController extends SiteBaseController
                 break;
             case 'noutăți':
                 $service = NewsPageService::class;
+                break;
+            case 'articles':
+                $service = ArticlesPageService::class;
                 break;
             case 'home':
             default:

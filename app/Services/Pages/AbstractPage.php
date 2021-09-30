@@ -2,7 +2,11 @@
 
 namespace App\Services\Pages;
 
+use App\Category;
+use App\Http\Resources\GeneralCollection;
+use App\Post;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 abstract class AbstractPage
 {
@@ -92,6 +96,50 @@ abstract class AbstractPage
                 'with_see_more' => false,
                 'with_filters' => false,
             ], $config)
+        ];
+    }
+
+    /**
+     * @param $category
+     * @return Collection|mixed
+     */
+    protected function getPosts($category)
+    {
+        return $category ? $category
+            ->posts()
+            ->orderBy('created_at', 'desc')
+            ->paginate()
+            ->merge($category
+                ->subPosts()
+                ->orderBy('created_at', 'desc')
+                ->paginate()
+            ) : new Collection([]);
+    }
+
+    protected function getGeneralListLayout($category): array
+    {
+        /** @var Category $parent */
+        $parent = Category::with(['posts', 'subPosts'])->where('slug', $category)->first();
+        $articleCategories =  $parent ? new GeneralCollection(Category::whereParentId($parent->id)->get()) : [];
+        $calendarData = new GeneralCollection(Post::instruire()->limit(5)->get());
+        $posts = $this->getPosts($parent);
+
+        return [
+            'sidebar' => [
+                'sections' => [
+                    $this->getSection($parent->name ?? 'Categorii', 'categories', $articleCategories, [
+                        'is_name_displayed' => true,
+                    ]),
+                    $this->getSection('Calendar', 'calendar', $calendarData),
+                ]
+            ],
+            'main' => [
+                'sections' => [
+                    $this->getSection($parent->name ?? "Postări", 'posts', $posts, [
+                        'is_name_displayed' => true,
+                    ])
+                ]
+            ]
         ];
     }
 }
