@@ -94,7 +94,7 @@ class PageController extends SiteBaseController
             case 'about':
                 $service = AboutPageService::class;
                 break;
-            case 'noutăți':
+            case 'news':
                 $service = NewsPageService::class;
                 break;
             case 'articles':
