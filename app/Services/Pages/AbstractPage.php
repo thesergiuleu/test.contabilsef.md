@@ -137,6 +137,7 @@ abstract class AbstractPage
                 'sections' => [
                     $this->getSection($parent->name ?? "Postări", 'posts', $posts, [
                         'is_name_displayed' => true,
+                        'with_filters' => true
                     ])
                 ]
             ]
