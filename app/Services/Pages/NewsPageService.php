@@ -20,7 +20,6 @@ class NewsPageService extends AbstractPage
                 'sections' => [
                     $this->getSection('Noutăți', 'categories', $newsCategoriesData, [
                         'is_name_displayed' => true,
-                        'with_filters' => true
                     ])
                 ]
             ]
