@@ -17,22 +17,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Auth::routes();
 
-Route::group(['prefix' => 'v1.0'], function () {
-
-    Route::get('menu', [GeneralsController::class, 'menu']);
-
-    Route::prefix('posts')->group(function () {
-        Route::get('', [PostsController::class, 'index']);
-        Route::get('{slug}', [PostsController::class, 'show']);
-        Route::get('category/{slug}', [PostsController::class, 'getPostsByCategorySlug']);
-    });
-    Route::prefix('categories')->group(function () {
-        Route::get('', [CategoriesController::class, 'index']);
-        Route::get('children/{slug}', [CategoriesController::class, 'getCategoryChildren']);
-        Route::get('{slug}', [CategoriesController::class, 'show']);
-    });
+Route::group(['prefix' => 'auth'], function () {
+   Route::post('login', [\App\Http\Controllers\Auth\LoginController::class,'login']);
 });
+
 Route::get('users', [PostImportController::class, 'users']);
 Route::get('categories', [PostImportController::class, 'categories']);
 Route::get('pages', [PostImportController::class, 'pages']);
@@ -45,6 +35,8 @@ Route::get('forms', [PostImportController::class, 'forms']);
 Route::prefix('pages')->group(function () {
     Route::get('{page}', [PageController::class, 'getPage']);
 });
+
+Route::get('posts/{slug}', [PostsController::class, 'show']);
 
 
 

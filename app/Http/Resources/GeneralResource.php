@@ -2,19 +2,26 @@
 
 namespace App\Http\Resources;
 
+use App\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
 
 class GeneralResource extends JsonResource
 {
     /**
+     * @var mixed|null
+     */
+    private $user;
+
+    /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
     {
+        $this->user = getAuthUser();
         return [
             'id' => $this->resource->id,
             'title' => $this->getTitle(),
@@ -32,7 +39,8 @@ class GeneralResource extends JsonResource
             'meta_keywords' => $this->getMetaKeywords(),
             'category_id' => $this->getCategoryId(),
             'is_new' => $this->getIsNew(),
-            'category_slug' => $this->getCategorySlug()
+            'category_slug' => $this->getCategorySlug(),
+            'state' => $this->getState()
         ];
     }
 
@@ -63,7 +71,11 @@ class GeneralResource extends JsonResource
 
     private function getContent()
     {
-        return $this->resource->body ? find_glossary_terms($this->resource->body) : "";
+        $body = $this->resource->body ?: "";
+        if ($this->resource instanceof Post) {
+            $body = $this->resource->canBeSeen($this->user) ? $body : $this->resource->getShort(200);
+        }
+        return find_glossary_terms($body);
     }
 
     private function getCreatedAt()
@@ -121,5 +133,36 @@ class GeneralResource extends JsonResource
     private function getCategorySlug()
     {
         return $this->resource->slug ?? null;
+    }
+
+    private function getState()
+    {
+        if (!$this->resource instanceof Post) {
+            return [
+                'status' => 'free',
+                'meta' => []
+            ];
+        }
+
+        $canBeSeen = $this->resource->canBeSeen($this->user);
+
+        if (!$canBeSeen) {
+            if ($this->resource->subscriptionServices()->exists()) {
+                return [
+                    'status' => 'not_free',
+                    'meta' => $this->resource->getPostSubscriptionServicesJson()
+                ];
+            } else {
+                return [
+                    'status' => 'free_just_login',
+                    'meta' => []
+                ];
+            }
+        }
+
+        return [
+            'status' => 'free',
+            'meta' => []
+        ];
     }
 }

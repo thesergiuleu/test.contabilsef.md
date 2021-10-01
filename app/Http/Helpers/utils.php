@@ -3,6 +3,7 @@
 use App\Glosary;
 use App\Post;
 use Carbon\Carbon;
+use Laravel\Sanctum\PersonalAccessToken;
 
 function sidebarCalendar()
 {
@@ -118,4 +119,11 @@ function find_glossary_terms($string)
     $content = str_replace('</table>', '</table></div>', $content);
 
     return $content;
+}
+
+function getAuthUser()
+{
+    $tokenStr = str_replace('Bearer ', '', request()->header('Authorization'));
+    $token = PersonalAccessToken::findToken($tokenStr);
+    return $token->tokenable ?? null;
 }

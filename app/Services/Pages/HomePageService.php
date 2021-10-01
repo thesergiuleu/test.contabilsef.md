@@ -12,7 +12,6 @@ class HomePageService extends AbstractPage
     {
         $newsCategoriesData =  new GeneralCollection(Category::whereParentId(Category::whereSlug(Category::NEWS_CATEGORY)->first()->id)->get());
         $topData = new GeneralCollection(Post::instruire()->limit(5)->get());
-        $calendarData = new GeneralCollection(Post::instruire()->limit(5)->get());
         $contabilSefData = new GeneralCollection(Post::query()->limit(5)->get());
         $newsData = new GeneralCollection(Post::query()->limit(5)->get());
         $articlesData = new GeneralCollection(Post::query()->limit(5)->get());
@@ -31,7 +30,7 @@ class HomePageService extends AbstractPage
                         'with_date' => true,
                         'with_external_author' => true,
                     ]),
-                    $this->getSection('Calendar', 'calendar', $calendarData),
+                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]
             ],
             'main' => [

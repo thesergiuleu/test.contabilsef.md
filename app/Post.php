@@ -270,6 +270,13 @@ class Post extends Model
         return rtrim($subscriptionServiceStr, ', ');
     }
 
+    public function getPostSubscriptionServicesJson()
+    {
+        if (!$this->subscriptionServices()->exists()) return [];
+
+        return $this->subscriptionServices()->get()->toArray();
+    }
+
     public function canBeSeen(?User $user = null)
     {
         if (!$user) return (bool)$this->privacy && $this->canBeSeenBy();

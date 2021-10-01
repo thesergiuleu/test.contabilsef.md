@@ -121,7 +121,6 @@ abstract class AbstractPage
         /** @var Category $parent */
         $parent = Category::with(['posts', 'subPosts'])->where('slug', $category)->first();
         $articleCategories =  $parent ? new GeneralCollection(Category::whereParentId($parent->id)->get()) : [];
-        $calendarData = new GeneralCollection(Post::instruire()->limit(5)->get());
         $posts = $this->getPosts($parent);
 
         return [
@@ -130,7 +129,7 @@ abstract class AbstractPage
                     $this->getSection($parent->name ?? 'Categorii', 'categories', $articleCategories, [
                         'is_name_displayed' => true,
                     ]),
-                    $this->getSection('Calendar', 'calendar', $calendarData),
+                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]
             ],
             'main' => [
@@ -144,5 +143,10 @@ abstract class AbstractPage
                 ]
             ]
         ];
+    }
+
+    protected function getCalendarData(): GeneralCollection
+    {
+        return new GeneralCollection(Post::instruire()->limit(5)->get());
     }
 }

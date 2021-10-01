@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Services\Pages\SinglePostPageService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -17,11 +18,13 @@ class PostsController extends Controller
         return $this->responseOk($posts);
     }
 
-    public function show($slug): JsonResponse
+    public function show($slug): array
     {
         $post = Post::whereSlug($slug)->firstOrFail();
-
-        return $this->responseOk($post);
+        /** @var SinglePostPageService $singlePostPageService */
+        $singlePostPageService = app()->make(SinglePostPageService::class);
+        $singlePostPageService->setPost($post);
+        return $singlePostPageService->getPage();
     }
 
     public function getPostsByCategorySlug($slug): JsonResponse
