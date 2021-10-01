@@ -6,9 +6,12 @@ use App\Banner;
 use App\Category;
 use App\Page;
 use App\Services\Pages\AboutPageService;
+use App\Services\Pages\AbstractPage;
 use App\Services\Pages\ArticlesPageService;
+use App\Services\Pages\ContactPageService;
 use App\Services\Pages\HomePageService;
 use App\Services\Pages\NewsPageService;
+use App\Services\Pages\SeminarsPageService;
 
 class PageController extends SiteBaseController
 {
@@ -100,13 +103,19 @@ class PageController extends SiteBaseController
             case 'articles':
                 $service = ArticlesPageService::class;
                 break;
+            case 'education':
+                $service = SeminarsPageService::class;
+                break;
+            case 'contact':
+                $service = ContactPageService::class;
+                break;
             case 'home':
             default:
                 $service = HomePageService::class;
                 break;
         }
 
-        /** @var Page $pageService */
+        /** @var AbstractPage $pageService */
         $pageService = app()->make($service);
         return $pageService->getPage();
     }
