@@ -12,9 +12,9 @@ class HomePageService extends AbstractPage
     {
         $newsCategoriesData =  new GeneralCollection(Category::whereParentId(Category::whereSlug(Category::NEWS_CATEGORY)->first()->id)->get());
         $topData = new GeneralCollection(Post::query()->orderByDesc('views')->limit(7)->get());
-        $contabilSefData = new GeneralCollection(Post::query()->where('category_id', Category::CONTABIL_SEF_NEWS_CATEGORY)->limit(6)->get());
-        $newsData = new GeneralCollection(Post::query()->where('category_id', Category::GENERAL_NEWS_CATEGORY)->limit(6)->get());
-        $articlesData = new GeneralCollection(Post::query()->where('category_id', Category::ARTICOLE)->limit(6)->get());
+        $contabilSefData = new GeneralCollection(Post::query()->where('category_id', Category::whereSlug(Category::CONTABIL_SEF_NEWS_CATEGORY)->first()->id)->limit(6)->get());
+        $newsData = new GeneralCollection(Post::query()->where('category_id', Category::whereSlug(Category::CONTABIL_SEF_NEWS_CATEGORY)->first()->id)->limit(6)->get());
+        $articlesData = new GeneralCollection(Post::query()->where('category_id', Category::whereSlug(Category::ARTICLES_CATEGORY)->first()->id)->limit(6)->get());
 
         return [
             'sidebar' => [
