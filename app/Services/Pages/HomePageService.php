@@ -14,7 +14,7 @@ class HomePageService extends AbstractPage
         $topData = new GeneralCollection(Post::query()->orderByDesc('views')->limit(7)->get());
         $contabilSefData = new GeneralCollection(Post::query()->where('category_id', Category::CONTABIL_SEF_NEWS_CATEGORY)->limit(6)->get());
         $newsData = new GeneralCollection(Post::query()->where('category_id', Category::GENERAL_NEWS_CATEGORY)->limit(6)->get());
-        $articlesData = new GeneralCollection(Post::query()->limit(5)->get());
+        $articlesData = new GeneralCollection(Post::query()->where('category_id', Category::ARTICOLE)->limit(6)->get());
 
         return [
             'sidebar' => [
