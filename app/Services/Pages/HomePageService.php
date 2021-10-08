@@ -42,7 +42,6 @@ class HomePageService extends AbstractPage
                         'with_images' => true,
                         'with_date' => true,
                         'with_external_author' => true,
-                        'with_excerpt' => true,
                         'with_see_more' => true,
                         'grid' => true
                     ]),
