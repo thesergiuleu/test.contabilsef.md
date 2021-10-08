@@ -11,9 +11,9 @@ class HomePageService extends AbstractPage
     public function getPage(): array
     {
         $newsCategoriesData =  new GeneralCollection(Category::whereParentId(Category::whereSlug(Category::NEWS_CATEGORY)->first()->id)->get());
-        $topData = new GeneralCollection(Post::instruire()->limit(5)->get());
-        $contabilSefData = new GeneralCollection(Post::query()->limit(5)->get());
-        $newsData = new GeneralCollection(Post::query()->limit(5)->get());
+        $topData = new GeneralCollection(Post::query()->orderByDesc('views')->limit(7)->get());
+        $contabilSefData = new GeneralCollection(Post::query()->where('category_id', Category::CONTABIL_SEF_NEWS_CATEGORY)->limit(6)->get());
+        $newsData = new GeneralCollection(Post::query()->where('category_id', Category::GENERAL_NEWS_CATEGORY)->limit(6)->get());
         $articlesData = new GeneralCollection(Post::query()->limit(5)->get());
 
         return [
@@ -41,9 +41,9 @@ class HomePageService extends AbstractPage
                         'with_header' => true,
                         'with_images' => true,
                         'with_date' => true,
-                        'with_external_author' => true,
                         'with_see_more' => true,
-                        'grid' => true
+                        'grid' => true,
+                        'with_views' => true
                     ]),
                     $this->getSection('Noutăți', 'posts', $newsData, [
                         'is_name_displayed' => true,
@@ -51,8 +51,10 @@ class HomePageService extends AbstractPage
                         'with_images' => true,
                         'with_date' => true,
                         'with_external_author' => true,
+                        'with_views' => true,
                         'with_excerpt' => true,
-                        'with_see_more' => true
+                        'with_see_more' => true,
+                        'with_comments_count' => true,
                     ]),
                     $this->getSection('Articole', 'posts', $articlesData, [
                         'is_name_displayed' => true,
@@ -61,7 +63,10 @@ class HomePageService extends AbstractPage
                         'with_date' => true,
                         'with_external_author' => true,
                         'with_excerpt' => true,
-                        'with_see_more' => true
+                        'with_see_more' => true,
+                        'with_views' => true,
+                        'with_comments_count' => true,
+                        'with_privacy' => true
                     ])
                 ]
             ]
