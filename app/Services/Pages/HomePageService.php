@@ -43,7 +43,8 @@ class HomePageService extends AbstractPage
                         'with_date' => true,
                         'with_external_author' => true,
                         'with_excerpt' => true,
-                        'with_see_more' => true
+                        'with_see_more' => true,
+                        'grid' => true
                     ]),
                     $this->getSection('Noutăți', 'posts', $newsData, [
                         'is_name_displayed' => true,
