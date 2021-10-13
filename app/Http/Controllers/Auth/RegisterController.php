@@ -104,6 +104,14 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         if ($user) {
+            if (\request()->wantsJson()) {
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $user,
+                    'redirect_url' => route('home'),
+                    'token' => $user->createToken('')->plainTextToken
+                ]);
+            }
             return redirect($request->toArray()['redirect_to'] ?? route('home'));
         }
     }

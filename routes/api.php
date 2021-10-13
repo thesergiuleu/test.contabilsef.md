@@ -3,6 +3,9 @@
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostImportController;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +23,9 @@ use Illuminate\Support\Facades\Route;
 //Auth::routes();
 
 Route::group(['prefix' => 'auth'], function () {
-   Route::post('login', [\App\Http\Controllers\Auth\LoginController::class,'login']);
+   Route::post('login', [LoginController::class,'login']);
+   Route::post('register', [RegisterController::class,'register']);
+   Route::get('user', [UsersController::class, 'getUser'])->middleware('auth:sanctum');
 });
 
 Route::get('users', [PostImportController::class, 'users']);

@@ -121,7 +121,7 @@ abstract class AbstractPage
         /** @var Category $parent */
         $parent = Category::with(['posts', 'subPosts'])->where('slug', $category)->first();
         $articleCategories =  $parent ? new GeneralCollection(Category::whereParentId($parent->id)->get()) : [];
-        $posts = $this->getPosts($parent);
+        $posts = new GeneralCollection($this->getPosts($parent));
 
         return [
             'sidebar' => [
