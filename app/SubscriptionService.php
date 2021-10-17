@@ -32,6 +32,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SubscriptionService extends Model
 {
+    protected $appends = [
+        'service_link'
+    ];
     protected $fillable = ['page_id', 'name', 'description'];
 
     public function pageId() {
@@ -60,5 +63,10 @@ class SubscriptionService extends Model
     public function packages()
     {
         return $this->belongsToMany(Package::class, 'subscription_service_packages');
+    }
+
+    public function getServiceLinkAttribute(): string
+    {
+        return "https://contabilsef.trigraph.dev/service/" . $this->id;
     }
 }

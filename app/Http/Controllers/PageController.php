@@ -109,6 +109,9 @@ class PageController extends SiteBaseController
             case 'contact':
                 $service = ContactPageService::class;
                 break;
+            case 'information':
+                $service = InformationPageService::class;
+                break;
             case 'home':
             default:
                 $service = HomePageService::class;
