@@ -11,7 +11,7 @@ class InformationPageService extends AbstractPage
     public function getPage(): array
     {
         $categories = new GeneralCollection(Category::query()
-            ->where('parent_id', Category::whereSlug(Category::INFORMATII_UTILE)->first()->id)->get());
+            ->where('parent_id', Category::whereSlug(Category::INFORMATII_UTILE_CATEGORY)->first()->id)->get());
 
         return [
             'sidebar' => null,
