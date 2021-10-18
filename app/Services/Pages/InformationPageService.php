@@ -10,7 +10,7 @@ class InformationPageService extends AbstractPage
 {
     public function getPage(): array
     {
-        $categories = new GeneralCollection(Category::query()->whereNotIn('slug', Category::NAV_BAR_PARENT_CATEGORIES)->get());
+        $categories = new GeneralCollection(Category::whereNull('parent_id')->whereNotIn('slug', Category::NAV_BAR_PARENT_CATEGORIES)->get());
 
         return [
             'sidebar' => null,
