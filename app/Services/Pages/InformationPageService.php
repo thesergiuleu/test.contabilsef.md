@@ -2,28 +2,23 @@
 
 namespace App\Services\Pages;
 
+use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
 
 class InformationPageService extends AbstractPage
 {
-
     public function getPage(): array
     {
-        $seminarsData = new GeneralCollection(Post::instruire()->paginate());
+        $categories = new GeneralCollection(Category::query()->whereNotIn('slug', Category::NAV_BAR_PARENT_CATEGORIES)->get());
 
         return [
             'sidebar' => null,
             'main' => [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
-                    $this->getSection('Seminare', 'posts', $seminarsData, [
+                    $this->getSection('Informaţii utile', 'categories', $categories, [
                         'is_name_displayed' => true,
-                        'grid' => true,
-                        'with_images' => true,
-                        'with_external_author' => true,
-                        'with_date' => true,
-                        'with_filters' => true,
+                        'grid' => true
                     ])
                 ]
             ]

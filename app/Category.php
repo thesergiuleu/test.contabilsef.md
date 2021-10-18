@@ -154,6 +154,13 @@ class Category extends Model
         ]
     ];
 
+    const NAV_BAR_PARENT_CATEGORIES = [
+        self::DESPRE_NOI,
+        self::NOUTATI,
+        self::ARTICOLE,
+        self::INSTRUIRE,
+    ];
+
 
     protected $translatable = ['slug', 'name'];
 

@@ -10,6 +10,7 @@ use App\Services\Pages\AbstractPage;
 use App\Services\Pages\ArticlesPageService;
 use App\Services\Pages\ContactPageService;
 use App\Services\Pages\HomePageService;
+use App\Services\Pages\InformationPageService;
 use App\Services\Pages\NewsPageService;
 use App\Services\Pages\SeminarsPageService;
 
