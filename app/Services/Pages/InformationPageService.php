@@ -12,7 +12,7 @@ class InformationPageService extends AbstractPage
     {
         $categories = new GeneralCollection(Category::query()
             ->where('parent_id', Category::whereSlug(Category::INFORMATII_UTILE_CATEGORY)->first()->id)
-            ->where('parent_id', Category::whereSlug(Category::LEGISLATION_CATEGORY)->first()->id)
+            ->orWhere('parent_id', Category::whereSlug(Category::LEGISLATION_CATEGORY)->first()->id)
             ->get());
 
         return [
