@@ -7,6 +7,7 @@ use App\Http\Resources\GeneralCollection;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 
 abstract class AbstractPage
 {
@@ -147,6 +148,9 @@ abstract class AbstractPage
 
     protected function getCalendarData(): GeneralCollection
     {
+        if (Cache::has('seminare')) {
+            return json_decode(Cache::get('seminare'));
+        }
         return new GeneralCollection(Post::instruire()->limit(5)->get());
     }
 }

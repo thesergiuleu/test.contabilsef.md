@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Jobs\CacheSeminare;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -272,6 +273,8 @@ class InstruireController extends VoyagerBaseController
         } else {
             $redirect = redirect()->back();
         }
+
+        dispatch(new CacheSeminare());
 
         return $redirect->with([
             'message' => __('voyager::generic.successfully_updated') . " {$dataType->getTranslatedAttribute('display_name_singular')}",
