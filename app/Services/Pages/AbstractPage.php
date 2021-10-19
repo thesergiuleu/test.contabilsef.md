@@ -108,6 +108,7 @@ abstract class AbstractPage
     {
         return $category ? $category
             ->posts()
+            ->with('category')
             ->orderBy('created_at', 'desc')
             ->paginate(7)
             ->merge($category

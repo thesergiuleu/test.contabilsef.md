@@ -40,7 +40,8 @@ class GeneralResource extends JsonResource
             'category_id' => $this->getCategoryId(),
             'is_new' => $this->getIsNew(),
             'category_slug' => $this->getCategorySlug(),
-            'state' => $this->getState()
+            'state' => $this->getState(),
+            'event_date' => $this->getEventDate()
         ];
     }
 
@@ -164,5 +165,10 @@ class GeneralResource extends JsonResource
             'status' => 'free',
             'meta' => []
         ];
+    }
+
+    private function getEventDate()
+    {
+        return $this->resource->event_date ?? null;
     }
 }
