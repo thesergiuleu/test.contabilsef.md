@@ -10,6 +10,7 @@ class SingleCategoryPageService extends AbstractPage
 {
     /** @var Category $category */
     private $category;
+    private $posts;
 
     public function setCategory($category): SingleCategoryPageService
     {
@@ -17,49 +18,60 @@ class SingleCategoryPageService extends AbstractPage
         return $this;
     }
 
+    public function setAllPosts($posts): SingleCategoryPageService
+    {
+        $this->posts = $posts;
+        return $this;
+    }
+
     public function getPage(): array
     {
-        dd($this->category);
         $category = new GeneralResource($this->category);
+        $this->setAllPosts($this->category->getAllPosts());
+
         return [
-            'sidebar' => [
-                'sections' => [
-                    $this->getSection('Banner', 'banner'),
-                    $this->getSection('Similar din aceiași categorie', 'posts', $this->category->getPosts()->where('id', '!=', $this->category->id)->limit(10)->get(), [
-                        'is_name_displayed' => true,
-                        'with_see_more' => true
-                    ]),
-                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
-                ]
-            ],
+            'sidebar' => $this->getSidebar(),
             'main' => [
-                'sections' => $this->getSinglePostMainSections($category)
+                'sections' => $this->getMainSection($category)
             ]
         ];
     }
 
-    private function getSinglePostMainSections($post): array
+    private function getMainSection($category): array
     {
-        $sections = [
-            $this->getSection($post->title, 'post', $post, [
+        if ($this->posts->isNotEmpty()) {
+            return [
+                $this->getSection($category->name, 'posts', $this->posts, [
+                    'is_name_displayed' => true,
+                    'with_views' => true,
+                    'with_date' => true
+                ])
+            ];
+        }
+        return [
+            $this->getSection($this->category->name, 'categories', $this->category->children, [
                 'is_name_displayed' => true,
-                'with_views' => true,
-                'with_date' => true
-            ])
+            ]),
         ];
+    }
 
-        if ($post->category->slug == Category::INSTRUIRE) {
-            $section = $this->getSection('Înregistrare la seminar', 'seminar_register_form', [], [
-                'is_name_displayed' => true
-            ]);
-        } else {
-            $section = $this->getSection('Comentarii', 'comments_form', $post->comments, [
-                'is_name_displayed' => true
-            ]);
+    /**
+     * @return array
+     */
+    private function getSidebar()
+    {
+        if ($this->posts->isNotEmpty()) {
+            return [
+                'sections' => [
+                    $this->getSection('Banner', 'banner'),
+                    $this->getSection($this->category->name, 'categories', $this->category->children, [
+                        'is_name_displayed' => true,
+                    ]),
+                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
+                ]
+            ];
         }
 
-        array_push($sections,$section);
-
-        return $sections;
+        return null;
     }
 }

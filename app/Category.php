@@ -223,4 +223,18 @@ class Category extends Model
     {
         return $this->parent_category->slug;
     }
+
+    public function getAllPosts()
+    {
+        return $this
+            ->getPosts()
+            ->with('category')
+            ->orderBy('created_at', 'desc')
+            ->paginate(7)
+            ->merge($this
+                ->subPosts()
+                ->orderBy('created_at', 'desc')
+                ->paginate(8)
+            );
+    }
 }
