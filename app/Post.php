@@ -101,6 +101,8 @@ class Post extends Model
     use Translatable;
     use Resizable;
 
+    protected $dates = ['event_date'];
+
     const PUBLISHED = 'PUBLISHED';
     const PENDING = 'PENDING';
     const DRAFT = 'DRAFT';
