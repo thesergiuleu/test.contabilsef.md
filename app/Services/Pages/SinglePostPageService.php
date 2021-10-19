@@ -24,7 +24,7 @@ class SinglePostPageService extends AbstractPage
             'sidebar' => [
                 'sections' => [
                     $this->getSection('Banner', 'banner'),
-                    $this->getSection('Similar din aceiași categorie', 'posts', $this->post->category->getPosts(), [
+                    $this->getSection('Similar din aceiași categorie', 'posts', $this->post->category->getPosts()->limit(10)->get(), [
                         'is_name_displayed' => true,
                         'with_see_more' => true
                     ]),
