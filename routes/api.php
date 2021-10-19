@@ -28,6 +28,14 @@ Route::group(['prefix' => 'auth'], function () {
    Route::get('user', [UsersController::class, 'getUser'])->middleware('auth:sanctum');
 });
 
+Route::prefix('pages')->group(function () {
+    Route::get('{page}', [PageController::class, 'getPage']);
+});
+
+Route::get('posts/{slug}', [PostsController::class, 'show']);
+Route::get('categories/{slug}', [CategoriesController::class, 'show']);
+
+
 Route::get('users', [PostImportController::class, 'users']);
 Route::get('categories', [PostImportController::class, 'categories']);
 Route::get('pages', [PostImportController::class, 'pages']);
@@ -36,14 +44,3 @@ Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
 Route::get('posts', [PostImportController::class, 'posts']);
 Route::get('glossary', [PostImportController::class, 'glossary']);
 Route::get('forms', [PostImportController::class, 'forms']);
-
-Route::prefix('pages')->group(function () {
-    Route::get('{page}', [PageController::class, 'getPage']);
-});
-
-Route::get('posts/{slug}', [PostsController::class, 'show']);
-
-
-
-
-

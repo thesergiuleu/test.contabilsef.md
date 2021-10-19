@@ -133,7 +133,7 @@ class GeneralResource extends JsonResource
 
     private function getCategorySlug()
     {
-        return $this->resource->slug ?? null;
+        return ($this->resource->category->slug ?? $this->resource->slug) ?? null;
     }
 
     private function getState()
