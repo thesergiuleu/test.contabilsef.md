@@ -169,6 +169,6 @@ class GeneralResource extends JsonResource
 
     private function getEventDate()
     {
-        return $this->resource->event_date ?? null;
+        return $this->resource->event_date->format('Y-m-d') ?? null;
     }
 }
