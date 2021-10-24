@@ -82,7 +82,7 @@ abstract class AbstractPage
         for ($i = 1; $i <= 12; $i++) {
             $months[] = [
                 'key' => $i,
-                'value' => $months[$i]
+                'value' => self::$months[$i]
             ];
         }
         return $months;
