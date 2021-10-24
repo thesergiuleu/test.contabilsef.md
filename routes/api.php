@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CategoriesController;
+use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\UsersController;
@@ -35,7 +36,12 @@ Route::prefix('pages')->group(function () {
 Route::get('posts/{slug}', [PostsController::class, 'show']);
 Route::get('categories/{slug}', [CategoriesController::class, 'show']);
 
+Route::group(['prefix' => 'comments'], function () {
+    Route::get('{post}', [CommentsController::class, 'getPostComments']);
+    Route::post('{post}', [CommentsController::class, 'addComment']);
+});
 
+#FOR IMPORT
 Route::get('users', [PostImportController::class, 'users']);
 Route::get('categories', [PostImportController::class, 'categories']);
 Route::get('pages', [PostImportController::class, 'pages']);

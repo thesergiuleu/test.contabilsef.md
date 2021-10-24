@@ -29,7 +29,6 @@ class CommentsStoreRequest extends FormRequest
             'email' => 'nullable|email',
             'body' => 'required',
             'parent_id' => 'nullable',
-            'g-recaptcha-response' => $required . '|recaptcha'
         ];
     }
 }
