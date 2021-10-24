@@ -39,6 +39,8 @@ abstract class AbstractPage
             '#' => '#'
         ]
     ];
+    private $meta;
+
     abstract public function getPage();
     /**
      * @return AbstractPage
@@ -48,8 +50,14 @@ abstract class AbstractPage
         $filters['year'] = $this->years();
         $filters['month'] = $this->months();
         $filters['type'] = [
-            '_0' => 'Privat',
-            '_1' => 'Public'
+            [
+                'key' => '_0',
+                'value' => 'Privat'
+            ],
+            [
+                'key' => '_1',
+                'value' => 'Public'
+            ]
         ];
 
         $this->filters = $filters;
@@ -60,7 +68,10 @@ abstract class AbstractPage
     {
         $years = [];
         for ($i = Carbon::now()->year; $i >= 2009; $i--) {
-            $years[$i] = $i;
+            $years[] = [
+                'key' => $i,
+                'value' => $i
+            ];
         }
         return $years;
     }
@@ -69,12 +80,15 @@ abstract class AbstractPage
     {
         $months = [];
         for ($i = 1; $i <= 12; $i++) {
-            $months[$i] = self::$months[$i];
+            $months[] = [
+                'key' => $i,
+                'value' => $months[$i]
+            ];
         }
         return $months;
     }
 
-    public function getSection(string $name, string $type, $items = [], array $config = []): array
+    public function getSection(string $name, string $type, $items = [], array $config = [], $meta = []): array
     {
         $this->setFilters();
         return [
@@ -82,6 +96,7 @@ abstract class AbstractPage
             'type' => $type,
             'data' => $items,
             'filters' => $this->filters,
+            'meta' => $meta,
             'config' => array_merge([
                 'is_name_displayed' => false,
                 'grid' => false,

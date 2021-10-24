@@ -25,7 +25,7 @@ class ResetPassword extends \Illuminate\Auth\Notifications\ResetPassword
         if (static::$createUrlCallback) {
             $url = call_user_func(static::$createUrlCallback, $notifiable, $this->token);
         } else {
-            $url = env("FRONTEND_APP_URL") . '#reset-password?token=' . $this->token . 'email=' . $notifiable->getEmailForPasswordReset();
+            $url = config('app.front_url') . '#reset-password?token=' . $this->token . 'email=' . $notifiable->getEmailForPasswordReset();
         }
 
         return (new MailMessage)

@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'front_url' => env('FRONTEND_APP_URL', 'https://front.trigraph.dev'),
+
     'admin_url' => env('APP_URL', 'http://localhost') . '/admin',
 
     'asset_url' => env('ASSET_URL', null),

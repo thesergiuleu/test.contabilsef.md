@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Glosary;
 use App\Post;
 use Carbon\Carbon;
@@ -134,4 +135,8 @@ function responseSuccess($data = [], $message = "ok"): JsonResponse
         'message' => $message,
         'data' => $data,
     ]);
+}
+function buildSeeMoreLink($entity, $slug): string
+{
+    return config('app.front_url') . "/{$entity}/{$slug}";
 }

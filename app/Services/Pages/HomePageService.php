@@ -10,7 +10,7 @@ class HomePageService extends AbstractPage
 {
     public function getPage(): array
     {
-        $newsCategoriesData =  new GeneralCollection(Category::whereParentId(Category::whereSlug(Category::NEWS_CATEGORY)->first()->id)->get());
+        $newsCategoriesData = new GeneralCollection(Category::whereParentId(Category::whereSlug(Category::NEWS_CATEGORY)->first()->id)->get());
         $topData = new GeneralCollection(Post::query()->orderByDesc('views')->limit(7)->get());
         $contabilSefData = new GeneralCollection(Post::query()->where('category_id', Category::whereSlug(Category::CONTABIL_SEF_NEWS_CATEGORY)->first()->id)->limit(6)->get());
         $newsData = new GeneralCollection(Post::query()->where('category_id', Category::whereSlug(Category::GENERAL_NEWS_CATEGORY)->first()->id)->limit(6)->get());
@@ -44,6 +44,8 @@ class HomePageService extends AbstractPage
                         'with_see_more' => true,
                         'grid' => true,
                         'with_views' => true
+                    ], [
+                        'see_more_link' => buildSeeMoreLink('categories', Category::CONTABIL_SEF_NEWS_CATEGORY)
                     ]),
                     $this->getSection('Noutăți', 'posts', $newsData, [
                         'is_name_displayed' => true,
@@ -55,6 +57,8 @@ class HomePageService extends AbstractPage
                         'with_excerpt' => true,
                         'with_see_more' => true,
                         'with_comments_count' => true,
+                    ], [
+                        'see_more_link' => buildSeeMoreLink('categories', Category::GENERAL_NEWS_CATEGORY)
                     ]),
                     $this->getSection('Articole', 'posts', $articlesData, [
                         'is_name_displayed' => true,
@@ -67,6 +71,8 @@ class HomePageService extends AbstractPage
                         'with_views' => true,
                         'with_comments_count' => true,
                         'with_privacy' => true
+                    ], [
+                        'see_more_link' => buildSeeMoreLink('categories', Category::GENERAL_NEWS_CATEGORY)
                     ])
                 ]
             ]
