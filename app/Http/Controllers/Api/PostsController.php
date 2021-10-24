@@ -21,6 +21,8 @@ class PostsController extends Controller
     public function show($slug): array
     {
         $post = Post::whereSlug($slug)->firstOrFail();
+        $post->views += 1;
+        $post->save();
         /** @var SinglePostPageService $singlePostPageService */
         $singlePostPageService = app()->make(SinglePostPageService::class);
         $singlePostPageService->setPost($post);
