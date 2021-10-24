@@ -128,11 +128,10 @@ function getAuthUser()
     $token = PersonalAccessToken::findToken($tokenStr);
     return $token->tokenable ?? null;
 }
-function responseSuccess($data = [], $message = "ok", $status = "success"): JsonResponse
+function responseSuccess($data = [], $message = "ok"): JsonResponse
 {
     return response()->json([
         'message' => $message,
-        'status' => $status,
         'data' => $data,
     ]);
 }
