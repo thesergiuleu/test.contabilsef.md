@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PostsController;
+use App\Http\Controllers\Api\SeminarsController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -40,6 +41,8 @@ Route::group(['prefix' => 'comments'], function () {
     Route::get('{post}', [CommentsController::class, 'getPostComments']);
     Route::post('{post}', [CommentsController::class, 'addComment']);
 });
+
+Route::post('seminare/{post}', [SeminarsController::class, 'register']);
 
 #FOR IMPORT
 Route::get('users', [PostImportController::class, 'users']);

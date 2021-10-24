@@ -34,20 +34,8 @@ class StoreInstruireRegisterRequest extends FormRequest
             'payment_method' => ['nullable', Rule::in(array_flip(Post::PAYMENT_METHODS))],
             'message' => 'nullable',
             'ip_address' => 'nullable',
-            'g-recaptcha-response' => auth()->user() ? 'nullable' : 'required',
-            'terms' => 'required',
+            'terms' => 'required|accepted',
             'subscribe' => 'nullable'
         ];
-    }
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            if (!(bool)$this->get('terms')) {
-                $validator->errors()->add('terms', __('Accept terms and conditions.'));
-            }
-        });
-
-        return $validator->validated();
     }
 }
