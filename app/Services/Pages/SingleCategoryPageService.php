@@ -3,6 +3,7 @@
 namespace App\Services\Pages;
 
 use App\Category;
+use App\Http\Resources\GeneralCollection;
 use App\Http\Resources\GeneralResource;
 use App\Post;
 
@@ -41,7 +42,7 @@ class SingleCategoryPageService extends AbstractPage
     {
         if ($this->posts->isNotEmpty()) {
             return [
-                $this->getSection($category->name, 'posts', $this->posts, [
+                $this->getSection($category->name, 'posts', new GeneralCollection($this->posts), [
                     'is_name_displayed' => true,
                     'with_views' => true,
                     'with_date' => true
@@ -49,7 +50,7 @@ class SingleCategoryPageService extends AbstractPage
             ];
         }
         return [
-            $this->getSection($this->category->name, 'categories', $this->category->children, [
+            $this->getSection($this->category->name, 'categories', new GeneralCollection($this->category->children), [
                 'is_name_displayed' => true,
             ]),
         ];
@@ -64,7 +65,7 @@ class SingleCategoryPageService extends AbstractPage
             return [
                 'sections' => [
                     $this->getSection('Banner', 'banner'),
-                    $this->getSection($this->category->name, 'categories', $this->category->children, [
+                    $this->getSection($this->category->name, 'categories', new GeneralCollection($this->category->children), [
                         'is_name_displayed' => true,
                     ]),
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
