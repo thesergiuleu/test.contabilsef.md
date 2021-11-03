@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Package;
 use App\SubscriptionService;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -21,5 +22,12 @@ class ServicesController extends Controller
             'service' => $service,
             'package' => $package
         ]);
+    }
+
+    public function checkEmail(): JsonResponse
+    {
+        $email = request()->input('email');
+        $user = User::whereEmail($email)->first();
+        return responseSuccess($user ? "existing_user" : "new_user");
     }
 }

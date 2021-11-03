@@ -46,6 +46,7 @@ Route::group(['prefix' => 'comments'], function () {
 
 Route::group(['prefix' => 'services'], function () {
     Route::get('', [ServicesController::class, 'index']);
+    Route::post('check-email', [ServicesController::class, 'checkEmail']);
     Route::get('checkout/{service}/{package}', [ServicesController::class, 'getCheckoutInfo']);
 });
 
