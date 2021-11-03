@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PackageResource;
 use App\Package;
 use App\SubscriptionService;
 use App\User;
@@ -20,7 +21,7 @@ class ServicesController extends Controller
     {
         return responseSuccess([
             'service' => $service,
-            'package' => $package
+            'package' => new PackageResource($package)
         ]);
     }
 
