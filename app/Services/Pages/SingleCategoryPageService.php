@@ -72,6 +72,14 @@ class SingleCategoryPageService extends AbstractPage
                 ]
             ];
         }
+        if ($this->category->children->isEmpty()) {
+            return [
+                'sections' => [
+                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
+                ]
+            ];
+        }
 
         return null;
     }
