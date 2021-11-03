@@ -6,6 +6,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Models\Translation;
@@ -226,15 +227,7 @@ class Category extends Model
 
     public function getAllPosts()
     {
-        return $this
-            ->getPosts()
-            ->with('category')
-            ->orderBy('created_at', 'desc')
-            ->paginate(7)
-            ->merge($this
-                ->subPosts()
-                ->orderBy('created_at', 'desc')
-                ->paginate(8)
-            );
+        /** @var Category $category */
+        return $this->subPosts()->with('category')->orderBy('created_at', 'desc')->paginate(15);
     }
 }

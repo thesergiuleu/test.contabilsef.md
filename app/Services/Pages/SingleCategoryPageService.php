@@ -41,6 +41,11 @@ class SingleCategoryPageService extends AbstractPage
     private function getMainSection($category): array
     {
         if ($this->posts->isNotEmpty()) {
+            $meta['paginator'] = [
+                'total' => $this->posts->total(),
+                'current_page' => $this->posts->currentPage(),
+                'last_page' => $this->posts->lastPage(),
+            ];
             return [
                 $this->getSection($category->name, 'posts', new GeneralCollection($this->posts), [
                     'is_name_displayed' => true,
