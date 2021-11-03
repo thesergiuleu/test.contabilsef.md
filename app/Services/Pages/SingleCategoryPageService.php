@@ -61,6 +61,15 @@ class SingleCategoryPageService extends AbstractPage
      */
     private function getSidebar()
     {
+        if ($this->category->children->isEmpty() && $this->posts->isNotEmpty()) {
+            return [
+                'sections' => [
+                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
+                ]
+            ];
+        }
+
         if ($this->posts->isNotEmpty()) {
             return [
                 'sections' => [
@@ -72,14 +81,7 @@ class SingleCategoryPageService extends AbstractPage
                 ]
             ];
         }
-        if ($this->category->children->isEmpty()) {
-            return [
-                'sections' => [
-                    $this->getSection('Banner', 'banner'),
-                    $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
-                ]
-            ];
-        }
+
 
         return null;
     }
