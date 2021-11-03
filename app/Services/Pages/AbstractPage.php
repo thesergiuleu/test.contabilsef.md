@@ -137,11 +137,7 @@ abstract class AbstractPage
         $articleCategories =  $parent ? new GeneralCollection(Category::whereParentId($parent->id)->get()) : [];
         $posts = new GeneralCollection($this->getPosts($parent));
 
-        $meta['paginator'] = [
-            'total' => $this->getPosts($parent)->total(),
-            'current_page' => $this->getPosts($parent)->currentPage(),
-            'last_page' => $this->getPosts($parent)->lastPage(),
-        ];
+        $meta['paginator'] = buildPaginatorMeta($this->getPosts($parent));
 
         return [
             'sidebar' => [

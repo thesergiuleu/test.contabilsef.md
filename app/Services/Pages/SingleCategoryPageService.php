@@ -5,7 +5,6 @@ namespace App\Services\Pages;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Http\Resources\GeneralResource;
-use App\Post;
 
 class SingleCategoryPageService extends AbstractPage
 {
@@ -41,17 +40,13 @@ class SingleCategoryPageService extends AbstractPage
     private function getMainSection($category): array
     {
         if ($this->posts->isNotEmpty()) {
-            $meta['paginator'] = [
-                'total' => $this->posts->total(),
-                'current_page' => $this->posts->currentPage(),
-                'last_page' => $this->posts->lastPage(),
-            ];
+            $meta['paginator'] = buildPaginatorMeta($this->posts);
             return [
                 $this->getSection($category->name, 'posts', new GeneralCollection($this->posts), [
                     'is_name_displayed' => true,
                     'with_views' => true,
                     'with_date' => true
-                ])
+                ], $meta)
             ];
         }
         return [

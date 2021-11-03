@@ -5,6 +5,7 @@ use App\Glosary;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Laravel\Sanctum\PersonalAccessToken;
 
 function sidebarCalendar()
@@ -139,4 +140,14 @@ function responseSuccess($data = [], $message = "ok"): JsonResponse
 function buildSeeMoreLink($entity, $slug): string
 {
     return "/{$entity}/{$slug}";
+}
+
+function buildPaginatorMeta(LengthAwarePaginator $paginator): array
+{
+    return [
+        'total' => $paginator->total(),
+        'current_page' => $paginator->currentPage(),
+        'last_page' => $paginator->lastPage(),
+        'per_page' => $paginator->perPage()
+    ];
 }
