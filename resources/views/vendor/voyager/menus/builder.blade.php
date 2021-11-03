@@ -80,18 +80,18 @@
                         <label for="type">{{ __('voyager::menu_builder.link_type') }}</label>
                         <select id="m_link_type" class="form-control" name="type">
                             <option value="url" selected="selected">{{ __('voyager::menu_builder.static_url') }}</option>
-                            <option value="route">{{ __('voyager::menu_builder.dynamic_route') }}</option>
+{{--                            <option value="route">{{ __('voyager::menu_builder.dynamic_route') }}</option>--}}
                         </select><br>
                         <div id="m_url_type">
                             <label for="url">{{ __('voyager::menu_builder.url') }}</label>
                             <input type="text" class="form-control" id="m_url" name="url" placeholder="{{ __('voyager::generic.url') }}"><br>
                         </div>
-                        <div id="m_route_type">
-                            <label for="route">{{ __('voyager::menu_builder.item_route') }}</label>
-                            <input type="text" class="form-control" id="m_route" name="route" placeholder="{{ __('voyager::generic.route') }}"><br>
-                            <label for="parameters">{{ __('voyager::menu_builder.route_parameter') }}</label>
-                            <textarea required rows="3" class="form-control" id="m_parameters" name="parameters" placeholder="{{ json_encode(['key' => 'value'], JSON_PRETTY_PRINT) }}"></textarea><br>
-                        </div>
+{{--                        <div id="m_route_type">--}}
+{{--                            <label for="route">{{ __('voyager::menu_builder.item_route') }}</label>--}}
+{{--                            <input type="text" class="form-control" id="m_route" name="route" placeholder="{{ __('voyager::generic.route') }}"><br>--}}
+{{--                            <label for="parameters">{{ __('voyager::menu_builder.route_parameter') }}</label>--}}
+{{--                            <textarea required rows="3" class="form-control" id="m_parameters" name="parameters" placeholder="{{ json_encode(['key' => 'value'], JSON_PRETTY_PRINT) }}"></textarea><br>--}}
+{{--                        </div>--}}
                         <label for="icon_class">{{ __('voyager::menu_builder.icon_class') }} <a
                                     href="{{ route('voyager.compass.index', [], false) }}#fonts"
                                     target="_blank">{!! __('voyager::menu_builder.icon_class2') !!}</label>
@@ -167,7 +167,7 @@
                 $m_link_type   = $('#m_link_type'),
                 $m_route_type  = $('#m_route_type'),
                 $m_route       = $('#m_route'),
-                $m_parameters  = $('#m_parameters'),
+                // $m_parameters  = $('#m_parameters'),
                 $m_icon_class  = $('#m_icon_class'),
                 $m_color       = $('#m_color'),
                 $m_target      = $('#m_target'),
@@ -220,7 +220,7 @@
                     $m_title.val(_src.data('title'));
                     $m_url.val(_src.data('url'));
                     $m_route.val(_src.data('route'));
-                    $m_parameters.val(JSON.stringify(_src.data('parameters')));
+                    // $m_parameters.val(JSON.stringify(_src.data('parameters')));
                     $m_icon_class.val(_src.data('icon_class'));
                     $m_color.val(_src.data('color'));
                     $m_id.val(id);
