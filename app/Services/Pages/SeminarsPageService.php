@@ -2,6 +2,7 @@
 
 namespace App\Services\Pages;
 
+use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
@@ -17,7 +18,6 @@ class SeminarsPageService extends AbstractPage
             'sidebar' => null,
             'main' => [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
                     $this->getSection('Seminare', 'posts', $seminarsData, [
                         'is_name_displayed' => true,
                         'grid' => true,

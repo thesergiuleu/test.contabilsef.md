@@ -2,6 +2,7 @@
 
 namespace App\Services\Pages;
 
+use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Http\Resources\GeneralResource;
@@ -64,7 +65,7 @@ class SingleCategoryPageService extends AbstractPage
         if ($this->category->children->isEmpty() && $this->posts->isNotEmpty()) {
             return [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_SIDEBAR)),
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]
             ];
@@ -73,7 +74,7 @@ class SingleCategoryPageService extends AbstractPage
         if ($this->posts->isNotEmpty()) {
             return [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_SIDEBAR)),
                     $this->getSection($this->category->name, 'categories', new GeneralCollection($this->category->children), [
                         'is_name_displayed' => true,
                     ]),

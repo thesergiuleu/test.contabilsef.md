@@ -2,6 +2,7 @@
 
 namespace App\Services\Pages;
 
+use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
@@ -35,7 +36,7 @@ class HomePageService extends AbstractPage
             ],
             'main' => [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_MAIN_TOP)),
                     $this->getSection('Contabil Șef', 'posts', $contabilSefData, [
                         'is_name_displayed' => true,
                         'with_header' => true,

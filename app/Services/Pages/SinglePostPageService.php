@@ -2,6 +2,7 @@
 
 namespace App\Services\Pages;
 
+use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralResource;
 use App\Post;
@@ -23,7 +24,7 @@ class SinglePostPageService extends AbstractPage
         return [
             'sidebar' => [
                 'sections' => [
-                    $this->getSection('Banner', 'banner'),
+                    $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_INDIVIDUAL)),
                     $this->getSection('Similar din aceiași categorie', 'posts', $this->post->category->getPosts()->where('id', '!=', $this->post->id)->limit(10)->get(), [
                         'is_name_displayed' => true,
                         'with_see_more' => true

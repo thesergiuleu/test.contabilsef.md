@@ -49,35 +49,20 @@ class Banner extends Model
             'position' => $position,
         ]);
 
-        $dummyBanner->image_url = $position == self::POSITION_MAIN_CENTER ? asset('assets/imgs/y.png') : asset('assets/imgs/ram.png');
+        $dummyBanner->image_url = asset('assets/imgs/y.png');
 
-        switch ($position) {
-            case self::POSITION_MAIN_TOP:
-            case self::POSITION_INDIVIDUAL:
-                $banners = [$dummyBanner, $dummyBanner];
-                $items = self::active()->wherePosition($position)->get();
-                if ($items->count() == 1) {
-                    $banners[0] = $items->first();
-                } elseif ($items->count() == 2) {
-                    $banners = $items;
-                }
-
-                return $banners;
-            case self::POSITION_SIDEBAR:
-            case self::POSITION_MAIN_CENTER:
-                $banners = [$dummyBanner];
-                $items = self::active()->wherePosition($position)->get();
-                if ($items->count() == 1) {
-                    $banners = $items;
-                }
-
-                return $banners;
+        $banners = [$dummyBanner];
+        $items = self::active()->wherePosition($position)->get();
+        if ($items->count() >= 1) {
+            $banners = $items;
         }
+
+        return $banners;
     }
 
     public function getImageUrlAttribute()
     {
-        return $this->image_path ? config('app.url') . Storage::url($this->image_path) : ($this->position == self::POSITION_MAIN_CENTER ? asset('assets/imgs/y.png') : asset('assets/imgs/ram.png'));
+        return $this->image_path ? config('app.url') . Storage::url($this->image_path) : asset('assets/imgs/y.png');
     }
 
     public function scopeActive(Builder $builder)
