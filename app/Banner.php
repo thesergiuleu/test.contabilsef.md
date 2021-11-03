@@ -39,6 +39,8 @@ class Banner extends Model
     const POSITION_SIDEBAR = 'sidebar';
     const POSITION_INDIVIDUAL = 'individual';
 
+    protected $appends = ['image_url'];
+
     protected $fillable = ['image_path', 'redirect_url', 'position', 'is_active'];
 
     public static function getBanners($position)
@@ -60,7 +62,7 @@ class Banner extends Model
         return $banners;
     }
 
-    public function getImageUrlAttribute()
+    public function getImageUrlAttribute(): string
     {
         return $this->image_path ? config('app.url') . Storage::url($this->image_path) : asset('assets/imgs/y.png');
     }
