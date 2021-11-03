@@ -27,7 +27,7 @@ class SinglePostPageService extends AbstractPage
                     $this->getSection('Similar din aceiași categorie', 'posts', $this->post->category->getPosts()->where('id', '!=', $this->post->id)->limit(10)->get(), [
                         'is_name_displayed' => true,
                         'with_see_more' => true
-                    ]),
+                    ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]),
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]
             ],
@@ -57,7 +57,7 @@ class SinglePostPageService extends AbstractPage
             ]);
         }
 
-        array_push($sections,$section);
+        array_push($sections, $section);
 
         return $sections;
     }
