@@ -67,6 +67,6 @@ class SubscriptionService extends Model
 
     public function getServiceLinkAttribute(): string
     {
-        return "https://contabilsef.trigraph.dev/service/" . $this->id;
+        return "/service/" . $this->id;
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Resources\GeneralCollection;
 use App\Post;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
 
 abstract class AbstractPage
@@ -117,20 +118,16 @@ abstract class AbstractPage
 
     /**
      * @param $category
-     * @return Collection|mixed
+     * @return LengthAwarePaginator
      */
-    protected function getPosts($category)
+    protected function getPosts($category): LengthAwarePaginator
     {
-        return $category ? $category
-            ->posts()
-            ->with('category')
-            ->orderBy('created_at', 'desc')
-            ->paginate(7)
-            ->merge($category
-                ->subPosts()
-                ->orderBy('created_at', 'desc')
-                ->paginate(8)
-            ) : new Collection([]);
+        if ($category) {
+            /** @var Category $category */
+            return $category->subPosts()->with('category')->orderBy('created_at', 'desc')->paginate(5);
+        }
+
+        return new LengthAwarePaginator([], 0, 0);
     }
 
     protected function getGeneralListLayout($category): array
@@ -139,6 +136,12 @@ abstract class AbstractPage
         $parent = Category::with(['posts', 'subPosts'])->where('slug', $category)->first();
         $articleCategories =  $parent ? new GeneralCollection(Category::whereParentId($parent->id)->get()) : [];
         $posts = new GeneralCollection($this->getPosts($parent));
+
+        $meta['paginator'] = [
+            'total' => $this->getPosts($parent)->total(),
+            'current_page' => $this->getPosts($parent)->currentPage(),
+            'last_page' => $this->getPosts($parent)->lastPage(),
+        ];
 
         return [
             'sidebar' => [
@@ -156,7 +159,7 @@ abstract class AbstractPage
                         'with_filters' => true,
                         'with_images' => true,
                         'with_header' => true,
-                    ])
+                    ],$meta)
                 ]
             ]
         ];

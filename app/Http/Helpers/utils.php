@@ -138,5 +138,5 @@ function responseSuccess($data = [], $message = "ok"): JsonResponse
 }
 function buildSeeMoreLink($entity, $slug): string
 {
-    return config('app.front_url') . "/{$entity}/{$slug}";
+    return "/{$entity}/{$slug}";
 }
