@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\SeminarsController;
+use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -41,6 +42,11 @@ Route::get('categories/{slug}', [CategoriesController::class, 'show']);
 Route::group(['prefix' => 'comments'], function () {
     Route::get('{post}', [CommentsController::class, 'getPostComments']);
     Route::post('{post}', [CommentsController::class, 'addComment']);
+});
+
+Route::group(['prefix' => 'services'], function () {
+    Route::get('', [ServicesController::class, 'index']);
+    Route::get('checkout/{service}/{package}', [ServicesController::class, 'getCheckoutInfo']);
 });
 
 Route::post('seminare/{post}', [SeminarsController::class, 'register']);
