@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
+use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\SeminarsController;
 use App\Http\Controllers\Api\ServicesController;
@@ -51,6 +52,7 @@ Route::group(['prefix' => 'services'], function () {
 });
 
 Route::post('seminare/{post}', [SeminarsController::class, 'register']);
+Route::get('footer-menu', [GeneralsController::class, 'footerMenu']);
 
 #FOR IMPORT
 Route::get('users', [PostImportController::class, 'users']);

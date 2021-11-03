@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class GeneralsController extends Controller
 {
-    public function menu(): JsonResponse
+    public function footerMenu(): JsonResponse
     {
-        return $this->responseOk(menu('site', '_json')->values());
+        return responseSuccess([
+            'about' => menu('footer-despre-noi', '_json')->values(),
+            'news' => menu('footer-noutati', '_json')->values(),
+            'study' => menu('footer-studiem', '_json')->values(),
+            'articles' => menu('footer-articole', '_json')->values(),
+            'legislation' => menu('footer-legislatia', '_json')->values(),
+            'utils' => menu('footer-informatii-utile', '_json')->values(),
+        ]);
     }
 }
