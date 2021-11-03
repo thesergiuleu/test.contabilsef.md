@@ -124,7 +124,7 @@ abstract class AbstractPage
     {
         if ($category) {
             /** @var Category $category */
-            return $category->subPosts()->with('category')->orderBy('created_at', 'desc')->paginate(15);
+            return $category->posts()->union($category->subPosts())->orderBy('created_at', 'desc')->paginate(15);
         }
 
         return new LengthAwarePaginator([], 0, 0);

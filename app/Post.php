@@ -148,7 +148,7 @@ class Post extends Model
      */
     public function scopePublished(Builder $query)
     {
-        return $query->where('status', '=', static::PUBLISHED);
+        return $query->select('posts.*')->where('status', '=', static::PUBLISHED);
     }
 
     /**

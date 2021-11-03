@@ -228,6 +228,6 @@ class Category extends Model
     public function getAllPosts()
     {
         /** @var Category $category */
-        return $this->subPosts()->with('category')->orderBy('created_at', 'desc')->paginate(15);
+        return $this->posts()->union($this->subPosts())->orderBy('created_at', 'desc')->paginate(15);
     }
 }
