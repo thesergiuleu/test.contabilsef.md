@@ -33,6 +33,10 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('user', [UsersController::class, 'getUser'])->middleware('auth:sanctum');
 });
 
+Route::prefix('users')->group(function () {
+    Route::put('update', [UsersController::class, 'update'])->middleware('auth:sanctum');
+});
+
 Route::prefix('pages')->group(function () {
     Route::get('{page}', [PageController::class, 'getPage']);
 });
