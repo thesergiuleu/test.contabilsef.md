@@ -6,6 +6,7 @@ use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
+use Illuminate\Support\Collection;
 
 class HomePageService extends AbstractPage
 {
@@ -20,7 +21,7 @@ class HomePageService extends AbstractPage
         return [
             'sidebar' => [
                 'sections' => [
-                    $this->getSection('Link-uri utile', 'categories'),
+                    $this->getSection('Link-uri utile', 'categories', $this->getLinks()),
                     $this->getSection('Noutăți', 'categories', $newsCategoriesData, [
                         'is_name_displayed' => true
                     ]),
@@ -78,5 +79,15 @@ class HomePageService extends AbstractPage
                 ]
             ]
         ];
+    }
+
+    private function getLinks(): GeneralCollection
+    {
+        $collection = new Collection();
+        $collection->push(new Post([
+            'id' => 1,
+            'slug' => 'asdasd'
+        ]));
+        return new GeneralCollection($collection);
     }
 }
