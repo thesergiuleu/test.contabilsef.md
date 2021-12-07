@@ -127,7 +127,7 @@ abstract class AbstractPage
             return $category->posts()->union($category->subPosts())->orderBy('created_at', 'desc')->paginate(15);
         }
 
-        return new LengthAwarePaginator([], 0, 0);
+        return new LengthAwarePaginator([], 0, 15);
     }
 
     protected function getGeneralListLayout($category): array
