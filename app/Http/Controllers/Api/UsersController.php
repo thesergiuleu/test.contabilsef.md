@@ -29,6 +29,6 @@ class UsersController extends Controller
         $user->fill($data);
         $user->save();
 
-        $this->responseOk($user);
+        return $this->responseOk($user);
     }
 }
