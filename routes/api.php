@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\GeneralsController;
+use App\Http\Controllers\Api\PaymentsController;
 use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\SeminarsController;
 use App\Http\Controllers\Api\ServicesController;
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'services'], function () {
     Route::get('', [ServicesController::class, 'index']);
     Route::post('check-email', [ServicesController::class, 'checkEmail']);
     Route::get('checkout/{service}/{package}', [ServicesController::class, 'getCheckoutInfo']);
+    Route::post('checkout/{service}/{package}', [PaymentsController::class, 'postCheckout']);
 });
 
 Route::post('seminare/{post}', [SeminarsController::class, 'register']);
