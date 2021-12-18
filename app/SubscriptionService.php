@@ -69,4 +69,9 @@ class SubscriptionService extends Model
     {
         return config('app.url') . "/service/" . $this->id;
     }
+
+    public function getCheckoutLink($packageId): string
+    {
+        return config('app.front_url') . '/checkout/' . $this->id . '/' . $packageId;
+    }
 }
