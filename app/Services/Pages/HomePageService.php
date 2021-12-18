@@ -89,6 +89,7 @@ class HomePageService extends AbstractPage
             'external_link' => config('app.url') . "/service/1",
             'name' => 'Revista electronică ”Contabilsef.md”',
         ]));
+        $collection->push(Category::whereSlug(Category::SNC_2020_CATEGORY)->first());
         return new GeneralCollection($collection);
     }
 }
