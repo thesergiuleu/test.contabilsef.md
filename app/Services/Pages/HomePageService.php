@@ -5,6 +5,7 @@ namespace App\Services\Pages;
 use App\Banner;
 use App\Category;
 use App\Http\Resources\GeneralCollection;
+use App\Page;
 use App\Post;
 use Illuminate\Support\Collection;
 
@@ -90,6 +91,8 @@ class HomePageService extends AbstractPage
             'name' => 'Revista electronică ”Contabilsef.md”',
         ]));
         $collection->push(Category::whereSlug(Category::SNC_2020_CATEGORY)->first());
+        $collection->push(Category::whereSlug(Category::INDICATORI_FISCALI_CATEGORY)->first());
+        $collection->push(Page::whereSlug(Page::CONSULTANT_SNC)->first());
         return new GeneralCollection($collection);
     }
 }
