@@ -98,7 +98,7 @@ class HomePageService extends AbstractPage
         ]));
         $collection->push(Category::whereSlug(Category::SNC_2020_CATEGORY)->first());
         $collection->push(Category::whereSlug(Category::INDICATORI_FISCALI_CATEGORY)->first());
-        $collection->push(Page::whereSlug(Page::CONSULTANT_SNC)->first());
+//        $collection->push(Page::whereSlug(Page::CONSULTANT_SNC)->first());
         $collection->push(Category::whereSlug(Category::SINTEZA_MONITORULUI_OFICIAL_CATEGORY)->first());
         return new GeneralCollection($collection);
     }
