@@ -29,6 +29,7 @@ class SiteBaseController extends Controller
 
     public function __construct(ComponentService $componentService)
     {
+        parent::__construct();
         $this->viewData['sections'] = [];
         $this->viewData['breadCrumbs'] = [];
         $this->componentService = $componentService;

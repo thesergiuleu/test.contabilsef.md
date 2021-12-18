@@ -177,6 +177,7 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class)
+            ->applyFilters(request()->toArray())
             ->published();
     }
 
@@ -208,6 +209,7 @@ class Category extends Model
     {
         return $this
             ->hasManyThrough(Post::class, self::class, 'parent_id', 'category_id')
+            ->applyFilters(request()->toArray())
             ->published();
     }
 

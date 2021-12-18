@@ -91,36 +91,4 @@ class PageController extends SiteBaseController
 
         return view('single', $this->viewData);
     }
-
-    public function getPage(string $page = 'home'): array
-    {
-        switch ($page) {
-            case 'about':
-                $service = AboutPageService::class;
-                break;
-            case 'news':
-                $service = NewsPageService::class;
-                break;
-            case 'articles':
-                $service = ArticlesPageService::class;
-                break;
-            case 'education':
-                $service = SeminarsPageService::class;
-                break;
-            case 'contact':
-                $service = ContactPageService::class;
-                break;
-            case 'information':
-                $service = InformationPageService::class;
-                break;
-            case 'home':
-            default:
-                $service = HomePageService::class;
-                break;
-        }
-
-        /** @var AbstractPage $pageService */
-        $pageService = app()->make($service);
-        return $pageService->getPage();
-    }
 }

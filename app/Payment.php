@@ -42,6 +42,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Payment extends Model
 {
+    const TRANSFER = 'transfer';
+    const CARD = 'card';
     protected $fillable = [
         'name',
         'user_id',

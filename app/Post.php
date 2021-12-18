@@ -113,6 +113,14 @@ class Post extends Model
         'transfer' => 'Transfer'
     ];
 
+    /**
+     * @var array|int[]
+     */
+    protected static $status = [
+        '_0' => 0,
+        '_1' => 1,
+    ];
+
     protected $translatable = ['title', 'seo_title', 'views', 'privacy', 'body', 'slug', 'meta_description', 'meta_keywords', 'emails'];
     protected $guarded = [];
 
@@ -287,7 +295,7 @@ class Post extends Model
 
     }
 
-    public function canBeMarkedAsSeenBy(?User  $user = null)
+    public function canBeMarkedAsSeenBy(?User $user = null)
     {
         $postService = $this->subscriptionServices()->whereHas('packages', function ($query) {
             $query->whereHas('options', function ($query) {
@@ -298,11 +306,28 @@ class Post extends Model
         if ($postService) {
             return $this->canBeSeenBy($user);
         }
-        return  false;
+        return false;
     }
 
     public function getContentAttribute()
     {
         return find_glossary_terms($this->body);
+    }
+
+    public function scopeApplyFilters(Builder $builder, $filters = []): Builder
+    {
+        return $builder->where(function (Builder $query) use ($filters) {
+            foreach ($filters as $key => $filter) {
+                if ($key == 'year') {
+                    $query = $query->whereYear('posts.created_at', $filter);
+                }
+                if ($key == 'month') {
+                    $query = $query->whereMonth('posts.created_at', $filter);
+                }
+                if ($key == 'type') {
+                    $query = $query->where('posts.privacy', self::$status[$filter]);
+                }
+            }
+        });
     }
 }

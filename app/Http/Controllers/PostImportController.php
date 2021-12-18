@@ -6,7 +6,9 @@ use App\Category;
 use App\Contact;
 use App\Glosary;
 use App\Newsletter;
+use App\Package;
 use App\Page;
+use App\Payment;
 use App\Post;
 use App\PostRegister;
 use App\Subscription;
@@ -335,16 +337,25 @@ class PostImportController extends Controller
             if ($wpSubscription->start_date === "0000-00-00" || $wpSubscription->start_date === "1970-01-01") continue;
             if ($wpSubscription->end_date === "0000-00-00" || $wpSubscription->end_date === "1970-01-01") continue;
 
+            $payment = new Payment();
+            $payment->email = $user->email;
+            $payment->payed_amount = $this->getService($wpSubscription)->price;
+            $payment->user_id = $wpSubscription->user_id;
+            $payment->name = $user->name;
+            $payment->company = $user->company;
+            $payment->phone = $user->phone;
+            $payment->payed_company = $user->company;
+            $payment->payed_at = Carbon::make($wpSubscription->start_date);
+            $payment->payment_method = Payment::TRANSFER;
+            $payment->save();
+
             $subscription = new Subscription();
             $subscription->user_id = $wpSubscription->user_id;
-            $subscription->name = $user->name;
-            $subscription->company = $user->company;
-            $subscription->phone = $user->phone;
-            $subscription->email = $user->email;
-            $subscription->start_date = Carbon::make($wpSubscription->start_date);
-            $subscription->end_date = Carbon::make($wpSubscription->end_date);
+            $subscription->payment_id = $payment->id;
+            $subscription->package_id = Package::first()->id;
+            $subscription->started_at = Carbon::make($wpSubscription->start_date);
+            $subscription->expired_at = Carbon::make($wpSubscription->end_date);
             $subscription->service_id = $this->getService($wpSubscription)->id;
-            $subscription->price = $this->getService($wpSubscription)->price;
 
             $subscription->save();
         }

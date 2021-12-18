@@ -6,7 +6,6 @@ use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Post;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Cache;
 
@@ -41,8 +40,19 @@ abstract class AbstractPage
         ]
     ];
     private $meta;
+    /**
+     * @var array
+     */
+    private $searchFilters = [];
 
     abstract public function getPage();
+
+    public function setSearchFilters(array $filters)
+    {
+        $this->searchFilters = $filters;
+        return $this;
+    }
+
     /**
      * @return AbstractPage
      */
@@ -124,7 +134,11 @@ abstract class AbstractPage
     {
         if ($category) {
             /** @var Category $category */
-            return $category->posts()->union($category->subPosts())->orderBy('created_at', 'desc')->paginate(15);
+            $query = $category->posts()
+                ->union($category->subPosts())
+                ->orderBy('created_at', 'desc');
+
+            return $query->paginate(15);
         }
 
         return new LengthAwarePaginator([], 0, 15);

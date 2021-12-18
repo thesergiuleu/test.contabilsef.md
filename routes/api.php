@@ -4,14 +4,12 @@ use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
 use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\GeneralsController;
+use App\Http\Controllers\Api\PagesController;
 use App\Http\Controllers\Api\PaymentsController;
 use App\Http\Controllers\Api\PostsController;
 use App\Http\Controllers\Api\SeminarsController;
 use App\Http\Controllers\Api\ServicesController;
 use App\Http\Controllers\Api\UsersController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostImportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +36,7 @@ Route::prefix('users')->group(function () {
 });
 
 Route::prefix('pages')->group(function () {
-    Route::get('{page}', [PageController::class, 'getPage']);
+    Route::get('{page}', [PagesController::class, 'getPage']);
     Route::post('contact/contact-us', [ContactsController::class, 'contactUs']);
 });
 

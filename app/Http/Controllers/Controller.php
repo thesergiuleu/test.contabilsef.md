@@ -14,6 +14,38 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
+     * @var array
+     */
+    protected $filters = [];
+
+    public function __construct()
+    {
+        $this->setFilters();
+    }
+
+    /**
+     * @return void
+     */
+    protected function setFilters(): void
+    {
+        if (!is_null(request()->input('year', null))) {
+            $this->filters = [
+                'year' => request()->input('year')
+            ];
+        }
+        if (!is_null(request()->input('month', null))) {
+            $this->filters = array_merge($this->filters, [
+                'month' => request()->input('month')
+            ]);
+        }
+        if (!is_null(request()->input('type', null))) {
+            $this->filters = array_merge($this->filters, [
+                'status' => request()->input('type')
+            ]);
+        }
+    }
+
+    /**
      * @param string $name
      * @param $data
      * @param string|null $title
