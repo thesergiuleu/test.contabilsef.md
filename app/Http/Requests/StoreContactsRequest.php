@@ -31,8 +31,8 @@ class StoreContactsRequest extends FormRequest
             'phone' => 'nullable',
             'message' => 'nullable',
             'ip_address' => 'nullable',
-            'g-recaptcha-response' => auth()->user() ? 'nullable' : 'required|recaptcha',
-            'page' => ['required', Rule::in(Contact::PAGES)],
+//            'g-recaptcha-response' => auth()->user() ? 'nullable' : 'required|recaptcha',
+//            'page' => ['required', Rule::in(Contact::PAGES)],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CategoriesController;
 use App\Http\Controllers\Api\CommentsController;
+use App\Http\Controllers\Api\ContactsController;
 use App\Http\Controllers\Api\GeneralsController;
 use App\Http\Controllers\Api\PaymentsController;
 use App\Http\Controllers\Api\PostsController;
@@ -29,8 +30,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth'], function () {
     Auth::routes();
-//    Route::post('login', [LoginController::class, 'login']);
-//    Route::post('register', [RegisterController::class, 'register']);
     Route::get('user', [UsersController::class, 'getUser'])->middleware('auth:sanctum');
 });
 
@@ -40,6 +39,7 @@ Route::prefix('users')->group(function () {
 
 Route::prefix('pages')->group(function () {
     Route::get('{page}', [PageController::class, 'getPage']);
+    Route::post('contact/contact-us', [ContactsController::class, 'contactUs']);
 });
 
 Route::get('posts/{slug}', [PostsController::class, 'show']);
