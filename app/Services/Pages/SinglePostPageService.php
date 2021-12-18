@@ -22,17 +22,19 @@ class SinglePostPageService extends AbstractPage
     public function getPage(): array
     {
         $post = new GeneralResource($this->post);
-        /** @var Collection $similar */
-        $similar = $this->post->category->getPosts()->where('id', '!=', $this->post->id)->limit(10)->get();
-        $section = $this->getSection('Similar din aceiași categorie', 'posts', $similar, [
+        /** @var Collection $similarData */
+        $similarData = $this->post->category->getPosts()->where('id', '!=', $this->post->id)->limit(10)->get();
+        $bannerData = Banner::getBanners(Banner::POSITION_INDIVIDUAL);
+        $similarSection = $this->getSection('Similar din aceiași categorie', 'posts', $similarData, [
             'is_name_displayed' => true,
-            'with_see_more' => $similar->isNotEmpty()
+            'with_see_more' => $similarData->isNotEmpty()
         ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]);
+        $bannerSection = $this->getSection('Banner', 'banner', $bannerData);
         return [
             'sidebar' => [
                 'sections' => array_values(array_filter([
-                    $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_INDIVIDUAL)),
-                    $similar->isNotEmpty() ? $section : null,
+                    !empty($bannerData) ? $bannerSection : null,
+                    $similarData->isNotEmpty() ? $similarSection : null,
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]))
             ],
