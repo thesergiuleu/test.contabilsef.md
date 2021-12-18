@@ -24,14 +24,15 @@ class SinglePostPageService extends AbstractPage
         $post = new GeneralResource($this->post);
         /** @var Collection $similar */
         $similar = $this->post->category->getPosts()->where('id', '!=', $this->post->id)->limit(10)->get();
+        $section = $this->getSection('Similar din aceiași categorie', 'posts', $similar, [
+            'is_name_displayed' => true,
+            'with_see_more' => $similar->isNotEmpty()
+        ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]);
         return [
             'sidebar' => [
                 'sections' => [
                     $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_INDIVIDUAL)),
-                    $this->getSection('Similar din aceiași categorie', 'posts', $similar, [
-                        'is_name_displayed' => true,
-                        'with_see_more' => $similar->isNotEmpty()
-                    ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]),
+                    $similar->isNotEmpty() ? $section : null,
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
                 ]
             ],
