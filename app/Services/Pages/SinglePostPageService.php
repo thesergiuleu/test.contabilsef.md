@@ -30,11 +30,11 @@ class SinglePostPageService extends AbstractPage
         ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]);
         return [
             'sidebar' => [
-                'sections' => [
+                'sections' => array_values(array_filter([
                     $this->getSection('Banner', 'banner', Banner::getBanners(Banner::POSITION_INDIVIDUAL)),
                     $similar->isNotEmpty() ? $section : null,
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
-                ]
+                ]))
             ],
             'main' => [
                 'sections' => $this->getSinglePostMainSections($post)
