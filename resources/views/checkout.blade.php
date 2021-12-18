@@ -110,7 +110,7 @@
                                                         <div class="form-group">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="checkbox" name="terms" value="1" id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">Sînt de acord cu <a target="_blank" href="{{ route('page.view', $service->page->slug) }}">termeni și condiții</a></label>
+{{--                                                                <label class="form-check-label" for="defaultCheck1">Sînt de acord cu <a target="_blank" href="{{ route('page.view', $service->page->slug) }}">termeni și condiții</a></label>--}}
                                                             </div>
                                                         </div>
                                                     </div>

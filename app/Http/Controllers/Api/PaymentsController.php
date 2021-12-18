@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckoutRequest;
 use App\Notifications\SubscriptionNotification;
 use App\Package;
 use App\Payment;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Notification;
 
 class PaymentsController extends Controller
 {
-    public function postCheckout(Request $request, ?SubscriptionService $service, ?Package $package)
+    public function postCheckout(CheckoutRequest $request, ?SubscriptionService $service, ?Package $package)
     {
         $data = $request->all();
         if ($service && $package) {
