@@ -54,7 +54,7 @@ use TCG\Voyager\Models\Translation;
 class Page extends \TCG\Voyager\Models\Page
 {
     const SUBSCRIBE = "revista-electronica-contabilsef-md";
-    const CONSULTANT_SNC = "consultant-snc";
+    const CONSULTANT_SNC = "ro-consultant-snc-ru-en";
 
     const TERMS_AND_CONDITIONS_SNC = "termeni-si-conditii-consultant-snc";
     const TERMS_AND_CONDITIONS_REVISTA = "termeni-si-conditii-revista-electronica-contabilsef-md";
