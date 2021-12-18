@@ -63,7 +63,7 @@ Route::get('footer-menu', [GeneralsController::class, 'footerMenu']);
 #FOR IMPORT
 Route::get('users', [PostImportController::class, 'users']);
 Route::get('categories', [PostImportController::class, 'categories']);
-Route::get('pages', [PostImportController::class, 'pages']);
+Route::get('pagess', [PostImportController::class, 'pages']);
 Route::get('subscription-services', [PostImportController::class, 'subscriptionServices']);
 Route::get('subscriptions', [PostImportController::class, 'subscriptions']);
 Route::get('posts', [PostImportController::class, 'posts']);
