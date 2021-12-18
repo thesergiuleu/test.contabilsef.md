@@ -21,6 +21,7 @@ class SubscriptionResource extends JsonResource
             'service' => $this->resource->service,
             'status' => $this->resource->status(),
             'user' => $this->resource->user,
+            'expired_at' => $this->resource->expired_at,
         ];
     }
 }
