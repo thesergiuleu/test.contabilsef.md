@@ -60,7 +60,8 @@ class Category extends Model
     const FORMULARE = 'ro-formulare-ru-en';
     const CONTABILITATE = 'contabilitate';
     const FISCALE = 'ro-fiscale-ru-en';
-    const INSTRUIRE = 'seminare';
+//    const INSTRUIRE = 'seminare';
+    const INSTRUIRE = 'instruire';
     const CONTACTE = 'ro-contacte-ru-en';
     const AUDIT = 'ro-audit-ru-en';
     const LEGISLATIA_FISCALA = 'ro-legisla-ia-fiscal-ru-en';
