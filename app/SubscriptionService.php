@@ -67,7 +67,7 @@ class SubscriptionService extends Model
 
     public function getServiceLinkAttribute(): string
     {
-        return config('app.url') . "/service/" . $this->id;
+        return config('app.front_url') . "/service/" . $this->id;
     }
 
     public function getCheckoutLink($packageId): string

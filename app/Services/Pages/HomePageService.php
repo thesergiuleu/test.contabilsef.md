@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Resources\GeneralCollection;
 use App\Page;
 use App\Post;
+use App\SubscriptionService;
 use Illuminate\Support\Collection;
 
 class HomePageService extends AbstractPage
@@ -93,7 +94,7 @@ class HomePageService extends AbstractPage
         $collection = new Collection();
         $collection->push(new Post([
             'id' => 1,
-            'external_link' => config('app.url') . "/service/1",
+            'external_link' => config('app.front_url') . "/service/" . SubscriptionService::query()->orderBy('created_at')->first()->id,
             'name' => 'Revista electronică ”Contabilsef.md”',
         ]));
         $collection->push(Category::whereSlug(Category::SNC_2020_CATEGORY)->first());
