@@ -55,6 +55,7 @@ Route::group(['prefix' => 'services'], function () {
     Route::post('check-email', [ServicesController::class, 'checkEmail']);
     Route::get('checkout/{service}/{package}', [ServicesController::class, 'getCheckoutInfo']);
     Route::post('checkout/{service}/{package}', [PaymentsController::class, 'postCheckout']);
+    Route::get('get-subscription/{service}', [ServicesController::class, 'getSubscription'])->middleware('auth:sanctum');
 });
 
 Route::post('seminare/{post}', [SeminarsController::class, 'register']);

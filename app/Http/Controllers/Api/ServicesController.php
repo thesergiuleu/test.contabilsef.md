@@ -31,4 +31,12 @@ class ServicesController extends Controller
         $user = User::whereEmail($email)->first();
         return responseSuccess($user ? "existing_user" : "new_user");
     }
+
+    public function getSubscription(SubscriptionService $service)
+    {
+        /** @var User $user */
+        $user = getAuthUser();
+
+        return $user->activeSubscription($service->id);
+    }
 }
