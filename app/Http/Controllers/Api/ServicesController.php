@@ -38,7 +38,6 @@ class ServicesController extends Controller
         /** @var User $user */
         $user = getAuthUser();
 
-//        dd($user->activeSubscription($service->id));
         return responseSuccess(new SubscriptionResource($user->activeSubscription($service->id)));
     }
 }

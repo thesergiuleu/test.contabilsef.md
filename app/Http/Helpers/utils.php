@@ -102,17 +102,18 @@ function find_glossary_terms($string)
 
     if ($keywords->isNotEmpty()) {
         foreach ($keywords as $item) {
-            $allDefinition[$item->keyword . '.'] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>.";
 
-            $allDefinition[' ' . $item->keyword . ' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span> ";
+            $allDefinition[$item->keyword . '.'] = "<Tooltip title='" . strip_tags($item->description) . "'>" . $item->keyword . "</Tooltip>.";
 
-            $allDefinition['. ' . $item->keyword] = ". <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>";
+            $allDefinition[' ' . $item->keyword . ' '] = " <Tooltip  title='" . strip_tags($item->description) . "'>" . $item->keyword . "</Tooltip> ";
 
-            $allDefinition[mb_strtolower($item->keyword) . '. '] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
+            $allDefinition['. ' . $item->keyword] = ". <Tooltip title='" . strip_tags($item->description) . "'>" . $item->keyword . "</Tooltip>";
 
-            $allDefinition[' ' . mb_strtolower($item->keyword) . ' '] = " <span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span> ";
+            $allDefinition[mb_strtolower($item->keyword) . '. '] = "<Tooltip title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</Tooltip>.";
 
-            $allDefinition['. ' . mb_strtolower($item->keyword)] = "<span style='position:relative;color: #3c5a98; text-decoration: underline;'     data-toggle-tooltip2    data-title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
+            $allDefinition[' ' . mb_strtolower($item->keyword) . ' '] = " <Tooltip title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</Tooltip> ";
+
+            $allDefinition['. ' . mb_strtolower($item->keyword)] = "<Tooltip title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</Tooltip>.";
         }
     }
     $content = (strtr($string, $allDefinition));
