@@ -32,7 +32,7 @@ class PaymentsController extends Controller
             }
 
             /** @var User $user */
-            if (!($user = Auth::user())) {
+            if (!($user = getAuthUser())) {
                 User::validateUser($data)->validate();
                 $user = User::createUser($data);
                 $user->sendConfirmEmail();

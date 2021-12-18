@@ -13,7 +13,7 @@ class CheckoutRequest extends FormRequest
      */
     public function authorize()
     {
-        return (bool)getAuthUser();
+        return true;
     }
 
     /**
@@ -25,7 +25,6 @@ class CheckoutRequest extends FormRequest
     {
         return [
             'payment_method' => 'required',
-
         ];
     }
 }
