@@ -50,7 +50,12 @@ class SinglePostPageService extends AbstractPage
             $this->getSection($post->title, 'post', $post, [
                 'is_name_displayed' => true,
                 'with_views' => true,
-                'with_date' => true
+                'with_date' => true,
+                'with_external_author' => true,
+                'with_comments_count' => true,
+                'with_privacy' => true,
+                'with_category' => true,
+
             ])
         ];
 
