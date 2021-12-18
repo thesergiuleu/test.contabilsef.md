@@ -157,7 +157,7 @@ abstract class AbstractPage
                         'with_header' => true,
                         'with_privacy' => true,
                         'with_date' => true,
-                    ],$mgeta)
+                    ],$meta)
                 ]
             ]
         ];
