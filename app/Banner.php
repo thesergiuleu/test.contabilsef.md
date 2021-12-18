@@ -45,15 +45,15 @@ class Banner extends Model
 
     public static function getBanners($position)
     {
-        $dummyBanner = new Banner();
-        $dummyBanner->fill([
-            'redirect_url' => config('app.url'),
-            'position' => $position,
-        ]);
+//        $dummyBanner = new Banner();
+//        $dummyBanner->fill([
+//            'redirect_url' => config('app.url'),
+//            'position' => $position,
+//        ]);
+//
+//        $dummyBanner->image_url = asset('assets/imgs/y.png');
 
-        $dummyBanner->image_url = asset('assets/imgs/y.png');
-
-        $banners = [$dummyBanner];
+        $banners = [];
         $items = self::active()->wherePosition($position)->get();
         if ($items->count() >= 1) {
             $banners = $items;
