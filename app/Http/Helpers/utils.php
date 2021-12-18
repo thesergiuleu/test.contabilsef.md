@@ -103,17 +103,17 @@ function find_glossary_terms($string)
     if ($keywords->isNotEmpty()) {
         foreach ($keywords as $item) {
 
-            $allDefinition[$item->keyword . '.'] = "<div class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . $item->keyword . "</div>.";
+            $allDefinition[$item->keyword . '.'] = "<span class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>.";
 
-            $allDefinition[' ' . $item->keyword . ' '] = " <div class='tooltip' data-title='" . strip_tags($item->description) . "'  title='" . strip_tags($item->description) . "'>" . $item->keyword . "</div> ";
+            $allDefinition[' ' . $item->keyword . ' '] = " <span class='tooltip' data-title='" . strip_tags($item->description) . "'  title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span> ";
 
-            $allDefinition['. ' . $item->keyword] = ". <div class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . $item->keyword . "</div>";
+            $allDefinition['. ' . $item->keyword] = ". <span class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . $item->keyword . "</span>";
 
-            $allDefinition[mb_strtolower($item->keyword) . '. '] = "<div class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</div>.";
+            $allDefinition[mb_strtolower($item->keyword) . '. '] = "<span class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
 
-            $allDefinition[' ' . mb_strtolower($item->keyword) . ' '] = " <div class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</div> ";
+            $allDefinition[' ' . mb_strtolower($item->keyword) . ' '] = " <span class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span> ";
 
-            $allDefinition['. ' . mb_strtolower($item->keyword)] = "<div class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</div>.";
+            $allDefinition['. ' . mb_strtolower($item->keyword)] = "<span class='tooltip' data-title='" . strip_tags($item->description) . "' title='" . strip_tags($item->description) . "'>" . mb_strtolower($item->keyword) . "</span>.";
         }
     }
     $content = (strtr($string, $allDefinition));
