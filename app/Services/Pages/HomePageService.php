@@ -86,7 +86,8 @@ class HomePageService extends AbstractPage
         $collection = new Collection();
         $collection->push(new Post([
             'id' => 1,
-            'slug' => 'asdasd'
+            'external_link' => config('app.url') . "/service/1",
+            'name' => 'Revista electronică ”Contabilsef.md”',
         ]));
         return new GeneralCollection($collection);
     }
