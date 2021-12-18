@@ -44,9 +44,14 @@ class HomePageService extends AbstractPage
                         'with_header' => true,
                         'with_images' => true,
                         'with_date' => true,
+                        'with_external_author' => true,
+                        'with_excerpt' => true,
                         'with_see_more' => true,
-                        'grid' => true,
-                        'with_views' => true
+                        'with_views' => true,
+                        'with_comments_count' => true,
+                        'with_privacy' => true,
+                        'with_category' => true,
+                        'with_grid' => true
                     ], [
                         'see_more_link' => buildSeeMoreLink('categories', Category::CONTABIL_SEF_NEWS_CATEGORY)
                     ]),
@@ -73,7 +78,8 @@ class HomePageService extends AbstractPage
                         'with_see_more' => true,
                         'with_views' => true,
                         'with_comments_count' => true,
-                        'with_privacy' => true
+                        'with_privacy' => true,
+                        'with_category' => true,
                     ], [
                         'see_more_link' => buildSeeMoreLink('categories', Category::GENERAL_NEWS_CATEGORY)
                     ])
