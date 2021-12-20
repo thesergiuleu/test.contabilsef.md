@@ -41,7 +41,8 @@ class GeneralResource extends JsonResource
             'is_new' => $this->getIsNew(),
             'category_slug' => $this->getCategorySlug(),
             'state' => $this->getState(),
-            'event_date' => $this->getEventDate()
+            'event_date' => $this->getEventDate(),
+            'comments_count' => $this->getCommentsCount(),
         ];
     }
 
@@ -170,5 +171,10 @@ class GeneralResource extends JsonResource
     private function getEventDate()
     {
         return $this->resource->event_date ? $this->resource->event_date->format('Y-m-d') : null;
+    }
+
+    private function getCommentsCount()
+    {
+        return $this->resource->comments ? $this->resource->comments()->count() : 0;
     }
 }
