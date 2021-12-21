@@ -40,6 +40,7 @@ class GeneralResource extends JsonResource
             'category_id' => $this->getCategoryId(),
             'is_new' => $this->getIsNew(),
             'category_slug' => $this->getCategorySlug(),
+            'category_name' => $this->getCategoryName(),
             'state' => $this->getState(),
             'event_date' => $this->getEventDate(),
             'comments_count' => $this->getCommentsCount(),
@@ -176,5 +177,10 @@ class GeneralResource extends JsonResource
     private function getCommentsCount()
     {
         return $this->resource->comments ? $this->resource->comments()->count() : 0;
+    }
+
+    private function getCategoryName()
+    {
+        return ($this->resource->category->name ?? $this->resource->name) ?? null;
     }
 }
