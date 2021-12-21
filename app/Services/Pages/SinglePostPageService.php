@@ -27,6 +27,7 @@ class SinglePostPageService extends AbstractPage
         $bannerData = Banner::getBanners(Banner::POSITION_INDIVIDUAL);
         $similarSection = $this->getSection('Similar din aceiași categorie', 'posts', $similarData, [
             'is_name_displayed' => true,
+            'with_header' => true,
             'with_see_more' => $similarData->isNotEmpty()
         ], ['see_more_link' => buildSeeMoreLink('categories', $this->post->category->slug)]);
         $bannerSection = $this->getSection('Banner', 'banner', $bannerData);
