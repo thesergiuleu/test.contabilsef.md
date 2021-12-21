@@ -23,6 +23,7 @@ class HomeController extends SiteBaseController
 
     public function index(PostsServiceInterface $postsService)
     {
+        return redirect()->to('/admin');
         $this->viewData['breadCrumbs'] = false;
 
         $side = $this->getSideMenu();
