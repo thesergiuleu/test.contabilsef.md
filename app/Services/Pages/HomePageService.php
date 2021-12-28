@@ -35,6 +35,7 @@ class HomePageService extends AbstractPage
                         'with_external_author' => true,
                     ]),
                     $this->getSection('Calendar', 'calendar', $this->getCalendarData()),
+                    $this->getSection('Anonează-te la newsletter', 'newsletter_form', [])
                 ]
             ],
             'main' => [
@@ -83,7 +84,8 @@ class HomePageService extends AbstractPage
                         'with_category' => true,
                     ], [
                         'see_more_link' => buildSeeMoreLink('categories', Category::GENERAL_NEWS_CATEGORY)
-                    ])
+                    ]),
+                    $this->getSection('Adresează o întrebare', 'ask_a_question_form', [])
                 ]
             ]
         ];
